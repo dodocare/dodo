@@ -282,6 +282,7 @@
             100% { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(6px); }
         }
 
+        /* ستایلێن گۆشەیا بێهنڤەدانێ و بازنەیا بێهنرێدانێ */
         .relax-guide-box {
             background: rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -376,6 +377,7 @@
         </div>
     </div>
 
+    <!-- گۆشەیا بێهنڤەدانێ (ل شوینا گۆتنێن خەلکی هاتە دانان) -->
     <div class="card">
         <h3>گۆشەیا بێهنڤەدانێ 🧘‍♂️</h3>
         <button class="btn" onclick="toggleSection('relax-content')">🧘‍♂️ ڤەکرنا گۆشەیا بێهنڤەدانێ</button>
@@ -388,12 +390,12 @@
                     <strong>٢. ل ژوورا خۆ سەحکە:</strong> سێ تشتێن جیاواز ل دەوروبەرێ خۆ ببینە و سەحکێ (وەکی پەرتووکەک، شەمالکەک، یان هەر تشتەکێ دی).
                 </div>
                 <div class="relax-step">
-                    <strong>٣. هەست پێ بکە:</strong> هزرێن خۆ ل سەر ڤان سێ تشتان کۆم بکە دا کو مێشکێ تە ژ نە ئارامیێ دوور بکەڤیت و بزڤریت لسەر ئارامیا خۆ.
+                    <strong>٣. هەست پێ بکە:</strong> هزرێن خۆ ل سەر ڤان سێ تشتان کۆم بکە دا کو مێشکێ تە ژ نە ئارامیێ دوور بکەڤیت و ڤەگەڕێتە سەر ئارامیا خۆ.
                 </div>
             </div>
 
             <div class="breath-circle-container">
-                <div class="breath-circle">بێهن ڤەدان 🌿</div>
+                <div class="breath-circle">بێهنە ڤەدان 🌿</div>
             </div>
         </div>
     </div>
@@ -442,12 +444,12 @@
     </div>
 
     <div class="card">
-        <h3>دەفتەرا ژناڤبرنا هزران </h3>
-        <button class="btn" onclick="toggleSection('journal-content')">📖 ڤەکرنا دەفتەرێ</button>
+        <h3>دەفتەرا ڤەمراندنا هزران 🌬️</h3>
+        <button class="btn" onclick="toggleSection('journal-content')">📖 ڤەکرنا دەفتەرا مێشکی</button>
         
         <div id="journal-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                ‎هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)", و پاش هەر زوی وێ هزرێ ژناڤ ببە:
+                ‎هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)"، و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
             </p>
             <textarea id="journal-input" placeholder="هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە..." oninput="saveJournal()"></textarea>
             <button class="btn btn-danger" onclick="burnThoughts()" style="margin-top: 12px;">🗑️ ڤان هزران ژناڤ ببە</button>
@@ -490,13 +492,7 @@
         let hours = now.getHours();
         let minutes = now.getMinutes();
         minutes = minutes < 10 ? '0' + minutes : minutes;
-        
-        // ڤەگۆهرینا بۆ سیستەمێ 12 دەمژمێری (وەک مۆبایلی)
-        let ampm = hours >= 12 ? 'شەڤ (PM)' : 'سپێدە (AM)';
-        let displayHours = hours % 12;
-        displayHours = displayHours ? displayHours : 12; // ئەگەر 0 بوو بلا ببتە 12
-
-        let timeStr = displayHours + ':' + minutes + ' ' + ampm;
+        let timeStr = hours + ':' + minutes;
         
         let greeting = "دەمژمێر: ";
         if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • دەمژمێر: "; }
@@ -605,3 +601,4 @@
 
 </body>
 </html>
+
