@@ -106,17 +106,17 @@
         .card:hover { transform: translateY(-2px); }
 
         .dodo-box {
-            font-size: 55px;
-            animation: bounce 2s infinite ease-in-out;
+            font-size: 65px;
+            animation: relaxDodo 3s infinite ease-in-out;
             display: inline-block;
             margin: 10px 0;
             text-align: center;
             width: 100%;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-10px) scale(1.05); }
+        @keyframes relaxDodo {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(-3deg); }
         }
 
         .speech-bubble {
@@ -288,6 +288,20 @@
             100% { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(6px); }
         }
 
+        /* Anonymous Wall Styling */
+        .wall-post {
+            background: rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-right: 3px solid var(--accent-pink);
+            text-align: right;
+        }
+        [data-theme="light"] .wall-post { background: rgba(0,0,0,0.03); }
+        .wall-post-text { font-size: 0.9rem; margin-bottom: 8px; word-break: break-word; line-height: 1.5; }
+        .wall-post-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); }
+        .like-btn { background: none; border: none; color: var(--accent-pink); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 4px; padding: 0; }
+
         .install-guide-card {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -349,6 +363,22 @@
             <div class="dodo-box">🐱</div>
             <div class="quote-container">
                 <div class="speech-bubble" id="daily-quote">“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- دیوارێ رازێن ناخی (Anonymous Wall) -->
+    <div class="card">
+        <h3>دیوارێ راز و دلتەنگیێن نەپەنی 🖤</h3>
+        <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا دیوارێ بێناڤ (Anonymous)</button>
+        <div id="wall-content" class="collapsible-content">
+            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
+                لێرە ب دلخۆشی و بێ ناڤ، دلتەنگی، کێشە یان هزرێن خۆ بنڤیسە. کەس ناڤێ تە نزانێت:
+            </p>
+            <textarea id="anonymous-input" placeholder="هزر یان رازێ خۆ لێرە بنڤیسە..." style="margin-bottom: 10px;"></textarea>
+            <button class="btn" onclick="postToWall()">📤 بەلاڤکرنا ب بێناڤی</button>
+            <div id="wall-posts-container" style="margin-top: 15px;">
+                <!-- پۆستێن خەڵکی لێرە دێ دیار بن -->
             </div>
         </div>
     </div>
@@ -425,37 +455,35 @@
         </div>
     </div>
 
-    <!-- ڕێنماییێن زێدەکرنا سایت بۆ موبایلێ -->
+    <!-- ڕێنماییێن زێدەکرنا سایت بۆ موبایلێ (ل سەر خودی سایت ب شێوەکێ بچووک) -->
     <div class="install-guide-card">
         <h3>📱 چەوانیا زێدەکرنا سایت بۆ سەر شاشەیا موبایلا خۆ</h3>
-        <button class="btn" onclick="toggleSection('guide-content')">📱 نیشانیدانا ڕێنماییان</button>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">لێرە ب ساناهی فێرببە چەوا سایتی ل سکرینێ موبایلا خۆ زێدە کەی:</p>
         
-        <div id="guide-content" class="collapsible-content" style="text-align: right; margin-top: 15px;">
-            <div class="guide-box">
-                <h4>⚠️ پێشەکی (تایبەت ب لینکێ تیک تۆک و اینستگرامێ):</h4>
-                <ol style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 20px;">
-                    <li>دەمێ لینکێ سایتی ژ <strong>TikTok</strong> یان <strong>Instagram</strong> ڤەدکەی، سەرەتا تبلأ خۆ ل دوگمەیا سەری بدە (<strong>Open in Browser</strong> یان نیشانا ڤەکرنێ د بروسەرێ دا).</li>
-                    <li>ئەڤە گەلەک گرنگە، چنکو سۆشیال مێدیا ڕێگریێ ل هندەک تایبەتمەندیێن بروسەرا فەرمی دکەت و تو نەشی سایتی ل هۆم سکرینێ داخل بکەی تا نەچیە بروسەرا فەرمی.</li>
-                </ol>
-            </div>
+        <div class="guide-box" style="text-align: right;">
+            <h4>⚠️ پێشەکی (تایبەت ب لینکێ تیک تۆک و اینستگرامێ):</h4>
+            <ol style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 20px;">
+                <li>دەمێ لینکێ سایتی ژ <strong>TikTok</strong> یان <strong>Instagram</strong> ڤەدکەی، سەرەتا تبلأ خۆ ل دوگمەیا سەری بدە (<strong>Open in Browser</strong> یان نیشانا ڤەکرنێ د بروسەرێ دا).</li>
+                <li>ئەڤە گەلەک گرنگە، چنکو سۆشیال مێدیا ڕێگریێ ل هندەک تایبەتمەندیێن بروسەرا فەرمی دکەت و تو نەشی سایتی ل هۆم سکرینێ داخل بکەی.</li>
+            </ol>
+        </div>
 
-            <div class="guide-box">
-                <h4>بۆ ئایفۆنی (iPhone - Safari):</h4>
-                <ol>
-                    <li>پشتی سایتی ب Safari ڤەکری، کلیک ل سەر دوگمەیا Share (نیشانا ڤەگوهاستنێ ل خوارێ) بکە.</li>
-                    <li>بگەڕە ل دووڤ <strong>Add to Home Screen</strong> و کلیک بکە.</li>
-                    <li>کلیک ل سەر Add ل سەرێ ڕاست بکە تا ل سەر شاشەیێ وەک ئاپەک پەیدا بیت.</li>
-                </ol>
-            </div>
+        <div class="guide-box" style="text-align: right;">
+            <h4>بۆ ئایفۆنی (iPhone - Safari):</h4>
+            <ol style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 20px;">
+                <li>پشتی سایتی ب Safari ڤەکری، کلیک ل سەر دوگمەیا Share (نیشانا ڤەگوهاستنێ ل خوارێ) بکە.</li>
+                <li>بگەڕە ل دووڤ <strong>Add to Home Screen</strong> و کلیک بکە.</li>
+                <li>کلیک ل سەر Add ل سەرێ ڕاست بکە تا ل سەر شاشەیێ وەک ئاپەک پەیدا بیت.</li>
+            </ol>
+        </div>
 
-            <div class="guide-box">
-                <h4>بۆ ئەندرویدی (Samsung / Chrome):</h4>
-                <ol>
-                    <li>پشتی سایتی ب Chrome یان Samsung Internet ڤەکری، کلیک ل سەر سێ خاڵێن Menu ل سەرێ ڕاست بکە.</li>
-                    <li><strong>Add to Home screen</strong> یان <strong>Install app</strong> هەلبژێرە.</li>
-                    <li>کلیک ل سەر Add / Install بکە دا ڕاستەوخۆ بێتە سەر شاشەیا موبایلا تە.</li>
-                </ol>
-            </div>
+        <div class="guide-box" style="text-align: right;">
+            <h4>بۆ ئەندرویدی (Samsung / Chrome):</h4>
+            <ol style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 20px;">
+                <li>پشتی سایتی ب Chrome یان Samsung Internet ڤەکری، کلیک ل سەر سێ خاڵێن Menu ل سەرێ ڕاست بکە.</li>
+                <li><strong>Add to Home screen</strong> یان <strong>Install app</strong> هەلبژێرە.</li>
+                <li>کلیک ل سەر Add / Install بکە دا ڕاستەوخۆ بێتە سەر شاشەیا موبایلا تە.</li>
+            </ol>
         </div>
     </div>
 
@@ -565,6 +593,47 @@
         }
     }
 
+    // دیوارێ بێناڤ (Anonymous Wall System)
+    let wallPosts = JSON.parse(localStorage.getItem('dodo_wall_posts')) || [
+        { id: 1, text: "گازندەیەک هەیە د ناخێ من دا نکارم بێژم، بەس هیوادار بن سبەهی ڕۆژەکا خوشتر بیت ✨", likes: 5 },
+        { id: 2, text: "تەنها دڤێت بێژم: تو ژ وێ چەندێ ب هێزتری یا د مێشکێ تە دا.", likes: 8 }
+    ];
+
+    function renderWallPosts() {
+        const container = document.getElementById('wall-posts-container');
+        container.innerHTML = "";
+        wallPosts.forEach((post, index) => {
+            container.innerHTML += `
+                <div class="wall-post">
+                    <div class="wall-post-text">${post.text}</div>
+                    <div class="wall-post-footer">
+                        <span>بێ ناڤ (Anonymous)</span>
+                        <button class="like-btn" onclick="likePost(${index})">❤️ ${post.likes}</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function postToWall() {
+        const input = document.getElementById('anonymous-input');
+        if(input.value.trim() !== "") {
+            wallPosts.unshift({ id: Date.now(), text: input.value.trim(), likes: 0 });
+            localStorage.setItem('dodo_wall_posts', JSON.stringify(wallPosts));
+            input.value = "";
+            renderWallPosts();
+        } else {
+            alert("هیچ ناتشتەک نەهاتیە نڤیسین!");
+        }
+    }
+
+    function likePost(index) {
+        wallPosts[index].likes++;
+        localStorage.setItem('dodo_wall_posts', JSON.stringify(wallPosts));
+        renderWallPosts();
+    }
+    renderWallPosts();
+
     // گۆهۆڕینا مودێ (Dark/Light Mode)
     function toggleTheme() {
         const body = document.getElementById('body');
@@ -591,19 +660,23 @@
         document.getElementById('accentColorPicker').value = savedColor;
     }
 
-    // ستریک (Streak Counter)
-    let streak = localStorage.getItem('dodo_streak') ? parseInt(localStorage.getItem('dodo_streak')) : 1;
-    let lastVisit = localStorage.getItem('dodo_last_visit');
+    // ستریکا بێ سنور (Infinite Streak System)
+    let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 1;
+    let lastVisit = localStorage.getItem('dodo_last_visit_date');
     let todayDate = new Date().toDateString();
+
     if(lastVisit !== todayDate) {
         if(lastVisit) {
             let lastDate = new Date(lastVisit);
             let diffDays = Math.floor((new Date() - lastDate) / (1000 * 60 * 60 * 24));
-            if(diffDays === 1) { streak++; }
-            else if(diffDays > 1) { streak = 1; }
+            if(diffDays === 1) { 
+                streak++; // ئەگەر ڕۆژا پاشتر بێت، ژمارە زێدە دبت
+            } else if(diffDays > 1) { 
+                streak++; // بۆ ئەوەیا چجاران ستریک نەشکێت و هەر بەرەو پێش بچیت
+            }
         }
-        localStorage.setItem('dodo_streak', streak);
-        localStorage.setItem('dodo_last_visit', todayDate);
+        localStorage.setItem('dodo_infinite_streak', streak);
+        localStorage.setItem('dodo_last_visit_date', todayDate);
     }
     document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
 
