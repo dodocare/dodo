@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodocare - جهێ ئارامیا تە</title>
+    <title>Dodocare </title>
     <style>
         :root {
             --bg-color: #12121f;
@@ -313,7 +313,7 @@
 
 <div class="container">
     <div class="top-bar">
-        <button class="theme-toggle" onclick="toggleTheme()">🌓 گوهۆڕینا مودێ</button>
+        <button class="theme-toggle" onclick="toggleTheme()">🌓 گوهۆڕینا مودی</button>
         <div class="color-picker-wrapper">
             🎨 ڕەنگ: <input type="color" id="accentColorPicker" value="#706fd3" onchange="changeAccentColor(this.value)" style="border:none; background:none; width:25px; height:25px; cursor:pointer;">
         </div>
@@ -333,7 +333,7 @@
 
     <div class="card">
         <h3>گۆتنێن ڕۆژانە یێن دۆدۆ 💬</h3>
-        <button class="btn" onclick="toggleSection('quote-content')">💬 ڤەکرنا گۆتنا ڕۆژێ</button>
+        <button class="btn" onclick="toggleSection('quote-content')">💬 ڤەکرنا گۆتنا ئەڤرو</button>
         <div id="quote-content" class="collapsible-content">
             <div class="dodo-box">🐱</div>
             <div class="quote-container">
@@ -343,13 +343,13 @@
     </div>
 
     <div class="card">
-        <h3>دەمێ مرۆڤ کەیفخۆش دبيت، هەمی تشت جوان دیار دبن ✨</h3>
-        <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا گۆتنا جوانیێ</button>
+        <h3>وەرگرتنا گۆتنێن خەلکی</h3>
+        <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا گۆتنا خەلکی</button>
         <div id="wall-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                لێرە گۆتنەکا جوان، هاندەر یان هزرەکا ئارامکەر بێ ناڤ بنڤیسە. (هەر کەسەکی تنێ مافێ ئێک لایکی هەیە لسەر هەر پەیڤەکی):
+                لڤێرێ گۆتنەک جوان بنڤیسە:
             </p>
-            <textarea id="anonymous-input" placeholder="پەیڤەکا جوان لێرە بنڤیسە..." style="margin-bottom: 10px;"></textarea>
+            <textarea id="anonymous-input" placeholder="هزرەکا جوان بنڤیسە..." style="margin-bottom: 10px;"></textarea>
             <button class="btn" onclick="postToWall()">📤 بەلاڤکرنا پەیڤێ</button>
             <div id="wall-posts-container" style="margin-top: 15px;"></div>
         </div>
@@ -361,7 +361,7 @@
         
         <div id="planner-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;">
-                پلانا خۆ بنڤیسە و هەر دەمەکێ کارەک تەمام کر، ✅ ل بەر بکە!
+                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
             </p>
 
             <div class="planner-section">
@@ -452,7 +452,7 @@
         let greeting = "دەمژمێر: ";
         if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • دەمژمێر: "; }
         else if (hours >= 12 && hours < 17) { greeting = "☀️ نیڤرۆ باش • دەمژمێر: "; }
-        else if (hours >= 17 && hours < 21) { greeting = "🌇 ئێڤاری باش • دەمژمێر: "; }
+        else if (hours >= 17 && hours < 21) { greeting = "🌇 ئێڤار باش • دەمژمێر: "; }
         else { greeting = "🌙 شەڤ باش • دەمژمێر: "; }
 
         document.getElementById('live-time-badge').innerText = greeting + timeStr;
@@ -508,12 +508,12 @@
                 alert("🗑️ هزرێن نەخۆش هاتنە ژێبرن! (ئەڤ هزرە ڕۆژا من تێک نادەت) ✨");
             }, 1500);
         } else {
-            alert("پێشتر هزرەکێ ل ڤێرێ بنڤیسە!");
+            alert("هزرەکێ ل ڤێرێ بنڤیسە!");
         }
     }
 
     let wallPosts = JSON.parse(localStorage.getItem('dodo_wall_posts')) || [
-        { id: 1, text: "هەمیشە ب باوەری ڤە بەرەو پێش بچە، سبەهی ژ ئەڤرۆ جوانترە ✨", likes: 3 }
+        { id: 1, text: "هەردەم ب باوەری ڤە بەرەڤ پێش هەرە، ✨", likes: 3 }
     ];
     let userLikes = JSON.parse(localStorage.getItem('dodo_user_likes')) || {};
 
@@ -610,4 +610,3 @@
 
 </body>
 </html>
-
