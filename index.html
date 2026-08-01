@@ -274,22 +274,6 @@
         }
         .task-input { flex-grow: 1; padding: 8px 12px !important; font-size: 0.9rem !important; }
 
-        .breathing-box {
-            text-align: center;
-            padding: 15px;
-        }
-        
-        /* ڕاستڤەکرنا ئەنیمەیشنا هەناسەدانێ (بێ زڤڕاندن و مەزنکرنا زێدە، تنێ گۆڕینا قەبارەیێ ئارام) */
-        .dodo-breath-container {
-            font-size: 70px;
-            margin: 15px auto;
-            display: inline-block;
-            transition: transform 4s ease-in-out;
-        }
-        .breathing-active {
-            transform: scale(1.25);
-        }
-
         .fade-out {
             animation: fadeSmoke 1.5s forwards ease-out;
         }
@@ -338,7 +322,6 @@
     <h1>Dodocare 🐱</h1>
     <div class="subtitle">جهێ ئارامیا ناخێ تە ✨</div>
 
-    <!-- ڕێنماییێن ڕاستڤەکری ب زمانێ بادینی -->
     <div class="top-mini-guide">
         📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان ئینستاگرامی سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
     </div>
@@ -360,8 +343,8 @@
     </div>
 
     <div class="card">
-        <h3>پەیڤێن روناهی و هێڤیێ ✨</h3>
-        <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا پەیڤێن هاندەر و ئارام</button>
+        <h3>دەمێ مرۆڤ کەیفخۆش دبيت، هەمی تشت جوان دیار دبن ✨</h3>
+        <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا گۆتنا جوانیێ</button>
         <div id="wall-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
                 لێرە گۆتنەکا جوان، هاندەر یان هزرەکا ئارامکەر بێ ناڤ بنڤیسە. (هەر کەسەکی تنێ مافێ ئێک لایکی هەیە لسەر هەر پەیڤەکی):
@@ -411,19 +394,6 @@
                     <input type="checkbox" class="task-checkbox" id="check-night" onclick="savePlanner()">
                     <input type="text" class="task-input" id="input-night" placeholder="کارێ شەڤا خۆ..." oninput="savePlanner()">
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3>گۆشەیا ئارامیا ناخی 🧘‍♀️</h3>
-        <button class="btn" onclick="toggleSection('breath-content')">🧘‍♀️ ڤەکرنا گۆشەیا ئارامیێ</button>
-        
-        <div id="breath-content" class="collapsible-content">
-            <div class="breathing-box">
-                <p id="breath-text" style="font-size: 0.9rem; color: var(--text-muted);">بۆ ئارامکرنا مێشکی، دگەل جووڵەیا دۆدۆی هەناسەیا کوویر هەلبکێشە</p>
-                <div class="dodo-breath-container" id="dodo-breath">🐱</div>
-                <button class="btn" onclick="startBreathing()">✨ دەست پێکرنا ڕاهێنانا هەناسەدانێ</button>
             </div>
         </div>
     </div>
@@ -636,42 +606,8 @@
         localStorage.setItem('dodo_last_visit_date', todayDate);
     }
     document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
-
-    function startBreathing() {
-        const dodo = document.getElementById('dodo-breath');
-        const text = document.getElementById('breath-text');
-        
-        text.innerText = "هەناسەیا کوویر هەلبکێشە... (هێدی هێدی)";
-        dodo.classList.add('breathing-active');
-
-        setTimeout(() => {
-            text.innerText = "هەناسەیا خۆ ل دەروونێ خۆ ڕاگرە...";
-        }, 5000);
-
-        setTimeout(() => {
-            text.innerText = "ب ئارامی و هێدی بەردە دەر...";
-            dodo.classList.remove('breathing-active');
-        }, 10000);
-
-        setTimeout(() => {
-            text.innerText = "هەناسەیا کوویر هەلبکێشە... (جارەکا دی)";
-            dodo.classList.add('breathing-active');
-        }, 15000);
-
-        setTimeout(() => {
-            text.innerText = "هەناسەیا خۆ ڕاگرە...";
-        }, 20000);
-
-        setTimeout(() => {
-            text.innerText = "ب ئارامی بەردە دەر...";
-            dodo.classList.remove('breathing-active');
-        }, 25000);
-
-        setTimeout(() => {
-            text.innerText = "گەلەک باش بوو! ئارامیا ناخی پاراستی بە ✨";
-        }, 30000);
-    }
 </script>
 
 </body>
 </html>
+
