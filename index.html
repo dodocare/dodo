@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ku">
 <head>
@@ -335,7 +336,7 @@
     <div class="top-bar">
         <button class="theme-toggle" onclick="toggleTheme()">🌓 گوهۆڕینا مودی</button>
         <div class="color-picker-wrapper">
-            🎨 ڕەنگ: <input type="color" id="accentColorPicker" value="#706fd3" onchange="changeAccentColor(this.value)" style="border:none; background:none; width:25px; height:25px; cursor:pointer;">
+‎            🎨 ڕەنگ: <input type="color" id="accentColorPicker" value="#706fd3" onchange="changeAccentColor(this.value)" style="border:none; background:none; width:25px; height:25px; cursor:pointer;">
         </div>
     </div>
 
@@ -367,11 +368,11 @@
         <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا گۆتنا خەلکی</button>
         <div id="wall-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                لڤێرێ گۆتنەک جوان بنڤیسە:
+‎                لڤێرێ گۆتنەک جوان بنڤیسە:
             </p>
             <textarea id="anonymous-input" placeholder="هزرەکا جوان بنڤیسە..." style="margin-bottom: 10px;"></textarea>
             <button class="btn" onclick="postToWall()">📤 بەلاڤکرنا پەیڤێ</button>
-            <div id="wall-posts-container" style="margin-top: 15px;"></div>
+            <div id="wall-posts-container" style="margin-top: 15px;">⏳ لڤەدانا پەیڤان...</div>
         </div>
     </div>
 
@@ -381,7 +382,7 @@
         
         <div id="planner-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;">
-                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
+‎                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
             </p>
 
             <div class="planner-section">
@@ -424,7 +425,7 @@
         
         <div id="journal-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)"، و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
+‎                هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)"، و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
             </p>
             <textarea id="journal-input" placeholder="هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە..." oninput="saveJournal()"></textarea>
             <button class="btn btn-danger" onclick="burnThoughts()" style="margin-top: 12px;">🗑️ ڤان هزران ژناڤ ببە</button>
@@ -443,21 +444,21 @@
     }
 
     const quotes = [
-        "“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”",
-        "“تو گەلەک ژ هندێ ب هێزتری تو دەستا ب داهێلی.”",
-        "“بخۆ بژی، نە بۆ ڕازیکرنا خەڵکی.”",
-        "“هەر نوکە دەست پێ بکە، چ جاران درەنگ نینە.”",
-        "“تو یا ب هێزی، باوەریێ ب شیانێن خۆ بینە.”",
-        "“ئەڤرۆ دەرفەتەکا نووی یە بۆ هندێ تو بگەهیە حەزێن خۆ.”",
-        "“خەونێن تە مەزنن، هەولدانێن خۆ ژی مەزنتر لێ بکە.”",
-        "“تو داهێنەرا ژیانا خۆیی، جوان ڕەنگ بکە.”",
-        "“هەر تشتەکێ ئەڤرۆ دکەی، سوبە دێ پێ کەیفخۆش بی.”",
-        "“تو ب تنێ دشێی ژیانا خۆ بگۆهۆڕی، دەست پێ بکە.”",
-        "“ئارام بە، خودێ دێ دەرگەهێن خێڕێ بۆ تە ڤەکەت.”",
-        "“پێنگاڤەکا بچووک باشترە ژ ڕاوەستانێ.”",
-        "“تو ژ هەژی باشترین تشتی د ژیانێ دا.”",
-        "“دەست ژ هیڤیێن خۆ بەرنەدە، تو کەسەک خودان شیانی.”",
-        "“ئەڤرۆ کار بکە، دا کو سوبە شانازیێ ب خۆ بەی.”"
+‎        "“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”",
+‎        "“تو گەلەک ژ هندێ ب هێزتری تو دەستا ب داهێلی.”",
+‎        "“بخۆ بژی، نە بۆ ڕازیکرنا خەڵکی.”",
+‎        "“هەر نوکە دەست پێ بکە، چ جاران درەنگ نینە.”",
+‎        "“تو یا ب هێزی، باوەریێ ب شیانێن خۆ بینە.”",
+‎        "“ئەڤرۆ دەرفەتەکا نووی یە بۆ هندێ تو بگەهیە حەزێن خۆ.”",
+‎        "“خەونێن تە مەزنن، هەولدانێن خۆ ژی مەزنتر لێ بکە.”",
+‎        "“تو داهێنەرا ژیانا خۆیی، جوان ڕەنگ بکە.”",
+‎        "“هەر تشتەکێ ئەڤرۆ دکەی، سوبە دێ پێ کەیفخۆش بی.”",
+‎        "“تو ب تنێ دشێی ژیانا خۆ بگۆهۆڕی، دەست پێ بکە.”",
+‎        "“ئارام بە، خودێ دێ دەرگەهێن خێڕێ بۆ تە ڤەکەت.”",
+‎        "“پێنگاڤەکا بچووک باشترە ژ ڕاوەستانێ.”",
+‎        "“تو ژ هەژی باشترین تشتی د ژیانێ دا.”",
+‎        "“دەست ژ هیڤیێن خۆ بەرنەدە، تو کەسەک خودان شیانی.”",
+‎        "“ئەڤرۆ کار بکە، دا کو سوبە شانازیێ ب خۆ بەی.”"
     ];
     const dayOfYear = Math.floor(new Date() / 8.64e7);
     document.getElementById('daily-quote').innerText = quotes[dayOfYear % quotes.length];
@@ -532,24 +533,55 @@
         }
     }
 
-    // استفاده از localStorage مشترک (broadcast/global) داكو پەیڤ ل دەڤ هەمیان دیار بن
-    let wallPosts = JSON.parse(localStorage.getItem('dodo_wall_posts')) || [
-        { id: 1, text: "هەردەم ب باوەری ڤە بەرەڤ پێش هەرە، ✨", likes: 3 }
-    ];
+‎    // --- سیستمێ نوی بۆ بەلاڤکرنا ڕاستەقینە ل سەر گیتهاپ (JSONbin.io Backend) ---
+‎    // تێبینی: بو وێ یەکێ ڤەگوهاستنا پەیڤان بۆ هەمیان کار بکەت، ئەم سەکۆیا Npoint.io بەکار دئینین (یا بێ بەرامبەر و بەردەوامە)
+    const BIN_URL = 'https://api.npoint.io/462d7c577038e9bc7e80'; // ئەڤە لینکێ سێرڤەرێ بچووکێ تە یە بۆ عەمبارکرنا پەیڤان
+    
+    let wallPosts = [];
     let userLikes = JSON.parse(localStorage.getItem('dodo_user_likes')) || {};
+    let myCreatedPosts = JSON.parse(localStorage.getItem('dodo_my_posts')) || {}; // تنێ ئەو پەیڤێن خودانێ موبایلێ چێکرین دشێت ژێببەت
+
+    async function fetchPosts() {
+        try {
+            let res = await fetch(BIN_URL);
+            let data = await res.json();
+            wallPosts = Array.isArray(data) ? data : [];
+            renderWallPosts();
+        } catch (err) {
+            document.getElementById('wall-posts-container').innerHTML = "⚠️ ئاریشەک د پەیوەندیێ دا هەیە.";
+        }
+    }
+
+    async function updateServer() {
+        try {
+            await fetch(BIN_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(wallPosts)
+            });
+        } catch(err) {
+            console.log("Error updating server");
+        }
+    }
 
     function renderWallPosts() {
         const container = document.getElementById('wall-posts-container');
         container.innerHTML = "";
+        if(wallPosts.length === 0) {
+            container.innerHTML = "<p style='text-align:center; color:var(--text-muted); font-size:0.85rem;'>هێشتا چ پەیڤ نینن...</p>";
+            return;
+        }
         wallPosts.forEach((post) => {
             let hasLiked = userLikes[post.id] === true;
+            let isMyPost = myCreatedPosts[post.id] === true; // دپشکنین ئایا ئەڤە پەیفا مەیە دا تنێ ئەم بشێین ژێببین
+            
             container.innerHTML += `
                 <div class="wall-post" id="post-${post.id}">
                     <div class="wall-post-text">${post.text}</div>
                     <div class="wall-post-footer">
                         <span>بێ ناڤ (Anonymous)</span>
                         <div class="wall-actions">
-                            <button class="delete-btn" onclick="deletePost(${post.id})" title="ژێبرنا پەیڤێ">🗑️</button>
+                            ${isMyPost ? `<button class="delete-btn" onclick="deletePost(${post.id})" title="ژێبرنا پەیڤێ">🗑️</button>` : ''}
                             <button class="like-btn ${hasLiked ? 'liked' : ''}" onclick="toggleLike(${post.id})">
                                 ❤️ ${post.likes}
                             </button>
@@ -560,28 +592,37 @@
         });
     }
 
-    function postToWall() {
+    async function postToWall() {
         const input = document.getElementById('anonymous-input');
         if(input.value.trim() !== "") {
             const newPost = { id: Date.now(), text: input.value.trim(), likes: 0 };
             wallPosts.unshift(newPost);
-            localStorage.setItem('dodo_wall_posts', JSON.stringify(wallPosts));
-            input.value = "";
+            
+‎            // تۆمارکرنا ئایا ئەڤ پەیڤە ژلایێ ڤی کەسی ڤە هاتیە چێکرن دا تنێ ئەو بشێت ژێببەت
+            myCreatedPosts[newPost.id] = true;
+            localStorage.setItem('dodo_my_posts', JSON.stringify(myCreatedPosts));
+
             renderWallPosts();
+            input.value = "";
+            await updateServer();
+            fetchPosts();
         } else {
             alert("هیچ پەیڤەک نەهاتیە نڤیسین!");
         }
     }
 
-    function deletePost(postId) {
+    async function deletePost(postId) {
         if(confirm("تە دڤێت ئەڤ پەیڤە ژێببی؟")) {
             wallPosts = wallPosts.filter(p => p.id !== postId);
-            localStorage.setItem('dodo_wall_posts', JSON.stringify(wallPosts));
+            delete myCreatedPosts[postId];
+            localStorage.setItem('dodo_my_posts', JSON.stringify(myCreatedPosts));
             renderWallPosts();
+            await updateServer();
+            fetchPosts();
         }
     }
 
-    function toggleLike(postId) {
+    async function toggleLike(postId) {
         let post = wallPosts.find(p => p.id === postId);
         if(!post) return;
 
@@ -593,19 +634,14 @@
             userLikes[postId] = false;
         }
 
-        localStorage.setItem('dodo_wall_posts', JSON.stringify(wallPosts));
         localStorage.setItem('dodo_user_likes', JSON.stringify(userLikes));
         renderWallPosts();
+        await updateServer();
     }
-    renderWallPosts();
 
-    // نۆژەنکرنا پەیڤان ئەگەر یەکێ ل سەکۆیەکا دی پەیڤەک زێدە کر
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'dodo_wall_posts') {
-            wallPosts = JSON.parse(e.newValue) || [];
-            renderWallPosts();
-        }
-    });
+‎    // ئینان و نۆژەنکرنا پەیڤان هەر ٥ چرکەجاران دا ل دەڤ هەمیان دەرکەڤن
+    fetchPosts();
+    setInterval(fetchPosts, 5000);
 
     function toggleTheme() {
         const body = document.getElementById('body');
@@ -651,4 +687,3 @@
 
 </body>
 </html>
-
