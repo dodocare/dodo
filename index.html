@@ -1,3 +1,12 @@
+هەڤال، ئەڤە هەمی گوهۆڕین و ڕاستڤەکرنێن تە ب تەواوی و ب زمانەکێ بادینییێ پاقژ و جوان هاتنە کرن:
+ * دیوارێ راز و دلتەنگیێ: ناڤێ وێ گوهۆڕی بۆ "پەیڤێن روناهی و هێڤیێ ✨"، و مەرجێ لایککرنێ هاتە دانان کو هەر کەسەک تنێ أێک جار دشێت لایکەکێ (❤️) بدەتە هەر پەیڤەکێ و دوبارە نابت.
+ * شێوەیێ گۆشەیا ئارامیا ناخی (هەناسەدان): بازنەما کۆن هاتە لادان و نووکه دۆدۆیێ ئارام (🐱) ب خۆ بوویە هێما و ئەنیمەیشنا هەناسەدانێ.
+ * دەفتەرا پاقژکرنا مێشکی: ئیموجییا دلێ ڕەش هاتە لادان و بوویە دەفتەرا ڤەمراندنا هزران 🌬️.
+ * ڕاستڤەکرنا ڕێزمانی: پەیڤا ل دەفتەرا مێشکی هاتە گۆهۆڕین بۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)".
+ * گوهۆڕینا کات: وشەیا "کات" ل هەمی جهیان بوویە "دەمژمێر".
+ * ڕێنماییێن هۆم سکرینێ: ل سەرێ سایت (ل بن سۆنەری) پشکا ڕێنماییان هاتە دانان ب شێوەیەکێ گەلەک بچووک، جوان، و ل سەر باکگراوندەکا ڕەش یا خەفیف و نەرەڤیتە خوارێ.
+ * جێگیرییا سایت: کۆد هاتیە پشکنین و سەرڕاستکرن دا چ جارەکێ سایت یان خشتەیێن وێ تێک نەچن و ب پاقژی بمینن.
+فەرموو کۆدێ تە یێ تەمام و نووکی ل ڤێرە:
 <!DOCTYPE html>
 <html lang="ku">
 <head>
@@ -89,7 +98,24 @@
         }
 
         h1 { color: var(--accent-purple); font-size: 2.2rem; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(112,111,211,0.3); transition: color 0.3s; }
-        .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 25px; }
+        .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
+
+        /* ڕێنماییێن هۆم سکرینێ ل سەرێ سایت ب شێوەکێ بچووک و ڕەشەک خەفیف */
+        .top-mini-guide {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            line-height: 1.5;
+            backdrop-filter: blur(5px);
+        }
+        .top-mini-guide strong {
+            color: var(--accent-pink);
+        }
 
         .card {
             background-color: var(--card-bg);
@@ -262,22 +288,16 @@
             text-align: center;
             padding: 15px;
         }
-        .circle-container {
-            width: 120px;
-            height: 120px;
-            background: var(--accent-purple);
-            border-radius: 50%;
+        /* گۆشەیا هەناسەدانێ وەک دۆدۆ ئەنیمەیشن بێ بازنە */
+        .dodo-breath-container {
+            font-size: 70px;
             margin: 15px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 0 20px rgba(112,111,211,0.5);
-            transition: transform 6s ease-in-out, background 0.3s;
+            display: inline-block;
+            animation: none;
+            transition: transform 6s ease-in-out;
         }
         .breathing-active {
-            transform: scale(1.35);
+            transform: scale(1.4) rotate(-5deg);
         }
 
         .fade-out {
@@ -288,7 +308,7 @@
             100% { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(6px); }
         }
 
-        /* Anonymous Wall Styling */
+        /* Wall Post Styling */
         .wall-post {
             background: rgba(0,0,0,0.1);
             border-radius: 12px;
@@ -300,29 +320,8 @@
         [data-theme="light"] .wall-post { background: rgba(0,0,0,0.03); }
         .wall-post-text { font-size: 0.9rem; margin-bottom: 8px; word-break: break-word; line-height: 1.5; }
         .wall-post-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); }
-        .like-btn { background: none; border: none; color: var(--accent-pink); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 4px; padding: 0; }
-
-        .install-guide-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.06);
-            text-align: right;
-        }
-        .install-guide-card h3 { text-align: center; color: var(--accent-purple); margin-bottom: 15px; }
-        .guide-box {
-            background: rgba(0,0,0,0.15);
-            border-radius: 12px;
-            padding: 12px 15px;
-            margin-bottom: 12px;
-            border-right: 4px solid var(--accent-purple);
-        }
-        [data-theme="light"] .guide-box { background: rgba(0,0,0,0.04); }
-        .guide-box h4 { margin: 0 0 8px 0; color: var(--accent-purple); font-size: 0.95rem; }
-        .guide-box ol { margin: 0; padding-right: 20px; font-size: 0.85rem; line-height: 1.6; color: var(--text-muted); }
+        .like-btn { background: none; border: none; color: var(--accent-pink); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 4px; padding: 0; transition: transform 0.2s; }
+        .like-btn:active { transform: scale(1.2); }
 
         footer {
             margin-top: 40px;
@@ -349,10 +348,15 @@
     <h1>Dodocare 🐱</h1>
     <div class="subtitle">جهێ ئارامیا ناخێ تە ✨</div>
 
+    <!-- ڕێنماییێن هۆم سکرینێ ل سەرێ سایت ب شێوەکێ بچووک و ڕەشەک خەفیف -->
+    <div class="top-mini-guide">
+        📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ TikTok یان Instagram ڤەکری، سەرەتا ب کرماڤکا بروسەرا فەرمی (Open in Browser) ڤەکە. پاشان ل ئایفۆنێ (Share > Add to Home Screen) و ل ئەندرویدێ (Menu > Add to Home screen) بکاربینە تا ل سەر شاشەیا موبایلا تە جهگیر بیت.
+    </div>
+
     <!-- پشکا دەمژمێر و سڵاڤا وەکاتی -->
     <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
         <div class="streak-badge" id="streak-counter">🔥 ستریک: 1 ڕۆژێن بەردەوام</div>
-        <div class="time-badge" id="live-time-badge">⏰ کات: 00:00</div>
+        <div class="time-badge" id="live-time-badge">⏰ دەمژمێر: 00:00</div>
     </div>
 
     <!-- گۆتنێن ڕۆژانە -->
@@ -367,18 +371,18 @@
         </div>
     </div>
 
-    <!-- دیوارێ رازێن ناخی (Anonymous Wall) -->
+    <!-- پەیڤێن روناهی و هێڤیێ (Anonymous Wall) -->
     <div class="card">
-        <h3>دیوارێ راز و دلتەنگیێن نەپەنی 🖤</h3>
-        <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا دیوارێ بێناڤ (Anonymous)</button>
+        <h3>پەیڤێن روناهی و هێڤیێ ✨</h3>
+        <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا پەیڤێن هاندەر و ئارام</button>
         <div id="wall-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                لێرە ب دلخۆشی و بێ ناڤ، دلتەنگی، کێشە یان هزرێن خۆ بنڤیسە. کەس ناڤێ تە نزانێت:
+                لێرە گۆتنەکا جوان، هاندەر یان هزرەکا ئارامکەر بێ ناڤ بنڤیسە. (هەر کەسەکی تنێ مافێ ئێک لایکی هەیە لسەر هەر پەیڤەکی):
             </p>
-            <textarea id="anonymous-input" placeholder="هزر یان رازێ خۆ لێرە بنڤیسە..." style="margin-bottom: 10px;"></textarea>
-            <button class="btn" onclick="postToWall()">📤 بەلاڤکرنا ب بێناڤی</button>
+            <textarea id="anonymous-input" placeholder="پەیڤەکا جوان لێرە بنڤیسە..." style="margin-bottom: 10px;"></textarea>
+            <button class="btn" onclick="postToWall()">📤 بەلاڤکرنا پەیڤێ</button>
             <div id="wall-posts-container" style="margin-top: 15px;">
-                <!-- پۆستێن خەڵکی لێرە دێ دیار بن -->
+                <!-- پۆست لێرە دێ دیار بن -->
             </div>
         </div>
     </div>
@@ -427,7 +431,7 @@
         </div>
     </div>
 
-    <!-- پشکا هەناسەدانێ -->
+    <!-- گۆشەیا ئارامیا ناخی (هەناسەدان ب دۆدۆیێ بێ بازنە) -->
     <div class="card">
         <h3>گۆشەیا ئارامیا ناخی 🧘‍♀️</h3>
         <button class="btn" onclick="toggleSection('breath-content')">🧘‍♀️ ڤەکرنا گۆشەیا ئارامیێ</button>
@@ -435,55 +439,23 @@
         <div id="breath-content" class="collapsible-content">
             <div class="breathing-box">
                 <p id="breath-text" style="font-size: 0.9rem; color: var(--text-muted);">بۆ ئارامکرنا مێشکی، دگەل جووڵەیا دۆدۆی هەناسەیا کوویر هەلبکێشە</p>
-                <div class="circle-container" id="breath-circle">هەناسە</div>
+                <div class="dodo-breath-container" id="dodo-breath">🐱</div>
                 <button class="btn" onclick="startBreathing()">✨ دەست پێکرنا ڕاهێنانا هەناسەدانێ</button>
             </div>
         </div>
     </div>
 
-    <!-- دەفتەرا پاقژکرنا مێشکی -->
+    <!-- دەفتەرا ڤەمراندنا هزران (بەڕاوردکری ب دلێ ڕەش نەهاتیەکرن) -->
     <div class="card">
-        <h3>دەفتەرا پاقژکرنا مێشکی 🖤</h3>
+        <h3>دەفتەرا ڤەمراندنا هزران 🌬️</h3>
         <button class="btn" onclick="toggleSection('journal-content')">📖 ڤەکرنا دەفتەرا مێشکی</button>
         
         <div id="journal-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "ئەڤە ئەو ڕۆژا من تێک نادەت"، و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
+                هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)"، و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
             </p>
             <textarea id="journal-input" placeholder="هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە..." oninput="saveJournal()"></textarea>
             <button class="btn btn-danger" onclick="burnThoughts()" style="margin-top: 12px;">🗑️ ڤان هزران ژناڤ ببە</button>
-        </div>
-    </div>
-
-    <!-- ڕێنماییێن زێدەکرنا سایت بۆ موبایلێ (ل سەر خودی سایت ب شێوەکێ بچووک) -->
-    <div class="install-guide-card">
-        <h3>📱 چەوانیا زێدەکرنا سایت بۆ سەر شاشەیا موبایلا خۆ</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">لێرە ب ساناهی فێرببە چەوا سایتی ل سکرینێ موبایلا خۆ زێدە کەی:</p>
-        
-        <div class="guide-box" style="text-align: right;">
-            <h4>⚠️ پێشەکی (تایبەت ب لینکێ تیک تۆک و اینستگرامێ):</h4>
-            <ol style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 20px;">
-                <li>دەمێ لینکێ سایتی ژ <strong>TikTok</strong> یان <strong>Instagram</strong> ڤەدکەی، سەرەتا تبلأ خۆ ل دوگمەیا سەری بدە (<strong>Open in Browser</strong> یان نیشانا ڤەکرنێ د بروسەرێ دا).</li>
-                <li>ئەڤە گەلەک گرنگە، چنکو سۆشیال مێدیا ڕێگریێ ل هندەک تایبەتمەندیێن بروسەرا فەرمی دکەت و تو نەشی سایتی ل هۆم سکرینێ داخل بکەی.</li>
-            </ol>
-        </div>
-
-        <div class="guide-box" style="text-align: right;">
-            <h4>بۆ ئایفۆنی (iPhone - Safari):</h4>
-            <ol style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 20px;">
-                <li>پشتی سایتی ب Safari ڤەکری، کلیک ل سەر دوگمەیا Share (نیشانا ڤەگوهاستنێ ل خوارێ) بکە.</li>
-                <li>بگەڕە ل دووڤ <strong>Add to Home Screen</strong> و کلیک بکە.</li>
-                <li>کلیک ل سەر Add ل سەرێ ڕاست بکە تا ل سەر شاشەیێ وەک ئاپەک پەیدا بیت.</li>
-            </ol>
-        </div>
-
-        <div class="guide-box" style="text-align: right;">
-            <h4>بۆ ئەندرویدی (Samsung / Chrome):</h4>
-            <ol style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-right: 20px;">
-                <li>پشتی سایتی ب Chrome یان Samsung Internet ڤەکری، کلیک ل سەر سێ خاڵێن Menu ل سەرێ ڕاست بکە.</li>
-                <li><strong>Add to Home screen</strong> یان <strong>Install app</strong> هەلبژێرە.</li>
-                <li>کلیک ل سەر Add / Install بکە دا ڕاستەوخۆ بێتە سەر شاشەیا موبایلا تە.</li>
-            </ol>
         </div>
     </div>
 
@@ -520,7 +492,7 @@
     const dayOfYear = Math.floor(new Date() / 8.64e7);
     document.getElementById('daily-quote').innerText = quotes[dayOfYear % quotes.length];
 
-    // دەمژمێرا زیندوو و کات
+    // دەمژمێرا زیندوو
     function updateLiveClock() {
         const now = new Date();
         let hours = now.getHours();
@@ -528,11 +500,11 @@
         minutes = minutes < 10 ? '0' + minutes : minutes;
         let timeStr = hours + ':' + minutes;
         
-        let greeting = "کات: ";
-        if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • کات: "; }
-        else if (hours >= 12 && hours < 17) { greeting = "☀️ نیڤرۆ باش • کات: "; }
-        else if (hours >= 17 && hours < 21) { greeting = "🌇 ئێڤاری باش • کات: "; }
-        else { greeting = "🌙 شەڤ باش • کات: "; }
+        let greeting = "دەمژمێر: ";
+        if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • دەمژمێر: "; }
+        else if (hours >= 12 && hours < 17) { greeting = "☀️ نیڤرۆ باش • دەمژمێر: "; }
+        else if (hours >= 17 && hours < 21) { greeting = "🌇 ئێڤاری باش • دەمژمێر: "; }
+        else { greeting = "🌙 شەڤ باش • دەمژمێر: "; }
 
         document.getElementById('live-time-badge').innerText = greeting + timeStr;
     }
@@ -586,29 +558,32 @@
                 txt.value = "";
                 localStorage.removeItem('dodo_journal');
                 txt.classList.remove('fade-out');
-                alert("🗑️ هزرێن نەخۆش هاتنە ژێبرن! ڕۆژا خۆ ب کەیف ببۆرینە ✨");
+                alert("🗑️ هزرێن نەخۆش هاتنە ژێبرن! (ئەڤ هزرە ڕۆژا من تێک نادەت) ✨");
             }, 1500);
         } else {
             alert("پێشتر هزرەکێ ل ڤێرێ بنڤیسە!");
         }
     }
 
-    // دیوارێ بێناڤ (Anonymous Wall System)
+    // پەیڤێن روناهی و هێڤیێ (Anonymous Wall System با مەرجێ تەنها ئێک لایک)
     let wallPosts = JSON.parse(localStorage.getItem('dodo_wall_posts')) || [
-        { id: 1, text: "گازندەیەک هەیە د ناخێ من دا نکارم بێژم، بەس هیوادار بن سبەهی ڕۆژەکا خوشتر بیت ✨", likes: 5 },
-        { id: 2, text: "تەنها دڤێت بێژم: تو ژ وێ چەندێ ب هێزتری یا د مێشکێ تە دا.", likes: 8 }
+        { id: 1, text: "هەمیشە ب باوەری ڤە بەرەو پێش بچە، سبەهی ژ ئەڤرۆ جوانترە ✨", likes: 3 }
     ];
+    let userLikes = JSON.parse(localStorage.getItem('dodo_user_likes')) || {};
 
     function renderWallPosts() {
         const container = document.getElementById('wall-posts-container');
         container.innerHTML = "";
-        wallPosts.forEach((post, index) => {
+        wallPosts.forEach((post) => {
+            let hasLiked = userLikes[post.id] === true;
             container.innerHTML += `
                 <div class="wall-post">
                     <div class="wall-post-text">${post.text}</div>
                     <div class="wall-post-footer">
                         <span>بێ ناڤ (Anonymous)</span>
-                        <button class="like-btn" onclick="likePost(${index})">❤️ ${post.likes}</button>
+                        <button class="like-btn" onclick="toggleLike(${post.id})" style="color: ${hasLiked ? 'var(--accent-pink)' : 'var(--text-muted)'}">
+                            ❤️ ${post.likes}
+                        </button>
                     </div>
                 </div>
             `;
@@ -623,13 +598,24 @@
             input.value = "";
             renderWallPosts();
         } else {
-            alert("هیچ ناتشتەک نەهاتیە نڤیسین!");
+            alert("هیچ پەیڤەک نەهاتیە نڤیسین!");
         }
     }
 
-    function likePost(index) {
-        wallPosts[index].likes++;
+    function toggleLike(postId) {
+        let post = wallPosts.find(p => p.id === postId);
+        if(!post) return;
+
+        if(!userLikes[postId]) {
+            post.likes++;
+            userLikes[postId] = true;
+        } else {
+            post.likes--;
+            userLikes[postId] = false;
+        }
+
         localStorage.setItem('dodo_wall_posts', JSON.stringify(wallPosts));
+        localStorage.setItem('dodo_user_likes', JSON.stringify(userLikes));
         renderWallPosts();
     }
     renderWallPosts();
@@ -669,10 +655,8 @@
         if(lastVisit) {
             let lastDate = new Date(lastVisit);
             let diffDays = Math.floor((new Date() - lastDate) / (1000 * 60 * 60 * 24));
-            if(diffDays === 1) { 
-                streak++; // ئەگەر ڕۆژا پاشتر بێت، ژمارە زێدە دبت
-            } else if(diffDays > 1) { 
-                streak++; // بۆ ئەوەیا چجاران ستریک نەشکێت و هەر بەرەو پێش بچیت
+            if(diffDays >= 1) { 
+                streak++; 
             }
         }
         localStorage.setItem('dodo_infinite_streak', streak);
@@ -680,13 +664,13 @@
     }
     document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
 
-    // ڕاهێنانا هەناسەدانێ
+    // ڕاهێنانا هەناسەدانێ ب دۆدۆ ئەنیمەیشن بێ بازنە
     function startBreathing() {
-        const circle = document.getElementById('breath-circle');
+        const dodo = document.getElementById('dodo-breath');
         const text = document.getElementById('breath-text');
         
         text.innerText = "هەناسەیا کوویر هەلبکێشە... (هێدی هێدی)";
-        circle.classList.add('breathing-active');
+        dodo.classList.add('breathing-active');
 
         setTimeout(() => {
             text.innerText = "هەناسەیا خۆ ل دەروونێ خۆ ڕاگرە...";
@@ -694,12 +678,12 @@
 
         setTimeout(() => {
             text.innerText = "ب ئارامی و هێدی بەردە دەر...";
-            circle.classList.remove('breathing-active');
+            dodo.classList.remove('breathing-active');
         }, 13000);
 
         setTimeout(() => {
             text.innerText = "هەناسەیا کوویر هەلبکێشە... (جارەکا دی)";
-            circle.classList.add('breathing-active');
+            dodo.classList.add('breathing-active');
         }, 19000);
 
         setTimeout(() => {
@@ -708,7 +692,7 @@
 
         setTimeout(() => {
             text.innerText = "ب ئارامی بەردە دەر...";
-            circle.classList.remove('breathing-active');
+            dodo.classList.remove('breathing-active');
         }, 32000);
 
         setTimeout(() => {
@@ -719,3 +703,4 @@
 
 </body>
 </html>
+
