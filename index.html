@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ku" id="html-root">
 <head>
@@ -98,25 +99,31 @@
         }
         .lang-btn:hover, .theme-toggle:hover { opacity: 0.8; }
 
-        .color-dots {
-            display: flex;
-            gap: 6px;
-            align-items: center;
+        .color-picker-btn {
             background: var(--card-bg);
             border: 1px solid rgba(255,255,255,0.1);
             padding: 6px 10px;
             border-radius: 10px;
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .dot {
-            width: 20px;
-            height: 20px;
+        input[type="color"] {
+            appearance: none;
+            -webkit-appearance: none;
+            border: none;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             cursor: pointer;
-            border: 2px solid rgba(255,255,255,0.5);
-            transition: transform 0.2s;
+            background: none;
         }
-        .dot:hover { transform: scale(1.15); }
+        input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+        input[type="color"]::-webkit-color-swatch { border: 2px solid rgba(255,255,255,0.6); border-radius: 50%; }
 
         h1 { color: var(--accent-purple); font-size: 2.2rem; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(112,111,211,0.3); transition: color 0.3s; }
         .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
@@ -166,19 +173,6 @@
         @keyframes relaxDodo {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-4px); }
-        }
-
-        .aesthetic-gif-container {
-            text-align: center;
-            margin: 15px 0;
-        }
-        .aesthetic-gif-container img {
-            max-width: 100%;
-            height: 140px;
-            border-radius: 14px;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .speech-bubble {
@@ -276,7 +270,7 @@
         }
         [data-theme="light"] .planner-section {
             background: rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(0, 0, 0, 0.04);
+            border: 1px solid (0, 0, 0, 0.04);
         }
         .planner-title {
             font-weight: bold;
@@ -336,10 +330,9 @@
     <div class="top-bar">
         <div class="control-group">
             <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 گوهۆڕینا مودی</button>
-            <div class="color-dots">
-                <div class="dot" style="background: #ff7979;" onclick="changeAccentColor('#ff7979')" title="پینکی نازک"></div>
-                <div class="dot" style="background: #0984e3;" onclick="changeAccentColor('#0984e3')" title="اوی کاڵ"></div>
-                <div class="dot" style="background: #706fd3;" onclick="changeAccentColor('#706fd3')" title="مۆریا مۆدێرن"></div>
+            <div class="color-picker-btn">
+                <span>🎨</span>
+                <input type="color" id="colorPicker" oninput="changeAccentColor(this.value)" value="#706fd3" title="ڕەنگێ خۆ هەلبژێرە">
             </div>
         </div>
         <div class="control-group">
@@ -349,11 +342,11 @@
         </div>
     </div>
 
-    <h1 id="site-title">Dodocare 🐰</h1>
+    <h1>dodo care</h1>
     <div class="subtitle" id="site-subtitle">جهێ ئارامیا ناخێ تە ✨</div>
 
     <div class="top-mini-guide" id="guide-text">
-        📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان ئینستاگرامی سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
+        📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان ئینستاگرami سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
     </div>
 
     <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
@@ -366,9 +359,6 @@
         <button class="btn" onclick="toggleSection('quote-content')" id="btn-quote-toggle">💬 ڤەکرنا گۆتنا ئەڤرو</button>
         <div id="quote-content" class="collapsible-content">
             <div class="dodo-box">🐰</div>
-            <div class="aesthetic-gif-container">
-                <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Aesthetic GIF">
-            </div>
             <div class="quote-container">
                 <div class="speech-bubble" id="daily-quote">“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”</div>
             </div>
@@ -431,28 +421,67 @@
         }
     }
 
-    const quotes = [
-        "“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”",
-        "“تو گەلەک ژ هندێ ب هێزتری تو دەستا ب داهێلی.”",
-        "“بخۆ بژی، نە بۆ ڕازیکرنا خەڵکی.”",
-        "“هەر نوکە دەست پێ بکە، چ جاران درەنگ نینە.”",
-        "“تو یا ب هێزی، باوەریێ ب شیانێن خۆ بینە.”",
-        "“ئەڤرۆ دەرفەتەکا نووی یە بۆ هندێ تو بگەهیە حەزێن خۆ.”",
-        "“خەونێن تە مەزنن، هەولدانێن خۆ ژی مەزنتر لێ بکە.”",
-        "“تو داهێنەرا ژیانا خۆیی، جوان ڕەنگ بکە.”",
-        "“هەر تشتەکێ ئەڤرۆ دکەی، سوبە دێ پێ کەیفخۆش بی.”",
-        "“تو ب تنێ دشێی ژیانا خۆ بگۆهۆڕی، دەست پێ بکە.”",
-        "“ئارام بە، خودێ دێ دەرگەهێن خێڕێ بۆ تە ڤەکەت.”",
-        "“پێنگاڤەکا بچووک باشترە ژ ڕاوەستانێ.”",
-        "“تو ژ هەژی باشترین تشتی د ژیانێ دا.”",
-        "“دەست ژ هیڤیێن خۆ بەرنەدە، تو کەسەک خودان شیانی.”",
-        "“ئەڤرۆ کار بکە، دا کو سوبە شانازیێ ب خۆ بەی.”"
-    ];
+    const quotes = {
+        ku: [
+            "“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”",
+            "“تو گەلەک ژ هندێ ب هێزتری تو دەستا ب داهێلی.”",
+            "“بخۆ بژی، نە بۆ ڕازیکرنا خەڵکی.”",
+            "“هەر نوکە دەست پێ بکە، چ جاران درەنگ نینە.”",
+            "“تو یا ب هێزی، باوەریێ ب شیانێن خۆ بینە.”",
+            "“ئەڤرۆ دەرفەتەکا نووی یە بۆ هندێ تو بگەهیە حەزێن خۆ.”",
+            "“خەونێن تە مەزنن، هەولدانێن خۆ ژی مەزنتر لێ بکە.”",
+            "“تو داهێنەرا ژیانا خۆیی، جوان ڕەنگ بکە.”",
+            "“هەر تشتەکێ ئەڤرۆ دکەی، سوبە دێ پێ کەیفخۆش بی.”",
+            "“تو ب تنێ دشێی ژیانا خۆ بگۆهۆڕی، دەست پێ بکە.”",
+            "“ئارام بە، خودێ دێ دەرگەهێن خێڕێ بۆ تە ڤەکەت.”",
+            "“پێنگاڤەکا بچووک باشترە ژ ڕاوەستانێ.”",
+            "“تو ژ هەژی باشترین تشتی د ژیانێ دا.”",
+            "“دەست ژ هیڤیێن خۆ بەرنەدە، تو کەسەک خودان شیانی.”",
+            "“ئەڤرۆ کار بکە، دا کو سوبە شانازیێ ب خۆ بەی.”"
+        ],
+        en: [
+            "“Today is your day, take the step!”",
+            "“You are much stronger than you think.”",
+            "“Live for yourself, not to please others.”",
+            "“Start right now, it is never too late.”",
+            "“You are strong, believe in your abilities.”",
+            "“Today is a new opportunity to reach your goals.”",
+            "“Your dreams are big, make your efforts bigger.”",
+            "“You are the creator of your life, color it beautifully.”",
+            "“Everything you do today will make you happy tomorrow.”",
+            "“Only you can change your life, start now.”",
+            "“Stay calm, wonderful things are coming.”",
+            "“A small step is better than standing still.”",
+            "“You deserve the best things in life.”",
+            "“Never give up on your hopes, you are capable.”",
+            "“Work today so you can be proud tomorrow.”"
+        ],
+        ar: [
+            "“اليوم هو يومك، اتخذ الخطوة!”",
+            "“أنت أقوى بكثير مما تعتقد.”",
+            "“عش لنفسك، ليس لإرضاء الآخرين.”",
+            "“ابدأ الآن، فليست متأخراً أبداً.”",
+            "“أنت قوي، ثق بقدراتك.”",
+            "“اليوم فرصة جديدة لتحقيق ما تتمناه.”",
+            "“أحلامك كبيرة، فاجعل جهودك أكبر.”",
+            "“أنت صانع حياتك، لونها بشكل جميل.”",
+            "“كل ما تفعل اليوم سيجعلك سعيداً غداً.”",
+            "“أنت وحدك من يستطيع تغيير حياتك، ابدأ الآن.”",
+            "“اطمئن، الأقدار الجميلة قادمة.”",
+            "“خطوة صغيرة أفضل من الوقوف في مكانك.”",
+            "“أنت تستحق أفضل الأشياء في الحياة.”",
+            "“لا تتخلى عن أمالك، فأنت قادر.”",
+            "“اعمل اليوم لتفخر بنفسك غداً.”"
+        ]
+    };
     
     const dayOfYear = Math.floor(new Date() / 86400000);
-    const quoteElement = document.getElementById('daily-quote');
-    if (quoteElement) {
-        quoteElement.innerText = quotes[dayOfYear % quotes.length];
+    function updateDailyQuote(lang) {
+        const quoteElement = document.getElementById('daily-quote');
+        const langQuotes = quotes[lang] || quotes['ku'];
+        if (quoteElement) {
+            quoteElement.innerText = langQuotes[dayOfYear % langQuotes.length];
+        }
     }
 
     function updateLiveClock() {
@@ -465,12 +494,25 @@
         displayHours = displayHours ? displayHours : 12;
 
         let timeStr = displayHours + ':' + minutes;
+        const currentLang = localStorage.getItem('dodo_lang') || 'ku';
         
-        let greeting = "دەمژمێر: ";
-        if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • دەمژمێر: "; }
-        else if (hours >= 12 && hours < 17) { greeting = "☀️ نیڤرۆ باش • دەمژمێر: "; }
-        else if (hours >= 17 && hours < 21) { greeting = "🌇 ئێڤار باش • دەمژمێر: "; }
-        else { greeting = "🌙 شەڤ باش • دەمژمێر: "; }
+        let greeting = "⏰ ";
+        if (currentLang === 'en') {
+            if (hours >= 4 && hours < 12) { greeting = "🌅 Morning • Time: "; }
+            else if (hours >= 12 && hours < 17) { greeting = "☀️ Noon • Time: "; }
+            else if (hours >= 17 && hours < 21) { greeting = "🌇 Evening • Time: "; }
+            else { greeting = "🌙 Night • Time: "; }
+        } else if (currentLang === 'ar') {
+            if (hours >= 4 && hours < 12) { greeting = "🌅 صباح الخير • الوقت: "; }
+            else if (hours >= 12 && hours < 17) { greeting = "☀️ طاب يومك • الوقت: "; }
+            else if (hours >= 17 && hours < 21) { greeting = "🌇 مساء الخير • الوقت: "; }
+            else { greeting = "🌙 تصبح على خير • الوقت: "; }
+        } else {
+            if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • دەمژمێر: "; }
+            else if (hours >= 12 && hours < 17) { greeting = "☀️ نیڤرۆ باش • دەمژمێر: "; }
+            else if (hours >= 17 && hours < 21) { greeting = "🌇 ئێڤار باش • دەمژمێر: "; }
+            else { greeting = "🌙 شەڤ باش • دەمژمێر: "; }
+        }
 
         const timeBadge = document.getElementById('live-time-badge');
         if (timeBadge) {
@@ -543,20 +585,31 @@
     function changeAccentColor(color) {
         document.documentElement.style.setProperty('--accent-purple', color);
         localStorage.setItem('dodo_color', color);
+        const picker = document.getElementById('colorPicker');
+        if(picker) picker.value = color;
     }
     if (localStorage.getItem('dodo_color')) {
         const savedColor = localStorage.getItem('dodo_color');
         document.documentElement.style.setProperty('--accent-purple', savedColor);
+        const picker = document.getElementById('colorPicker');
+        if(picker) picker.value = savedColor;
     }
 
     function setLanguage(lang) {
         const htmlRoot = document.getElementById('html-root');
         htmlRoot.setAttribute('lang', lang);
+        
+        updateDailyQuote(lang);
+        
+        let streakNum = localStorage.getItem('dodo_infinite_streak') || 1;
+
         if(lang === 'en') {
             document.body.style.direction = 'ltr';
             document.body.style.textAlign = 'left';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'left');
             document.getElementById('site-subtitle').innerText = "Your daily aesthetic space ✨";
+            document.getElementById('guide-text').innerHTML = '📌 <strong>Home Screen Tip:</strong> If opening from TikTok or Instagram, tap the top 3 dots and open in external browser; for iPhone <strong>Share > Add to Home</strong> and for Android <strong>Menu > Add to Home</strong>.';
+            document.getElementById('streak-counter').innerText = "🔥 Streak: " + streakNum + " Days";
             document.getElementById('btn-quote-toggle').innerText = "💬 Open Today's Quote";
             document.getElementById('quote-card-title').innerText = "Dodo's Daily Quotes 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 Open Daily Planner";
@@ -566,11 +619,18 @@
             document.getElementById('noon-title').innerText = "☀️ Noon";
             document.getElementById('afternoon-title').innerText = "🌇 Afternoon";
             document.getElementById('night-title').innerText = "🌙 Night";
+            if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "Morning task...";
+            if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "Noon task...";
+            if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "Afternoon task...";
+            if(!document.getElementById('input-night').value) document.getElementById('input-night').placeholder = "Night task...";
+            document.getElementById('theme-btn').innerText = "🌓 Theme Mode";
         } else if(lang === 'ar') {
             document.body.style.direction = 'rtl';
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "مساحتك اليومية الأنيقة ✨";
+            document.getElementById('guide-text').innerHTML = '📌 <strong>ملاحظة الإضافة للشاشة:</strong> إذا فتحت الموقع من تيك توك أو انستغرام، اضغط على النقاط الثلاث بالأعلى وافتحه في المتصفح الخارجي؛ للايفون <strong>Share > Add to home</strong> وللاندرويد <strong>Menu > Add to home</strong>.';
+            document.getElementById('streak-counter').innerText = "🔥 التتابع: " + streakNum + " أيام متتالية";
             document.getElementById('btn-quote-toggle').innerText = "💬 فتح مقولة اليوم";
             document.getElementById('quote-card-title').innerText = "مقولات دودو اليومية 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 فتح الجدول اليومي";
@@ -580,11 +640,18 @@
             document.getElementById('noon-title').innerText = "☀️ الظهر";
             document.getElementById('afternoon-title').innerText = "🌇 العصر";
             document.getElementById('night-title').innerText = "🌙 المساء";
+            if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "مهمة الصباح...";
+            if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "مهمة الظهر...";
+            if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "مهمة العصر...";
+            if(!document.getElementById('input-night').value) document.getElementById('input-night').placeholder = "مهمة المساء...";
+            document.getElementById('theme-btn').innerText = "🌓 وضع المظهر";
         } else {
             document.body.style.direction = 'rtl';
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "جهێ ئارامیا ناخێ تە ✨";
+            document.getElementById('guide-text').innerHTML = '📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان ئینستاگرami سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.';
+            document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streakNum + " ڕۆژێن بەردەوام";
             document.getElementById('btn-quote-toggle').innerText = "💬 ڤەکرنا گۆتنا ئەڤرو";
             document.getElementById('quote-card-title').innerText = "گۆتنێن ڕۆژانە یێن دۆدۆ 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 ڤەکرنا خشتەیێ ڕۆژانە";
@@ -594,6 +661,11 @@
             document.getElementById('noon-title').innerText = "☀️ نیڤرۆ";
             document.getElementById('afternoon-title').innerText = "🌇 ئێڤاری";
             document.getElementById('night-title').innerText = "🌙 ب شەڤ";
+            if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "کارێ سپێدەهیا خۆ...";
+            if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "کارێ نیڤرۆیا خۆ...";
+            if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "کارێ ئێڤاریا خۆ...";
+            if(!document.getElementById('input-night').value) document.getElementById('input-night').placeholder = "کارێ شەڤا خۆ...";
+            document.getElementById('theme-btn').innerText = "🌓 گوهۆڕینا مودی";
         }
         localStorage.setItem('dodo_lang', lang);
     }
@@ -616,11 +688,15 @@
         localStorage.setItem('dodo_infinite_streak', streak);
         localStorage.setItem('dodo_last_visit_date', todayDate);
     }
+    const currentLang = localStorage.getItem('dodo_lang') || 'ku';
     const streakCounter = document.getElementById('streak-counter');
     if(streakCounter) {
-        streakCounter.innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
+        if(currentLang === 'en') streakCounter.innerText = "🔥 Streak: " + streak + " Days";
+        else if(currentLang === 'ar') streakCounter.innerText = "🔥 التتابع: " + streak + " أيام متتالية";
+        else streakCounter.innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
     }
 </script>
 
 </body>
 </html>
+
