@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ku">
+<html lang="ku" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,9 +72,17 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .theme-toggle, .color-picker-wrapper {
+        .control-group {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .theme-toggle, .color-picker-wrapper, .lang-btn {
             background: var(--card-bg);
             border: 1px solid rgba(255,255,255,0.1);
             padding: 8px 12px;
@@ -86,7 +94,29 @@
             align-items: center;
             gap: 6px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
         }
+        .lang-btn:hover, .theme-toggle:hover { opacity: 0.8; }
+
+        .color-dots {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 6px 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: transform 0.2s;
+        }
+        .dot:hover { transform: scale(1.15); }
 
         h1 { color: var(--accent-purple); font-size: 2.2rem; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(112,111,211,0.3); transition: color 0.3s; }
         .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
@@ -102,6 +132,9 @@
             text-align: right;
             line-height: 1.6;
             backdrop-filter: blur(5px);
+        }
+        [data-theme="light"] .top-mini-guide {
+            background: rgba(0, 0, 0, 0.04);
         }
         .top-mini-guide strong {
             color: var(--accent-pink);
@@ -133,6 +166,19 @@
         @keyframes relaxDodo {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-4px); }
+        }
+
+        .aesthetic-gif-container {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .aesthetic-gif-container img {
+            max-width: 100%;
+            height: 140px;
+            border-radius: 14px;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .speech-bubble {
@@ -189,9 +235,8 @@
             width: 100%;
         }
         .btn:hover { opacity: 0.9; transform: scale(1.01); }
-        .btn-danger { background: var(--accent-pink); box-shadow: 0 4px 12px rgba(255,121,121,0.3); }
 
-        textarea, input[type="text"] {
+        input[type="text"] {
             width: 100%;
             background: rgba(0,0,0,0.15);
             border: 1px solid rgba(255,255,255,0.1);
@@ -203,11 +248,10 @@
             outline: none;
             transition: border-color 0.3s;
         }
-        [data-theme="light"] textarea, [data-theme="light"] input[type="text"] {
+        [data-theme="light"] input[type="text"] {
             background: rgba(0,0,0,0.04);
         }
-        textarea { height: 90px; resize: none; }
-        textarea:focus, input[type="text"]:focus { border-color: var(--accent-purple); }
+        input[type="text"]:focus { border-color: var(--accent-purple); }
 
         .collapsible-content {
             display: none;
@@ -274,63 +318,6 @@
         }
         .task-input { flex-grow: 1; padding: 8px 12px !important; font-size: 0.9rem !important; }
 
-        .fade-out {
-            animation: fadeSmoke 1.5s forwards ease-out;
-        }
-        @keyframes fadeSmoke {
-            0% { opacity: 1; transform: scale(1); filter: blur(0); }
-            100% { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(6px); }
-        }
-
-        .relax-guide-box {
-            background: rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 10px;
-            text-align: right;
-            line-height: 1.7;
-            font-size: 0.9rem;
-        }
-        [data-theme="light"] .relax-guide-box {
-            background: rgba(0, 0, 0, 0.03);
-        }
-        .relax-step {
-            margin-bottom: 12px;
-        }
-        .relax-step strong {
-            color: var(--accent-purple);
-        }
-
-        .breath-circle-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0 10px 0;
-        }
-        .breath-circle {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: var(--accent-purple);
-            opacity: 0.85;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 0 20px rgba(112, 111, 211, 0.4);
-            animation: breathAnimation 8s infinite ease-in-out;
-            text-align: center;
-            padding: 5px;
-        }
-        @keyframes breathAnimation {
-            0%, 100% { transform: scale(1); background: var(--accent-purple); }
-            50% { transform: scale(1.35); background: var(--accent-pink); }
-        }
-
         footer {
             margin-top: 40px;
             font-size: 0.8rem;
@@ -347,16 +334,25 @@
 
 <div class="container">
     <div class="top-bar">
-        <button class="theme-toggle" onclick="toggleTheme()">🌓 گوهۆڕینا مودی</button>
-        <div class="color-picker-wrapper">
-            🎨 ڕەنگ: <input type="color" id="accentColorPicker" value="#706fd3" onchange="changeAccentColor(this.value)" style="border:none; background:none; width:25px; height:25px; cursor:pointer;">
+        <div class="control-group">
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 گوهۆڕینا مودی</button>
+            <div class="color-dots">
+                <div class="dot" style="background: #ff7979;" onclick="changeAccentColor('#ff7979')" title="پینکی نازک"></div>
+                <div class="dot" style="background: #0984e3;" onclick="changeAccentColor('#0984e3')" title="اوی کاڵ"></div>
+                <div class="dot" style="background: #706fd3;" onclick="changeAccentColor('#706fd3')" title="مۆریا مۆدێرن"></div>
+            </div>
+        </div>
+        <div class="control-group">
+            <button class="lang-btn" onclick="setLanguage('ku')">KU</button>
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="setLanguage('ar')">AR</button>
         </div>
     </div>
 
-    <h1>Dodocare 🐱</h1>
-    <div class="subtitle">جهێ ئارامیا ناخێ تە ✨</div>
+    <h1 id="site-title">Dodocare 🐰</h1>
+    <div class="subtitle" id="site-subtitle">جهێ ئارامیا ناخێ تە ✨</div>
 
-    <div class="top-mini-guide">
+    <div class="top-mini-guide" id="guide-text">
         📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان ئینستاگرامی سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
     </div>
 
@@ -366,10 +362,13 @@
     </div>
 
     <div class="card">
-        <h3>گۆتنێن ڕۆژانە یێن دۆدۆ 💬</h3>
-        <button class="btn" onclick="toggleSection('quote-content')">💬 ڤەکرنا گۆتنا ئەڤرو</button>
+        <h3 id="quote-card-title">گۆتنێن ڕۆژانە یێن دۆدۆ 💬</h3>
+        <button class="btn" onclick="toggleSection('quote-content')" id="btn-quote-toggle">💬 ڤەکرنا گۆتنا ئەڤرو</button>
         <div id="quote-content" class="collapsible-content">
-            <div class="dodo-box">🐱</div>
+            <div class="dodo-box">🐰</div>
+            <div class="aesthetic-gif-container">
+                <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="Aesthetic GIF">
+            </div>
             <div class="quote-container">
                 <div class="speech-bubble" id="daily-quote">“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”</div>
             </div>
@@ -377,38 +376,16 @@
     </div>
 
     <div class="card">
-        <h3>گۆشەیا بێهنڤەدانێ 🧘‍♂️</h3>
-        <button class="btn" onclick="toggleSection('relax-content')">🧘‍♂️ ڤەکرنا گۆشەیا بێهنڤەدانێ</button>
-        <div id="relax-content" class="collapsible-content">
-            <div class="relax-guide-box">
-                <div class="relax-step">
-                    <strong>١. بێهنەکا کوور:</strong> ب دفنێ بێهنێ بکێشە، بۆ ٤ سانیا بگرە، و پاشان ب دەڤی هێدی بەردە.
-                </div>
-                <div class="relax-step">
-                    <strong>٢. ل ژوورا خۆ سەحکە:</strong> سێ تشتێن جیاواز ل دەوروبەرێ خۆ ببینە و سەحکێ (وەکی پەرتووکەک، شەمالکەک، یان هەر تشتەکێ دی).
-                </div>
-                <div class="relax-step">
-                    <strong>٣. هەست پێ بکە:</strong> هزرێن خۆ ل سەر ڤان سێ تشتان کۆم بکە دا کو مێشکێ تە ژ نە ئارامیێ دوور بکەڤیت و ڤەگەڕێتە سەر ئارامیا خۆ.
-                </div>
-            </div>
-
-            <div class="breath-circle-container">
-                <div class="breath-circle">بێهنڤەدان 🌿</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3>خشتەیێ ڕۆژانە 🗓️</h3>
-        <button class="btn" onclick="toggleSection('planner-content')">📅 ڤەکرنا خشتەیێ ڕۆژانە</button>
+        <h3 id="planner-card-title">خشتەیێ ڕۆژانە 🗓️</h3>
+        <button class="btn" onclick="toggleSection('planner-content')" id="btn-planner-toggle">📅 ڤەکرنا خشتەیێ ڕۆژانە</button>
         
         <div id="planner-content" class="collapsible-content">
-            <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;">
+            <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;" id="planner-hint">
                 پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
             </p>
 
             <div class="planner-section">
-                <div class="planner-title">🌅 سپێدەهی</div>
+                <div class="planner-title" id="morning-title">🌅 سپێدەهی</div>
                 <div class="planner-row">
                     <input type="checkbox" class="task-checkbox" id="check-morning" onclick="savePlanner()">
                     <input type="text" class="task-input" id="input-morning" placeholder="کارێ سپێدەهیا خۆ..." oninput="savePlanner()">
@@ -416,7 +393,7 @@
             </div>
 
             <div class="planner-section">
-                <div class="planner-title">☀️ نیڤرۆ</div>
+                <div class="planner-title" id="noon-title">☀️ نیڤرۆ</div>
                 <div class="planner-row">
                     <input type="checkbox" class="task-checkbox" id="check-noon" onclick="savePlanner()">
                     <input type="text" class="task-input" id="input-noon" placeholder="کارێ نیڤرۆیا خۆ..." oninput="savePlanner()">
@@ -424,7 +401,7 @@
             </div>
 
             <div class="planner-section">
-                <div class="planner-title">🌇 ئێڤاری</div>
+                <div class="planner-title" id="afternoon-title">🌇 ئێڤاری</div>
                 <div class="planner-row">
                     <input type="checkbox" class="task-checkbox" id="check-afternoon" onclick="savePlanner()">
                     <input type="text" class="task-input" id="input-afternoon" placeholder="کارێ ئێڤاریا خۆ..." oninput="savePlanner()">
@@ -432,25 +409,12 @@
             </div>
 
             <div class="planner-section">
-                <div class="planner-title">🌙 ب شەڤ</div>
+                <div class="planner-title" id="night-title">🌙 ب شەڤ</div>
                 <div class="planner-row">
                     <input type="checkbox" class="task-checkbox" id="check-night" onclick="savePlanner()">
                     <input type="text" class="task-input" id="input-night" placeholder="کارێ شەڤا خۆ..." oninput="savePlanner()">
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3>دەفتەرا ڤەمراندنا هزران 🌬️</h3>
-        <button class="btn" onclick="toggleSection('journal-content')">📖 ڤەکرنا دەفتەرا مێشکی</button>
-        
-        <div id="journal-content" class="collapsible-content">
-            <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)", و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
-            </p>
-            <textarea id="journal-input" placeholder="هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە..." oninput="saveJournal()"></textarea>
-            <button class="btn btn-danger" onclick="burnThoughts()" style="margin-top: 12px;">🗑️ ڤان هزران ژناڤ ببە</button>
         </div>
     </div>
 
@@ -559,33 +523,6 @@
     }
     loadPlanner();
 
-    function saveJournal() {
-        const txt = document.getElementById('journal-input');
-        if (txt) {
-            localStorage.setItem('dodo_journal', txt.value);
-        }
-    }
-    
-    const journalInput = document.getElementById('journal-input');
-    if(journalInput && localStorage.getItem('dodo_journal')) {
-        journalInput.value = localStorage.getItem('dodo_journal');
-    }
-
-    function burnThoughts() {
-        const txt = document.getElementById('journal-input');
-        if(txt && txt.value.trim() !== "") {
-            txt.classList.add('fade-out');
-            setTimeout(() => {
-                txt.value = "";
-                localStorage.removeItem('dodo_journal');
-                txt.classList.remove('fade-out');
-                alert("🗑️ هزرێن نەخۆش هاتنە ژێبرن! (ئەڤ هزرە ڕۆژا من تێک نادەت) ✨");
-            }, 1500);
-        } else {
-            alert("هزرەکێ ل ڤێرێ بنڤیسە!");
-        }
-    }
-
     function toggleTheme() {
         const body = document.getElementById('body');
         if (body) {
@@ -610,9 +547,59 @@
     if (localStorage.getItem('dodo_color')) {
         const savedColor = localStorage.getItem('dodo_color');
         document.documentElement.style.setProperty('--accent-purple', savedColor);
-        const picker = document.getElementById('accentColorPicker');
-        if(picker) picker.value = savedColor;
     }
+
+    function setLanguage(lang) {
+        const htmlRoot = document.getElementById('html-root');
+        htmlRoot.setAttribute('lang', lang);
+        if(lang === 'en') {
+            document.body.style.direction = 'ltr';
+            document.body.style.textAlign = 'left';
+            document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'left');
+            document.getElementById('site-subtitle').innerText = "Your daily aesthetic space ✨";
+            document.getElementById('btn-quote-toggle').innerText = "💬 Open Today's Quote";
+            document.getElementById('quote-card-title').innerText = "Dodo's Daily Quotes 💬";
+            document.getElementById('btn-planner-toggle').innerText = "📅 Open Daily Planner";
+            document.getElementById('planner-card-title').innerText = "Daily Planner 🗓️";
+            document.getElementById('planner-hint').innerText = "Write your plan and check ✅ when done!";
+            document.getElementById('morning-title').innerText = "🌅 Morning";
+            document.getElementById('noon-title').innerText = "☀️ Noon";
+            document.getElementById('afternoon-title').innerText = "🌇 Afternoon";
+            document.getElementById('night-title').innerText = "🌙 Night";
+        } else if(lang === 'ar') {
+            document.body.style.direction = 'rtl';
+            document.body.style.textAlign = 'center';
+            document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
+            document.getElementById('site-subtitle').innerText = "مساحتك اليومية الأنيقة ✨";
+            document.getElementById('btn-quote-toggle').innerText = "💬 فتح مقولة اليوم";
+            document.getElementById('quote-card-title').innerText = "مقولات دودو اليومية 💬";
+            document.getElementById('btn-planner-toggle').innerText = "📅 فتح الجدول اليومي";
+            document.getElementById('planner-card-title').innerText = "الجدول اليومي 🗓️";
+            document.getElementById('planner-hint').innerText = "اكتب خطتك وضع ✅ عندما تنجز أي مهمة!";
+            document.getElementById('morning-title').innerText = "🌅 الصباح";
+            document.getElementById('noon-title').innerText = "☀️ الظهر";
+            document.getElementById('afternoon-title').innerText = "🌇 العصر";
+            document.getElementById('night-title').innerText = "🌙 المساء";
+        } else {
+            document.body.style.direction = 'rtl';
+            document.body.style.textAlign = 'center';
+            document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
+            document.getElementById('site-subtitle').innerText = "جهێ ئارامیا ناخێ تە ✨";
+            document.getElementById('btn-quote-toggle').innerText = "💬 ڤەکرنا گۆتنا ئەڤرو";
+            document.getElementById('quote-card-title').innerText = "گۆتنێن ڕۆژانە یێن دۆدۆ 💬";
+            document.getElementById('btn-planner-toggle').innerText = "📅 ڤەکرنا خشتەیێ ڕۆژانە";
+            document.getElementById('planner-card-title').innerText = "خشتەیێ ڕۆژانە 🗓️";
+            document.getElementById('planner-hint').innerText = "پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!";
+            document.getElementById('morning-title').innerText = "🌅 سپێدەهی";
+            document.getElementById('noon-title').innerText = "☀️ نیڤرۆ";
+            document.getElementById('afternoon-title').innerText = "🌇 ئێڤاری";
+            document.getElementById('night-title').innerText = "🌙 ب شەڤ";
+        }
+        localStorage.setItem('dodo_lang', lang);
+    }
+
+    const savedLang = localStorage.getItem('dodo_lang');
+    if(savedLang) { setLanguage(savedLang); }
 
     let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 1;
     let lastVisit = localStorage.getItem('dodo_last_visit_date');
