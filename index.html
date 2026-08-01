@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ku">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodocare </title>
+    <title>Dodocare</title>
     <style>
         :root {
             --bg-color: #12121f;
@@ -350,7 +349,7 @@
     <div class="top-bar">
         <button class="theme-toggle" onclick="toggleTheme()">🌓 گوهۆڕینا مودی</button>
         <div class="color-picker-wrapper">
-            ‎🎨 ڕەنگ: <input type="color" id="accentColorPicker" value="#706fd3" onchange="changeAccentColor(this.value)" style="border:none; background:none; width:25px; height:25px; cursor:pointer;">
+            🎨 ڕەنگ: <input type="color" id="accentColorPicker" value="#706fd3" onchange="changeAccentColor(this.value)" style="border:none; background:none; width:25px; height:25px; cursor:pointer;">
         </div>
     </div>
 
@@ -405,7 +404,7 @@
         
         <div id="planner-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;">
-                ‎پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
+                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
             </p>
 
             <div class="planner-section">
@@ -448,7 +447,7 @@
         
         <div id="journal-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                ‎هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)", و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
+                هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)", و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
             </p>
             <textarea id="journal-input" placeholder="هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە..." oninput="saveJournal()"></textarea>
             <button class="btn btn-danger" onclick="burnThoughts()" style="margin-top: 12px;">🗑️ ڤان هزران ژناڤ ببە</button>
@@ -463,28 +462,34 @@
 <script>
     function toggleSection(sectionId) {
         const content = document.getElementById(sectionId);
-        content.classList.toggle('show');
+        if (content) {
+            content.classList.toggle('show');
+        }
     }
 
     const quotes = [
-        ‎"“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”",
-        ‎"“تو گەلەک ژ هندێ ب هێزتری تو دەستا ب داهێلی.”",
-        ‎"“بخۆ بژی، نە بۆ ڕازیکرنا خەڵکی.”",
-        ‎"“هەر نوکە دەست پێ بکە، چ جاران درەنگ نینە.”",
-        ‎"“تو یا ب هێزی، باوەریێ ب شیانێن خۆ بینە.”",
-        ‎"“ئەڤرۆ دەرفەتەکا نووی یە بۆ هندێ تو بگەهیە حەزێن خۆ.”",
-        ‎"“خەونێن تە مەزنن، هەولدانێن خۆ ژی مەزنتر لێ بکە.”",
-        ‎"“تو داهێنەرا ژیانا خۆیی، جوان ڕەنگ بکە.”",
-        ‎"“هەر تشتەکێ ئەڤرۆ دکەی، سوبە دێ پێ کەیفخۆش بی.”",
-        ‎"“تو ب تنێ دشێی ژیانا خۆ بگۆهۆڕی، دەست پێ بکە.”",
-        ‎"“ئارام بە، خودێ دێ دەرگەهێن خێڕێ بۆ تە ڤەکەت.”",
-        ‎"“پێنگاڤەکا بچووک باشترە ژ ڕاوەستانێ.”",
-        ‎"“تو ژ هەژی باشترین تشتی د ژیانێ دا.”",
-        ‎"“دەست ژ هیڤیێن خۆ بەرنەدە، تو کەسەک خودان شیانی.”",
-        ‎"“ئەڤرۆ کار بکە، دا کو سوبە شانازیێ ب خۆ بەی.”"
+        "“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”",
+        "“تو گەلەک ژ هندێ ب هێزتری تو دەستا ب داهێلی.”",
+        "“بخۆ بژی، نە بۆ ڕازیکرنا خەڵکی.”",
+        "“هەر نوکە دەست پێ بکە، چ جاران درەنگ نینە.”",
+        "“تو یا ب هێزی، باوەریێ ب شیانێن خۆ بینە.”",
+        "“ئەڤرۆ دەرفەتەکا نووی یە بۆ هندێ تو بگەهیە حەزێن خۆ.”",
+        "“خەونێن تە مەزنن، هەولدانێن خۆ ژی مەزنتر لێ بکە.”",
+        "“تو داهێنەرا ژیانا خۆیی، جوان ڕەنگ بکە.”",
+        "“هەر تشتەکێ ئەڤرۆ دکەی، سوبە دێ پێ کەیفخۆش بی.”",
+        "“تو ب تنێ دشێی ژیانا خۆ بگۆهۆڕی، دەست پێ بکە.”",
+        "“ئارام بە، خودێ دێ دەرگەهێن خێڕێ بۆ تە ڤەکەت.”",
+        "“پێنگاڤەکا بچووک باشترە ژ ڕاوەستانێ.”",
+        "“تو ژ هەژی باشترین تشتی د ژیانێ دا.”",
+        "“دەست ژ هیڤیێن خۆ بەرنەدە، تو کەسەک خودان شیانی.”",
+        "“ئەڤرۆ کار بکە، دا کو سوبە شانازیێ ب خۆ بەی.”"
     ];
-    const dayOfYear = Math.floor(new Date() / 8.64e7);
-    document.getElementById('daily-quote').innerText = quotes[dayOfYear % quotes.length];
+    
+    const dayOfYear = Math.floor(new Date() / 86400000);
+    const quoteElement = document.getElementById('daily-quote');
+    if (quoteElement) {
+        quoteElement.innerText = quotes[dayOfYear % quotes.length];
+    }
 
     function updateLiveClock() {
         const now = new Date();
@@ -492,12 +497,10 @@
         let minutes = now.getMinutes();
         minutes = minutes < 10 ? '0' + minutes : minutes;
         
-        // ڤەگۆهرینا بۆ سیستەمێ 12 دەمژمێری (وەک مۆبایلی)
-        let ampm = hours >= 12 ? 'شەڤ (PM)' : 'سپێدە (AM)';
         let displayHours = hours % 12;
-        displayHours = displayHours ? displayHours : 12; // ئەگەر 0 بوو بلا ببتە 12
+        displayHours = displayHours ? displayHours : 12;
 
-        let timeStr = displayHours + ':' + minutes + ' ' + ampm;
+        let timeStr = displayHours + ':' + minutes;
         
         let greeting = "دەمژمێر: ";
         if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • دەمژمێر: "; }
@@ -505,51 +508,72 @@
         else if (hours >= 17 && hours < 21) { greeting = "🌇 ئێڤار باش • دەمژمێر: "; }
         else { greeting = "🌙 شەڤ باش • دەمژمێر: "; }
 
-        document.getElementById('live-time-badge').innerText = greeting + timeStr;
+        const timeBadge = document.getElementById('live-time-badge');
+        if (timeBadge) {
+            timeBadge.innerText = greeting + timeStr;
+        }
     }
     setInterval(updateLiveClock, 1000);
     updateLiveClock();
 
     function savePlanner() {
-        const data = {
-            mCheck: document.getElementById('check-morning').checked,
-            mText: document.getElementById('input-morning').value,
-            nCheck: document.getElementById('check-noon').checked,
-            nText: document.getElementById('input-noon').value,
-            aCheck: document.getElementById('check-afternoon').checked,
-            aText: document.getElementById('input-afternoon').value,
-            niCheck: document.getElementById('check-night').checked,
-            niText: document.getElementById('input-night').value,
-        };
-        localStorage.setItem('dodo_planner', JSON.stringify(data));
+        const mCheck = document.getElementById('check-morning');
+        const mText = document.getElementById('input-morning');
+        const nCheck = document.getElementById('check-noon');
+        const nText = document.getElementById('input-noon');
+        const aCheck = document.getElementById('check-afternoon');
+        const aText = document.getElementById('input-afternoon');
+        const niCheck = document.getElementById('check-night');
+        const niText = document.getElementById('input-night');
+
+        if (mCheck && mText && nCheck && nText && aCheck && aText && niCheck && niText) {
+            const data = {
+                mCheck: mCheck.checked,
+                mText: mText.value,
+                nCheck: nCheck.checked,
+                nText: nText.value,
+                aCheck: aCheck.checked,
+                aText: aText.value,
+                niCheck: niCheck.checked,
+                niText: niText.value,
+            };
+            localStorage.setItem('dodo_planner', JSON.stringify(data));
+        }
     }
 
     function loadPlanner() {
         const saved = localStorage.getItem('dodo_planner');
         if (saved) {
-            const data = JSON.parse(saved);
-            document.getElementById('check-morning').checked = data.mCheck;
-            document.getElementById('input-morning').value = data.mText;
-            document.getElementById('check-noon').checked = data.nCheck;
-            document.getElementById('input-noon').value = data.nText;
-            document.getElementById('check-afternoon').checked = data.aCheck;
-            document.getElementById('input-afternoon').value = data.aText;
-            document.getElementById('check-night').checked = data.niCheck;
-            document.getElementById('input-night').value = data.niText;
+            try {
+                const data = JSON.parse(saved);
+                if(document.getElementById('check-morning')) document.getElementById('check-morning').checked = data.mCheck;
+                if(document.getElementById('input-morning')) document.getElementById('input-morning').value = data.mText || '';
+                if(document.getElementById('check-noon')) document.getElementById('check-noon').checked = data.nCheck;
+                if(document.getElementById('input-noon')) document.getElementById('input-noon').value = data.nText || '';
+                if(document.getElementById('check-afternoon')) document.getElementById('check-afternoon').checked = data.aCheck;
+                if(document.getElementById('input-afternoon')) document.getElementById('input-afternoon').value = data.aText || '';
+                if(document.getElementById('check-night')) document.getElementById('check-night').checked = data.niCheck;
+                if(document.getElementById('input-night')) document.getElementById('input-night').value = data.niText || '';
+            } catch(e) {}
         }
     }
     loadPlanner();
 
     function saveJournal() {
-        localStorage.setItem('dodo_journal', document.getElementById('journal-input').value);
+        const txt = document.getElementById('journal-input');
+        if (txt) {
+            localStorage.setItem('dodo_journal', txt.value);
+        }
     }
-    if(localStorage.getItem('dodo_journal')) {
-        document.getElementById('journal-input').value = localStorage.getItem('dodo_journal');
+    
+    const journalInput = document.getElementById('journal-input');
+    if(journalInput && localStorage.getItem('dodo_journal')) {
+        journalInput.value = localStorage.getItem('dodo_journal');
     }
 
     function burnThoughts() {
         const txt = document.getElementById('journal-input');
-        if(txt.value.trim() !== "") {
+        if(txt && txt.value.trim() !== "") {
             txt.classList.add('fade-out');
             setTimeout(() => {
                 txt.value = "";
@@ -564,16 +588,19 @@
 
     function toggleTheme() {
         const body = document.getElementById('body');
-        if (body.getAttribute('data-theme') === 'light') {
-            body.removeAttribute('data-theme');
-            localStorage.setItem('dodo_theme', 'dark');
-        } else {
-            body.setAttribute('data-theme', 'light');
-            localStorage.setItem('dodo_theme', 'light');
+        if (body) {
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('dodo_theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                localStorage.setItem('dodo_theme', 'light');
+            }
         }
     }
     if (localStorage.getItem('dodo_theme') === 'light') {
-        document.getElementById('body').setAttribute('data-theme', 'light');
+        const body = document.getElementById('body');
+        if(body) body.setAttribute('data-theme', 'light');
     }
 
     function changeAccentColor(color) {
@@ -583,7 +610,8 @@
     if (localStorage.getItem('dodo_color')) {
         const savedColor = localStorage.getItem('dodo_color');
         document.documentElement.style.setProperty('--accent-purple', savedColor);
-        document.getElementById('accentColorPicker').value = savedColor;
+        const picker = document.getElementById('accentColorPicker');
+        if(picker) picker.value = savedColor;
     }
 
     let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 1;
@@ -601,9 +629,11 @@
         localStorage.setItem('dodo_infinite_streak', streak);
         localStorage.setItem('dodo_last_visit_date', todayDate);
     }
-    document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
+    const streakCounter = document.getElementById('streak-counter');
+    if(streakCounter) {
+        streakCounter.innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
+    }
 </script>
 
 </body>
 </html>
-
