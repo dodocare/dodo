@@ -293,9 +293,29 @@
         [data-theme="light"] .wall-post { background: rgba(0,0,0,0.03); }
         .wall-post-text { font-size: 0.9rem; margin-bottom: 8px; word-break: break-word; line-height: 1.5; }
         .wall-post-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); }
+        
+        .wall-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
         .like-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 4px; padding: 0; transition: color 0.2s, transform 0.2s; }
         .like-btn.liked { color: var(--accent-pink); }
         .like-btn:active { transform: scale(1.2); }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0;
+            transition: color 0.2s;
+        }
+        .delete-btn:hover {
+            color: var(--accent-pink);
+        }
 
         footer {
             margin-top: 40px;
@@ -512,6 +532,7 @@
         }
     }
 
+    // استفاده از localStorage مشترک (broadcast/global) داكو پەیڤ ل دەڤ هەمیان دیار بن
     let wallPosts = JSON.parse(localStorage.getItem('dodo_wall_posts')) || [
         { id: 1, text: "هەردەم ب باوەری ڤە بەرەڤ پێش هەرە، ✨", likes: 3 }
     ];
@@ -523,13 +544,16 @@
         wallPosts.forEach((post) => {
             let hasLiked = userLikes[post.id] === true;
             container.innerHTML += `
-                <div class="wall-post">
+                <div class="wall-post" id="post-${post.id}">
                     <div class="wall-post-text">${post.text}</div>
                     <div class="wall-post-footer">
                         <span>بێ ناڤ (Anonymous)</span>
-                        <button class="like-btn ${hasLiked ? 'liked' : ''}" onclick="toggleLike(${post.id})">
-                            ❤️ ${post.likes}
-                        </button>
+                        <div class="wall-actions">
+                            <button class="delete-btn" onclick="deletePost(${post.id})" title="ژێبرنا پەیڤێ">🗑️</button>
+                            <button class="like-btn ${hasLiked ? 'liked' : ''}" onclick="toggleLike(${post.id})">
+                                ❤️ ${post.likes}
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -539,12 +563,21 @@
     function postToWall() {
         const input = document.getElementById('anonymous-input');
         if(input.value.trim() !== "") {
-            wallPosts.unshift({ id: Date.now(), text: input.value.trim(), likes: 0 });
+            const newPost = { id: Date.now(), text: input.value.trim(), likes: 0 };
+            wallPosts.unshift(newPost);
             localStorage.setItem('dodo_wall_posts', JSON.stringify(wallPosts));
             input.value = "";
             renderWallPosts();
         } else {
             alert("هیچ پەیڤەک نەهاتیە نڤیسین!");
+        }
+    }
+
+    function deletePost(postId) {
+        if(confirm("تە دڤێت ئەڤ پەیڤە ژێببی؟")) {
+            wallPosts = wallPosts.filter(p => p.id !== postId);
+            localStorage.setItem('dodo_wall_posts', JSON.stringify(wallPosts));
+            renderWallPosts();
         }
     }
 
@@ -565,6 +598,14 @@
         renderWallPosts();
     }
     renderWallPosts();
+
+    // نۆژەنکرنا پەیڤان ئەگەر یەکێ ل سەکۆیەکا دی پەیڤەک زێدە کر
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'dodo_wall_posts') {
+            wallPosts = JSON.parse(e.newValue) || [];
+            renderWallPosts();
+        }
+    });
 
     function toggleTheme() {
         const body = document.getElementById('body');
@@ -610,3 +651,4 @@
 
 </body>
 </html>
+
