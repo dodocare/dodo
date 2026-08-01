@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ku">
 <head>
@@ -92,7 +91,6 @@
         h1 { color: var(--accent-purple); font-size: 2.2rem; margin-bottom: 5px; text-shadow: 0 2px 10px rgba(112,111,211,0.3); transition: color 0.3s; }
         .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
 
-        /* ڕێنماییێن هۆم سکرینێ ل سەرێ سایت ب شێوەکێ بچووک و ڕەشەک خەفیف */
         .top-mini-guide {
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -102,7 +100,7 @@
             font-size: 0.8rem;
             color: var(--text-muted);
             text-align: right;
-            line-height: 1.5;
+            line-height: 1.6;
             backdrop-filter: blur(5px);
         }
         .top-mini-guide strong {
@@ -133,8 +131,8 @@
         }
 
         @keyframes relaxDodo {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(-3deg); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
 
         .speech-bubble {
@@ -280,16 +278,16 @@
             text-align: center;
             padding: 15px;
         }
-        /* گۆشەیا هەناسەدانێ وەک دۆدۆ ئەنیمەیشن بێ بازنە */
+        
+        /* ڕاستڤەکرنا ئەنیمەیشنا هەناسەدانێ (بێ زڤڕاندن و مەزنکرنا زێدە، تنێ گۆڕینا قەبارەیێ ئارام) */
         .dodo-breath-container {
             font-size: 70px;
             margin: 15px auto;
             display: inline-block;
-            animation: none;
-            transition: transform 6s ease-in-out;
+            transition: transform 4s ease-in-out;
         }
         .breathing-active {
-            transform: scale(1.4) rotate(-5deg);
+            transform: scale(1.25);
         }
 
         .fade-out {
@@ -300,7 +298,6 @@
             100% { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(6px); }
         }
 
-        /* Wall Post Styling */
         .wall-post {
             background: rgba(0,0,0,0.1);
             border-radius: 12px;
@@ -312,7 +309,8 @@
         [data-theme="light"] .wall-post { background: rgba(0,0,0,0.03); }
         .wall-post-text { font-size: 0.9rem; margin-bottom: 8px; word-break: break-word; line-height: 1.5; }
         .wall-post-footer { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-muted); }
-        .like-btn { background: none; border: none; color: var(--accent-pink); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 4px; padding: 0; transition: transform 0.2s; }
+        .like-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 4px; padding: 0; transition: color 0.2s, transform 0.2s; }
+        .like-btn.liked { color: var(--accent-pink); }
         .like-btn:active { transform: scale(1.2); }
 
         footer {
@@ -340,18 +338,16 @@
     <h1>Dodocare 🐱</h1>
     <div class="subtitle">جهێ ئارامیا ناخێ تە ✨</div>
 
-    <!-- ڕێنماییێن هۆم سکرینێ ل سەرێ سایت ب شێوەکێ بچووک و ڕەشەک خەفیف -->
+    <!-- ڕێنماییێن ڕاستڤەکری ب زمانێ بادینی -->
     <div class="top-mini-guide">
-        📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ TikTok یان Instagram ڤەکری، سەرەتا ب کرماڤکا بروسەرا فەرمی (Open in Browser) ڤەکە. پاشان ل ئایفۆنێ (Share > Add to Home Screen) و ل ئەندرویدێ (Menu > Add to Home screen) بکاربینە تا ل سەر شاشەیا موبایلا تە جهگیر بیت.
+        📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان ئینستاگرامی سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
     </div>
 
-    <!-- پشکا دەمژمێر و سڵاڤا وەکاتی -->
     <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
         <div class="streak-badge" id="streak-counter">🔥 ستریک: 1 ڕۆژێن بەردەوام</div>
         <div class="time-badge" id="live-time-badge">⏰ دەمژمێر: 00:00</div>
     </div>
 
-    <!-- گۆتنێن ڕۆژانە -->
     <div class="card">
         <h3>گۆتنێن ڕۆژانە یێن دۆدۆ 💬</h3>
         <button class="btn" onclick="toggleSection('quote-content')">💬 ڤەکرنا گۆتنا ڕۆژێ</button>
@@ -363,7 +359,6 @@
         </div>
     </div>
 
-    <!-- پەیڤێن روناهی و هێڤیێ (Anonymous Wall) -->
     <div class="card">
         <h3>پەیڤێن روناهی و هێڤیێ ✨</h3>
         <button class="btn" onclick="toggleSection('wall-content')">🌐 ڤەکرنا پەیڤێن هاندەر و ئارام</button>
@@ -373,13 +368,10 @@
             </p>
             <textarea id="anonymous-input" placeholder="پەیڤەکا جوان لێرە بنڤیسە..." style="margin-bottom: 10px;"></textarea>
             <button class="btn" onclick="postToWall()">📤 بەلاڤکرنا پەیڤێ</button>
-            <div id="wall-posts-container" style="margin-top: 15px;">
-                <!-- پۆست لێرە دێ دیار بن -->
-            </div>
+            <div id="wall-posts-container" style="margin-top: 15px;"></div>
         </div>
     </div>
 
-    <!-- پلانا ڕۆژانە (Structured Planner) -->
     <div class="card">
         <h3>خشتەیێ ڕۆژانە 🗓️</h3>
         <button class="btn" onclick="toggleSection('planner-content')">📅 ڤەکرنا خشتەیێ ڕۆژانە</button>
@@ -423,7 +415,6 @@
         </div>
     </div>
 
-    <!-- گۆشەیا ئارامیا ناخی (هەناسەدان ب دۆدۆیێ بێ بازنە) -->
     <div class="card">
         <h3>گۆشەیا ئارامیا ناخی 🧘‍♀️</h3>
         <button class="btn" onclick="toggleSection('breath-content')">🧘‍♀️ ڤەکرنا گۆشەیا ئارامیێ</button>
@@ -437,7 +428,6 @@
         </div>
     </div>
 
-    <!-- دەفتەرا ڤەمراندنا هزران (بەڕاوردکری ب دلێ ڕەش نەهاتیەکرن) -->
     <div class="card">
         <h3>دەفتەرا ڤەمراندنا هزران 🌬️</h3>
         <button class="btn" onclick="toggleSection('journal-content')">📖 ڤەکرنا دەفتەرا مێشکی</button>
@@ -457,13 +447,11 @@
 </div>
 
 <script>
-    // کۆنترۆلا ڤەکرن و داخستنا بەشان بە دوگمەیان
     function toggleSection(sectionId) {
         const content = document.getElementById(sectionId);
         content.classList.toggle('show');
     }
 
-    // گۆتنێن ڕۆژانە
     const quotes = [
         "“ئەڤرۆ ڕۆژا تە یە، پێنگاڤێ باڤێژە!”",
         "“تو گەلەک ژ هندێ ب هێزتری تو دەستا ب داهێلی.”",
@@ -484,7 +472,6 @@
     const dayOfYear = Math.floor(new Date() / 8.64e7);
     document.getElementById('daily-quote').innerText = quotes[dayOfYear % quotes.length];
 
-    // دەمژمێرا زیندوو
     function updateLiveClock() {
         const now = new Date();
         let hours = now.getHours();
@@ -503,7 +490,6 @@
     setInterval(updateLiveClock, 1000);
     updateLiveClock();
 
-    // LocalStorage بۆ خشتەیێ ڕۆژانە
     function savePlanner() {
         const data = {
             mCheck: document.getElementById('check-morning').checked,
@@ -534,7 +520,6 @@
     }
     loadPlanner();
 
-    // LocalStorage بۆ دەفتەرا مێشکی
     function saveJournal() {
         localStorage.setItem('dodo_journal', document.getElementById('journal-input').value);
     }
@@ -557,7 +542,6 @@
         }
     }
 
-    // پەیڤێن روناهی و هێڤیێ (Anonymous Wall System با مەرجێ تەنها ئێک لایک)
     let wallPosts = JSON.parse(localStorage.getItem('dodo_wall_posts')) || [
         { id: 1, text: "هەمیشە ب باوەری ڤە بەرەو پێش بچە، سبەهی ژ ئەڤرۆ جوانترە ✨", likes: 3 }
     ];
@@ -573,7 +557,7 @@
                     <div class="wall-post-text">${post.text}</div>
                     <div class="wall-post-footer">
                         <span>بێ ناڤ (Anonymous)</span>
-                        <button class="like-btn" onclick="toggleLike(${post.id})" style="color: ${hasLiked ? 'var(--accent-pink)' : 'var(--text-muted)'}">
+                        <button class="like-btn ${hasLiked ? 'liked' : ''}" onclick="toggleLike(${post.id})">
                             ❤️ ${post.likes}
                         </button>
                     </div>
@@ -612,7 +596,6 @@
     }
     renderWallPosts();
 
-    // گۆهۆڕینا مودێ (Dark/Light Mode)
     function toggleTheme() {
         const body = document.getElementById('body');
         if (body.getAttribute('data-theme') === 'light') {
@@ -627,7 +610,6 @@
         document.getElementById('body').setAttribute('data-theme', 'light');
     }
 
-    // گۆهۆڕینا ڕەنگێ سەرەکی
     function changeAccentColor(color) {
         document.documentElement.style.setProperty('--accent-purple', color);
         localStorage.setItem('dodo_color', color);
@@ -638,7 +620,6 @@
         document.getElementById('accentColorPicker').value = savedColor;
     }
 
-    // ستریکا بێ سنور (Infinite Streak System)
     let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 1;
     let lastVisit = localStorage.getItem('dodo_last_visit_date');
     let todayDate = new Date().toDateString();
@@ -656,7 +637,6 @@
     }
     document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
 
-    // ڕاهێنانا هەناسەدانێ ب دۆدۆ ئەنیمەیشن بێ بازنە
     function startBreathing() {
         const dodo = document.getElementById('dodo-breath');
         const text = document.getElementById('breath-text');
@@ -666,33 +646,32 @@
 
         setTimeout(() => {
             text.innerText = "هەناسەیا خۆ ل دەروونێ خۆ ڕاگرە...";
-        }, 6000);
+        }, 5000);
 
         setTimeout(() => {
             text.innerText = "ب ئارامی و هێدی بەردە دەر...";
             dodo.classList.remove('breathing-active');
-        }, 13000);
+        }, 10000);
 
         setTimeout(() => {
             text.innerText = "هەناسەیا کوویر هەلبکێشە... (جارەکا دی)";
             dodo.classList.add('breathing-active');
-        }, 19000);
+        }, 15000);
 
         setTimeout(() => {
             text.innerText = "هەناسەیا خۆ ڕاگرە...";
-        }, 25000);
+        }, 20000);
 
         setTimeout(() => {
             text.innerText = "ب ئارامی بەردە دەر...";
             dodo.classList.remove('breathing-active');
-        }, 32000);
+        }, 25000);
 
         setTimeout(() => {
             text.innerText = "گەلەک باش بوو! ئارامیا ناخی پاراستی بە ✨";
-        }, 40000);
+        }, 30000);
     }
 </script>
 
 </body>
 </html>
-
