@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ku">
 <head>
@@ -282,7 +283,6 @@
             100% { opacity: 0; transform: scale(0.9) translateY(-20px); filter: blur(6px); }
         }
 
-        /* ستایلێن گۆشەیا بێهنڤەدانێ و بازنەیا بێهنرێدانێ */
         .relax-guide-box {
             background: rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -377,7 +377,6 @@
         </div>
     </div>
 
-    <!-- گۆشەیا بێهنڤەدانێ (ل شوینا گۆتنێن خەلکی هاتە دانان) -->
     <div class="card">
         <h3>گۆشەیا بێهنڤەدانێ 🧘‍♂️</h3>
         <button class="btn" onclick="toggleSection('relax-content')">🧘‍♂️ ڤەکرنا گۆشەیا بێهنڤەدانێ</button>
@@ -449,7 +448,7 @@
         
         <div id="journal-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-top: 10px; text-align: right;">
-                ‎هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)"، و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
+                ‎هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە و پاشان بێژە خۆ: "(ئەڤ هزرە ڕۆژا من تێک نادەت)", و پاشان هەر زوی وێ هزرێ ژناڤ ببە:
             </p>
             <textarea id="journal-input" placeholder="هزرێن خۆ یێن نەرێنی ل ڤێرێ بنڤیسە..." oninput="saveJournal()"></textarea>
             <button class="btn btn-danger" onclick="burnThoughts()" style="margin-top: 12px;">🗑️ ڤان هزران ژناڤ ببە</button>
@@ -492,7 +491,13 @@
         let hours = now.getHours();
         let minutes = now.getMinutes();
         minutes = minutes < 10 ? '0' + minutes : minutes;
-        let timeStr = hours + ':' + minutes;
+        
+        // ڤەگۆهرینا بۆ سیستەمێ 12 دەمژمێری (وەک مۆبایلی)
+        let ampm = hours >= 12 ? 'شەڤ (PM)' : 'سپێدە (AM)';
+        let displayHours = hours % 12;
+        displayHours = displayHours ? displayHours : 12; // ئەگەر 0 بوو بلا ببتە 12
+
+        let timeStr = displayHours + ':' + minutes + ' ' + ampm;
         
         let greeting = "دەمژمێر: ";
         if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • دەمژمێر: "; }
