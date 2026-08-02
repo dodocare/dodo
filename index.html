@@ -454,14 +454,14 @@
 
     <!-- پشکا بیرهاتن و تێبینیێن خوەیی -->
     <div class="card">
-        <h3 id="notes-card-title">بیرهاتن و تێبینیێن من 📝</h3>
+        <h3 id="notes-card-title">تێبینیێن من 📝</h3>
         <button class="btn" onclick="toggleSection('notes-content')" id="btn-notes-toggle">📝 ڤەکرنا جهێ تێبینیان</button>
         
         <div id="notes-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;" id="notes-hint">
-                هەست، بیرهاتن یان تشتەکێ بڤێت بۆ خوە ل ڤێرێ بنڤیسە...
+                تێبینیێن خۆ ل ڤێرێ بنڤیسە...
             </p>
-            <textarea id="personal-notes" rows="4" placeholder="هەست یان بیرهاتنێن خۆ ل ڤێرێ بنڤیسە..." oninput="saveNotes()"></textarea>
+            <textarea id="personal-notes" rows="4" placeholder="تێبینیێن خۆ ل ڤێرێ بنڤیسە..." oninput="saveNotes()"></textarea>
         </div>
     </div>
 
@@ -676,10 +676,10 @@
             document.getElementById('afternoon-title').innerText = "🌇 Afternoon";
             document.getElementById('night-title').innerText = "🌙 Night";
             document.getElementById('reward-message').innerText = "🎉 Congratulations! You completed all tasks today!";
-            document.getElementById('notes-card-title').innerText = "My Notes & Memories 📝";
+            document.getElementById('notes-card-title').innerText = "My Notes 📝";
             document.getElementById('btn-notes-toggle').innerText = "📝 Open Notes";
-            document.getElementById('notes-hint').innerText = "Write your thoughts or memories here...";
-            document.getElementById('personal-notes').placeholder = "Write your thoughts or memories here...";
+            document.getElementById('notes-hint').innerText = "Write your notes here...";
+            document.getElementById('personal-notes').placeholder = "Write your notes here...";
             if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "Morning task...";
             if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "Noon task...";
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "Afternoon task...";
@@ -702,10 +702,10 @@
             document.getElementById('afternoon-title').innerText = "🌇 العصر";
             document.getElementById('night-title').innerText = "🌙 المساء";
             document.getElementById('reward-message').innerText = "🎉 مبروك! لقد أنجزت جميع مهامك اليوم، بالتوفيق!";
-            document.getElementById('notes-card-title').innerText = "ملاحظاتي وذكرياتي 📝";
+            document.getElementById('notes-card-title').innerText = "ملاحظاتي 📝";
             document.getElementById('btn-notes-toggle').innerText = "📝 فتح المفكرة";
-            document.getElementById('notes-hint').innerText = "اكتب أفكارك أو مشاعرك هنا...";
-            document.getElementById('personal-notes').placeholder = "اكتب مشاعرك أو ذكرياتك هنا...";
+            document.getElementById('notes-hint').innerText = "اكتب ملاحظاتك هنا...";
+            document.getElementById('personal-notes').placeholder = "اكتب ملاحظاتك هنا...";
             if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "مهمة الصباح...";
             if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "مهمة الظهر...";
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "مهمة العصر...";
@@ -728,10 +728,10 @@
             document.getElementById('afternoon-title').innerText = "🌇 ئێڤاری";
             document.getElementById('night-title').innerText = "🌙 ب شەڤ";
             document.getElementById('reward-message').innerText = "🎉 پیرۆزبایی! تە هەموو کارێن خۆ یێن ئەڤرۆ تەمام کرن، سەرکەفتن بۆ تە! ✨";
-            document.getElementById('notes-card-title').innerText = "بیرهاتن و تێبینیێن من 📝";
+            document.getElementById('notes-card-title').innerText = "تێبینیێن من 📝";
             document.getElementById('btn-notes-toggle').innerText = "📝 ڤەکرنا جهێ تێبینیان";
-            document.getElementById('notes-hint').innerText = "هەست، بیرهاتن یان تشتەکێ بڤێت بۆ خوە ل ڤێرێ بنڤیسە...";
-            document.getElementById('personal-notes').placeholder = "هەست یان بیرهاتنێن خۆ ل ڤێرێ بنڤیسە...";
+            document.getElementById('notes-hint').innerText = "تێبینیێن خۆ ل ڤێرێ بنڤیسە...";
+            document.getElementById('personal-notes').placeholder = "تێبینیێن خۆ ل ڤێرێ بنڤیسە...";
             if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "کارێ سپێدەهیا خۆ...";
             if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "کارێ نیڤرۆیا خۆ...";
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "کارێ ئێڤاریا خۆ...";
