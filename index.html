@@ -229,7 +229,7 @@
         }
         .btn:hover { opacity: 0.9; transform: scale(1.01); }
 
-        input[type="text"] {
+        input[type="text"], textarea {
             width: 100%;
             background: rgba(0,0,0,0.15);
             border: 1px solid rgba(255,255,255,0.1);
@@ -241,10 +241,10 @@
             outline: none;
             transition: border-color 0.3s;
         }
-        [data-theme="light"] input[type="text"] {
+        [data-theme="light"] input[type="text"], [data-theme="light"] textarea {
             background: rgba(0,0,0,0.04);
         }
-        input[type="text"]:focus { border-color: var(--accent-purple); }
+        input[type="text"]:focus, textarea:focus { border-color: var(--accent-purple); }
 
         .collapsible-content {
             display: none;
@@ -310,12 +310,25 @@
         }
         .task-input { flex-grow: 1; padding: 8px 12px !important; font-size: 0.9rem !important; }
 
+        .reward-box {
+            background: rgba(46, 213, 115, 0.1);
+            border: 1px dashed var(--success-color);
+            color: var(--success-color);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 15px;
+            display: none;
+        }
+        .reward-box.show { display: block; }
+
         footer {
             margin-top: 40px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            letter-spacing: 1.5px;
             text-align: center;
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -363,6 +376,7 @@
         </div>
     </div>
 
+    <!-- پشکا خشتەیێ ڕۆژانە -->
     <div class="card">
         <h3 id="planner-card-title">خشتەیێ ڕۆژانە 🗓️</h3>
         <button class="btn" onclick="toggleSection('planner-content')" id="btn-planner-toggle">📅 ڤەکرنا خشتەیێ ڕۆژانە</button>
@@ -403,11 +417,28 @@
                     <input type="text" class="task-input" id="input-night" placeholder="کارێ شەڤا خۆ..." oninput="savePlanner()">
                 </div>
             </div>
+
+            <div id="reward-message" class="reward-box">
+                🎉 په‌یرۆزبایی! تە هەموو کارێن خۆ یێن ئەڤرۆ تەمام کرن، سەرکەفتن بۆ تە! ✨
+            </div>
+        </div>
+    </div>
+
+    <!-- پشکا بیرهاتن و تێبینیێن خوەیی -->
+    <div class="card">
+        <h3 id="notes-card-title">بیرهاتن و تێبینیێن من 📝</h3>
+        <button class="btn" onclick="toggleSection('notes-content')" id="btn-notes-toggle">📝 ڤەکرنا جهێ تێبینیان</button>
+        
+        <div id="notes-content" class="collapsible-content">
+            <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;" id="notes-hint">
+                هەست، بیرهاتن یان تشتەکێ بڤێت بۆ خوە ل ڤێرێ بنڤیسە (خوەکارانە دێ هێتە گۆتارکرن)!
+            </p>
+            <textarea id="personal-notes" rows="4" placeholder="ئەڤرۆ چ هزرا د مێشکێ تە دایە؟ ل ڤێرێ بنڤیسە..." oninput="saveNotes()"></textarea>
         </div>
     </div>
 
     <footer>
-        CREATED BY: HUDA SHAHIN SINDI | DODOCare &copy; 2026
+        Huda Sindi
     </footer>
 </div>
 
@@ -425,51 +456,21 @@
             "“تو گەلەک ژ هندێ ب هێزتری تو دەستا ب داهێلی.”",
             "“بخۆ بژی، نە بۆ ڕازیکرنا خەڵکی.”",
             "“هەر نوکە دەست پێ بکە، چ جاران درەنگ نینە.”",
-            "“تو یا ب هێزی، باوەریێ ب شیانێن خۆ بینە.”",
-            "“ئەڤرۆ دەرفەتەکا نووی یە بۆ هندێ تو بگەهیە حەزێن خۆ.”",
-            "“خەونێن تە مەزنن، هەولدانێن خۆ ژی مەزنتر لێ بکە.”",
-            "“تو داهێنەرا ژیانا خۆیی، جوان ڕەنگ بکە.”",
-            "“هەر تشتەکێ ئەڤرۆ دکەی، سوبە دێ پێ کەیفخۆش بی.”",
-            "“تو ب تنێ دشێی ژیانا خۆ بگۆهۆڕی، دەست پێ بکە.”",
-            "“ئارام بە، خودێ دێ دەرگەهێن خێڕێ بۆ تە ڤەکەت.”",
-            "“پێنگاڤەکا بچووک باشترە ژ ڕاوەستانێ.”",
-            "“تو ژ هەژی باشترین تشتی د ژیانێ دا.”",
-            "“دەست ژ هیڤیێن خۆ بەرنەدە، تو کەسەک خودان شیانی.”",
-            "“ئەڤرۆ کار بکە، دا کو سوبە شانازیێ ب خۆ بەی.”"
+            "“تو یا ب هێزی، باوەریێ ب شیانێن خۆ بینە.”"
         ],
         en: [
             "“Today is your day, take the step!”",
             "“You are much stronger than you think.”",
             "“Live for yourself, not to please others.”",
             "“Start right now, it is never too late.”",
-            "“You are strong, believe in your abilities.”",
-            "“Today is a new opportunity to reach your goals.”",
-            "“Your dreams are big, make your efforts bigger.”",
-            "“You are the creator of your life, color it beautifully.”",
-            "“Everything you do today will make you happy tomorrow.”",
-            "“Only you can change your life, start now.”",
-            "“Stay calm, wonderful things are coming.”",
-            "“A small step is better than standing still.”",
-            "“You deserve the best things in life.”",
-            "“Never give up on your hopes, you are capable.”",
-            "“Work today so you can be proud tomorrow.”"
+            "“You are strong, believe in your abilities.”"
         ],
         ar: [
             "“اليوم هو يومك، اتخذ الخطوة!”",
             "“أنت أقوى بكثير مما تعتقد.”",
             "“عش لنفسك، ليس لإرضاء الآخرين.”",
             "“ابدأ الآن، فليست متأخراً أبداً.”",
-            "“أنت قوي، ثق بقدراتك.”",
-            "“اليوم فرصة جديدة لتحقيق ما تتمناه.”",
-            "“أحلامك كبيرة، فاجعل جهودك أكبر.”",
-            "“أنت صانع حياتك، لونها بشكل جميل.”",
-            "“كل ما تفعل اليوم سيجعلك سعيداً غداً.”",
-            "“أنت وحدك من يستطيع تغيير حياتك، ابدأ الآن.”",
-            "“اطمئن، الأقدار الجميلة قادمة.”",
-            "“خطوة صغيرة أفضل من الوقوف في مكانك.”",
-            "“أنت تستحق أفضل الأشياء في الحياة.”",
-            "“لا تتخلى عن أمالك، فأنت قادر.”",
-            "“اعمل اليوم لتفخر بنفسك غداً.”"
+            "“أنت قوي، ثق بقدراتك.”"
         ]
     };
     
@@ -520,6 +521,20 @@
     setInterval(updateLiveClock, 1000);
     updateLiveClock();
 
+    function checkAllCompleted() {
+        const m = document.getElementById('check-morning').checked;
+        const n = document.getElementById('check-noon').checked;
+        const a = document.getElementById('check-afternoon').checked;
+        const ni = document.getElementById('check-night').checked;
+        const rewardBox = document.getElementById('reward-message');
+
+        if (m && n && a && ni) {
+            rewardBox.classList.add('show');
+        } else {
+            rewardBox.classList.remove('show');
+        }
+    }
+
     function savePlanner() {
         const mCheck = document.getElementById('check-morning');
         const mText = document.getElementById('input-morning');
@@ -542,6 +557,7 @@
                 niText: niText.value,
             };
             localStorage.setItem('dodo_planner', JSON.stringify(data));
+            checkAllCompleted();
         }
     }
 
@@ -558,10 +574,24 @@
                 if(document.getElementById('input-afternoon')) document.getElementById('input-afternoon').value = data.aText || '';
                 if(document.getElementById('check-night')) document.getElementById('check-night').checked = data.niCheck;
                 if(document.getElementById('input-night')) document.getElementById('input-night').value = data.niText || '';
+                checkAllCompleted();
             } catch(e) {}
         }
     }
     loadPlanner();
+
+    function saveNotes() {
+        const notesText = document.getElementById('personal-notes').value;
+        localStorage.setItem('dodo_personal_notes', notesText);
+    }
+
+    function loadNotes() {
+        const savedNotes = localStorage.getItem('dodo_personal_notes');
+        if (savedNotes) {
+            document.getElementById('personal-notes').value = savedNotes;
+        }
+    }
+    loadNotes();
 
     function toggleTheme() {
         const body = document.getElementById('body');
@@ -617,6 +647,11 @@
             document.getElementById('noon-title').innerText = "☀️ Noon";
             document.getElementById('afternoon-title').innerText = "🌇 Afternoon";
             document.getElementById('night-title').innerText = "🌙 Night";
+            document.getElementById('reward-message').innerText = "🎉 Congratulations! You completed all tasks today!";
+            document.getElementById('notes-card-title').innerText = "My Notes & Memories 📝";
+            document.getElementById('btn-notes-toggle').innerText = "📝 Open Notes";
+            document.getElementById('notes-hint').innerText = "Write your thoughts or memories here (auto-saved)!";
+            document.getElementById('personal-notes').placeholder = "What is on your mind today? Write here...";
             if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "Morning task...";
             if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "Noon task...";
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "Afternoon task...";
@@ -638,6 +673,11 @@
             document.getElementById('noon-title').innerText = "☀️ الظهر";
             document.getElementById('afternoon-title').innerText = "🌇 العصر";
             document.getElementById('night-title').innerText = "🌙 المساء";
+            document.getElementById('reward-message').innerText = "🎉 مبروك! لقد أنجزت جميع مهامك اليوم، بالتوفيق!";
+            document.getElementById('notes-card-title').innerText = "ملاحظاتي وذكرياتي 📝";
+            document.getElementById('btn-notes-toggle').innerText = "📝 فتح المفكرة";
+            document.getElementById('notes-hint').innerText = "اكتب أفكارك أو مشاعرك هنا (تحفظ تلقائياً)!";
+            document.getElementById('personal-notes').placeholder = "ما الذي يدور في ذهنك اليوم؟ اكتب هنا...";
             if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "مهمة الصباح...";
             if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "مهمة الظهر...";
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "مهمة العصر...";
@@ -659,6 +699,11 @@
             document.getElementById('noon-title').innerText = "☀️ نیڤرۆ";
             document.getElementById('afternoon-title').innerText = "🌇 ئێڤاری";
             document.getElementById('night-title').innerText = "🌙 ب شەڤ";
+            document.getElementById('reward-message').innerText = "🎉 پیرۆزبایی! تە هەموو کارێن خۆ یێن ئەڤرۆ تەمام کرن، سەرکەفتن بۆ تە! ✨";
+            document.getElementById('notes-card-title').innerText = "بیرهاتن و تێبینیێن من 📝";
+            document.getElementById('btn-notes-toggle').innerText = "📝 ڤەکرنا جهێ تێبینیان";
+            document.getElementById('notes-hint').innerText = "هەست، بیرهاتن یان تشتەکێ بڤێت بۆ خوە ل ڤێرێ بنڤیسە (خوەکارانە دێ هێتە گۆتارکرن)!";
+            document.getElementById('personal-notes').placeholder = "ئەڤرۆ چ هزرا د مێشکێ تە دایە؟ ل ڤێرێ بنڤیسە...";
             if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "کارێ سپێدەهیا خۆ...";
             if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "کارێ نیڤرۆیا خۆ...";
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "کارێ ئێڤاریا خۆ...";
