@@ -6,25 +6,27 @@
     <title>Dodocare</title>
     <style>
         :root {
-            --bg-color: #12121f;
-            --card-bg: rgba(22, 22, 42, 0.85);
+            --bg-color: #fdfbf7;
+            --card-bg: rgba(255, 255, 255, 0.95);
             --accent-purple: #706fd3;
             --accent-pink: #ff7979;
-            --text-main: #ffffff;
-            --text-muted: #a4b0be;
+            --text-main: #5c4033;
+            --text-muted: #8c7365;
             --success-color: #2ed573;
         }
 
-        [data-theme="light"] {
-            --bg-color: #f1f2f6;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --text-main: #2f3640;
-            --text-muted: #718093;
+        [data-theme="dark"] {
+            --bg-color: #12121f;
+            --card-bg: rgba(22, 22, 42, 0.88);
+            --text-main: #ffffff;
+            --text-muted: #a4b0be;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
+            background-image: linear-gradient(rgba(112, 111, 211, 0.04) 1px, transparent 1px);
+            background-size: 100% 32px;
             color: var(--text-main);
             margin: 0;
             padding: 20px;
@@ -35,29 +37,57 @@
             transition: background 0.4s ease, color 0.4s ease;
         }
 
-        .bg-glow {
+        #intro-screen {
             position: fixed;
-            width: 350px;
-            height: 350px;
-            background: var(--accent-purple);
-            opacity: 0.15;
-            filter: blur(90px);
-            border-radius: 50%;
-            z-index: -1;
-            animation: moveGlow 12s infinite alternate ease-in-out;
-            transition: background 0.4s ease;
-        }
-        .bg-glow:nth-child(2) {
-            background: var(--accent-pink);
-            opacity: 0.1;
-            right: -60px;
-            bottom: -60px;
-            animation-duration: 16s;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fff0f5, #f3e7ff);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
-        @keyframes moveGlow {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(60px) scale(1.25); }
+        .intro-dodo {
+            font-size: 90px;
+            animation: bounceIntro 1.8s infinite alternate ease-in-out;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 10px 15px rgba(255, 121, 121, 0.3));
+        }
+
+        @keyframes bounceIntro {
+            0% { transform: translateY(0) scale(1) rotate(-3deg); }
+            100% { transform: translateY(-20px) scale(1.1) rotate(3deg); }
+        }
+
+        .intro-welcome-text {
+            font-size: 1.6rem;
+            color: var(--accent-purple);
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 10px rgba(112,111,211,0.2);
+            animation: fadeInText 1s ease;
+        }
+
+        .enter-site-btn {
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(112,111,211,0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .enter-site-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 30px rgba(112,111,211,0.55);
         }
 
         .container {
@@ -65,12 +95,13 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
-            animation: fadeInApp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transform: translateY(15px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
-        @keyframes fadeInApp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        .container.show-app {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .top-bar {
@@ -90,21 +121,21 @@
 
         .theme-toggle, .lang-btn, .color-picker-btn {
             background: var(--card-bg);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,182,193,0.5);
             padding: 8px 12px;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
             color: var(--text-main);
             font-size: 0.85rem;
             display: flex;
             align-items: center;
             gap: 6px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .theme-toggle:hover, .lang-btn:hover, .color-picker-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         input[type="color"] {
@@ -118,31 +149,30 @@
             background: none;
         }
         input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
-        input[type="color"]::-webkit-color-swatch { border: 2px solid rgba(255,255,255,0.6); border-radius: 50%; }
+        input[type="color"]::-webkit-color-swatch { border: 2px solid rgba(255,255,255,0.8); border-radius: 50%; }
 
         h1 { 
             color: var(--accent-purple); 
             font-size: 2.4rem; 
             margin-bottom: 2px; 
-            text-shadow: 0 2px 15px rgba(112,111,211,0.3); 
+            text-shadow: 0 2px 15px rgba(112,111,211,0.2); 
             transition: color 0.4s ease;
             letter-spacing: 1px;
         }
         .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
 
         .top-mini-guide {
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
+            background: var(--card-bg);
+            border: 2px dashed rgba(255, 182, 193, 0.6);
+            border-radius: 16px;
             padding: 12px 16px;
             margin-bottom: 20px;
             font-size: 0.8rem;
             color: var(--text-muted);
             text-align: right;
             line-height: 1.6;
-            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
-        [data-theme="light"] .top-mini-guide { background: rgba(0, 0, 0, 0.04); }
         .top-mini-guide strong { color: var(--accent-pink); }
 
         .card {
@@ -151,13 +181,13 @@
             border-radius: 20px;
             padding: 22px;
             margin-bottom: 20px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.35);
-            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border: 2px dashed rgba(255, 182, 193, 0.5);
             text-align: right;
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
         }
         .card h3 { text-align: center; color: var(--accent-purple); transition: color 0.4s ease; margin-top: 5px; }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.45); }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
 
         .dodo-box {
             font-size: 70px;
@@ -166,7 +196,7 @@
             margin: 5px 0 10px 0;
             text-align: center;
             width: 100%;
-            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
         }
 
         @keyframes floatDodo {
@@ -183,16 +213,10 @@
             margin-bottom: 10px;
             display: inline-block;
             max-width: 90%;
-            box-shadow: 0 6px 20px rgba(112,111,211,0.35);
+            box-shadow: 0 6px 20px rgba(112,111,211,0.25);
             line-height: 1.6;
             text-align: center;
             transition: background 0.4s ease;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes popIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
         }
 
         .quote-container { text-align: center; }
@@ -202,57 +226,86 @@
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .streak-badge {
-            background: rgba(255, 121, 121, 0.15);
+            background: rgba(255, 121, 121, 0.12);
             color: var(--accent-pink);
             border: 1px solid var(--accent-pink);
             padding: 8px 16px;
             border-radius: 22px;
             font-weight: bold;
             font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(255,121,121,0.15);
+            box-shadow: 0 4px 15px rgba(255,121,121,0.1);
         }
 
         .time-badge {
-            background: rgba(112, 111, 211, 0.15);
+            background: rgba(112, 111, 211, 0.12);
             color: var(--accent-purple);
             border: 1px solid var(--accent-purple);
             padding: 8px 16px;
             border-radius: 22px;
             font-weight: bold;
             font-size: 0.85rem;
-            box-shadow: 0 4px 15px rgba(112,111,211,0.15);
-            transition: color 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 4px 15px rgba(112,111,211,0.1);
         }
+
+        /* لایەنا مێژووا دەمژمێر و ڕۆژان (Timeline / History Bar) */
+        .history-timeline-box {
+            background: var(--card-bg);
+            border: 2px dashed rgba(112, 111, 211, 0.4);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .day-status-pill {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(112,111,211,0.2);
+            padding: 6px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            min-width: 45px;
+        }
+        [data-theme="dark"] .day-status-pill { background: rgba(0,0,0,0.2); }
+        .day-status-pill span:first-child { font-weight: bold; color: var(--text-muted); }
+        .day-status-pill span:last-child { font-size: 0.9rem; }
 
         .btn {
             background: var(--accent-purple);
             border: none;
             color: white;
             padding: 13px 22px;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
             font-weight: bold;
             margin: 5px 0;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 5px 18px rgba(112,111,211,0.3);
+            box-shadow: 0 5px 18px rgba(112,111,211,0.25);
             width: 100%;
             font-size: 0.95rem;
         }
         .btn:hover { 
             opacity: 0.92; 
             transform: scale(1.015); 
-            box-shadow: 0 8px 25px rgba(112,111,211,0.45);
+            box-shadow: 0 8px 25px rgba(112,111,211,0.35);
         }
         .btn:active { transform: scale(0.98); }
 
         input[type="text"], textarea {
             width: 100%;
-            background: rgba(0,0,0,0.18);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(112,111,211,0.25);
             border-radius: 12px;
             color: var(--text-main);
             padding: 13px;
@@ -262,10 +315,11 @@
             transition: all 0.3s ease;
             font-size: 0.95rem;
         }
-        [data-theme="light"] input[type="text"], [data-theme="light"] textarea { background: rgba(0,0,0,0.04); }
+        [data-theme="dark"] input[type="text"], [data-theme="dark"] textarea { background: rgba(0,0,0,0.2); }
         input[type="text"]:focus, textarea:focus { 
             border-color: var(--accent-purple); 
-            box-shadow: 0 0 12px rgba(112,111,211,0.25);
+            box-shadow: 0 0 12px rgba(112,111,211,0.2);
+            background: rgba(255,255,255,0.95);
         }
 
         .collapsible-content {
@@ -282,14 +336,13 @@
         }
 
         .planner-section {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 182, 193, 0.1);
+            border: 1px dashed rgba(255, 182, 193, 0.4);
             border-radius: 14px;
             padding: 14px;
             margin-bottom: 12px;
             transition: background 0.3s ease;
         }
-        [data-theme="light"] .planner-section { background: rgba(0, 0, 0, 0.02); }
         .planner-title {
             font-weight: bold;
             color: var(--accent-purple);
@@ -298,7 +351,6 @@
             align-items: center;
             gap: 6px;
             font-size: 0.95rem;
-            transition: color 0.4s ease;
         }
         .planner-row { display: flex; gap: 10px; align-items: center; }
         
@@ -310,7 +362,7 @@
             border: 2px solid var(--accent-purple);
             border-radius: 8px;
             cursor: pointer;
-            background: rgba(0,0,0,0.2);
+            background: rgba(255,255,255,0.9);
             position: relative;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             flex-shrink: 0;
@@ -353,19 +405,23 @@
 
         footer {
             margin-top: 40px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
+            font-size: 0.85rem;
+            color: var(--text-main);
             text-align: center;
-            opacity: 0.7;
+            font-weight: bold;
+            opacity: 0.85;
         }
     </style>
 </head>
 <body id="body">
 
-    <div class="bg-glow"></div>
-    <div class="bg-glow"></div>
+    <div id="intro-screen">
+        <div class="intro-dodo">🐰✨</div>
+        <div class="intro-welcome-text" id="intro-text">بەخێر هاتن بۆ جیهانا دودۆ 🌸</div>
+        <button class="enter-site-btn" onclick="openMainSite()">ڤەکرنا دەفتەرێ 📖</button>
+    </div>
 
-<div class="container">
+<div class="container" id="main-container">
     <div class="top-bar">
         <div class="control-group">
             <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌓 گوهۆڕینا مودی</button>
@@ -393,6 +449,11 @@
         <div class="time-badge" id="live-time-badge">⏰ دەمژمێر: 00:00</div>
     </div>
 
+    <!-- مێژووا دەمژمێر و نیشاندانا ❌ بو ڕۆژێن نەهاتی -->
+    <div class="history-timeline-box" id="timeline-box">
+        <!-- لڤێرە ڕۆژێن ٥ ڕۆژێن دووماهیێ ب کڕوکی دەنە دیارکرن -->
+    </div>
+
     <div class="card">
         <h3 id="quote-card-title">گۆتنێن ڕۆژانە یێن دۆدۆ 💬</h3>
         <button class="btn" onclick="toggleSection('quote-content')" id="btn-quote-toggle">💬 ڤەکرنا گۆتنا ئەڤرو</button>
@@ -404,7 +465,6 @@
         </div>
     </div>
 
-    <!-- پشکا خشتەیێ ڕۆژانە -->
     <div class="card">
         <h3 id="planner-card-title">خشتەیێ ڕۆژانە 🗓️</h3>
         <button class="btn" onclick="toggleSection('planner-content')" id="btn-planner-toggle">📅 ڤەکرنا خشتەیێ ڕۆژانە</button>
@@ -452,7 +512,6 @@
         </div>
     </div>
 
-    <!-- پشکا بیرهاتن و تێبینیێن خوەیی -->
     <div class="card">
         <h3 id="notes-card-title">تێبینیێن من 📝</h3>
         <button class="btn" onclick="toggleSection('notes-content')" id="btn-notes-toggle">📝 ڤەکرنا جهێ تێبینیان</button>
@@ -466,11 +525,24 @@
     </div>
 
     <footer>
-        Huda Sindi
+        @Huda Sindiy📃
     </footer>
 </div>
 
 <script>
+    function openMainSite() {
+        const intro = document.getElementById('intro-screen');
+        const main = document.getElementById('main-container');
+        if(intro && main) {
+            intro.style.opacity = '0';
+            intro.style.visibility = 'hidden';
+            main.classList.add('show-app');
+            setTimeout(() => {
+                intro.style.display = 'none';
+            }, 800);
+        }
+    }
+
     function toggleSection(sectionId) {
         const content = document.getElementById(sectionId);
         if (content) {
@@ -624,18 +696,18 @@
     function toggleTheme() {
         const body = document.getElementById('body');
         if (body) {
-            if (body.getAttribute('data-theme') === 'light') {
+            if (body.getAttribute('data-theme') === 'dark') {
                 body.removeAttribute('data-theme');
-                localStorage.setItem('dodo_theme', 'dark');
-            } else {
-                body.setAttribute('data-theme', 'light');
                 localStorage.setItem('dodo_theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('dodo_theme', 'dark');
             }
         }
     }
-    if (localStorage.getItem('dodo_theme') === 'light') {
+    if (localStorage.getItem('dodo_theme') === 'dark') {
         const body = document.getElementById('body');
-        if(body) body.setAttribute('data-theme', 'light');
+        if(body) body.setAttribute('data-theme', 'dark');
     }
 
     function changeAccentColor(color) {
@@ -664,6 +736,8 @@
             document.body.style.textAlign = 'left';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'left');
             document.getElementById('site-subtitle').innerText = "✨";
+            document.getElementById('intro-text').innerText = "Welcome to Dodo's World 🌸";
+            document.querySelector('.enter-site-btn').innerText = "Open Diary 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>Home Screen Tip:</strong> If opening from TikTok or Instagram, tap the top 3 dots and open in external browser; for iPhone <strong>Share > Add to Home</strong> and for Android <strong>Menu > Add to Home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 Streak: " + streakNum + " Days";
             document.getElementById('btn-quote-toggle').innerText = "💬 Open Today's Quote";
@@ -690,6 +764,8 @@
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "✨";
+            document.getElementById('intro-text').innerText = "أهلاً بك في عالم دودو 🌸";
+            document.querySelector('.enter-site-btn').innerText = "فتح الدفتر 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>ملاحظة الإضافة للشاشة:</strong> إذا فتحت الموقع من تيك توك أو انستغرام، اضغط على النقاط الثلاث بالأعلى وافتحه في المتصفح الخارجي؛ للايفون <strong>Share > Add to home</strong> وللاندرويد <strong>Menu > Add to home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 التتابع: " + streakNum + " أيام متتالية";
             document.getElementById('btn-quote-toggle').innerText = "💬 فتح مقولة اليوم";
@@ -716,6 +792,8 @@
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "✨";
+            document.getElementById('intro-text').innerText = "بەخێر هاتن بۆ جیهانا دودۆ 🌸";
+            document.querySelector('.enter-site-btn').innerText = "ڤەکرنا دەفتەرێ 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streakNum + " ڕۆژێن بەردەوام";
             document.getElementById('btn-quote-toggle').innerText = "💬 ڤەکرنا گۆتنا ئەڤرو";
@@ -744,21 +822,61 @@
     const savedLang = localStorage.getItem('dodo_lang');
     if(savedLang) { setLanguage(savedLang); }
 
+    // Logic for Streak & Timeline Control (پاراستنا ستریکێ و نیشاندانا ❌ بۆ ڕۆژێن نەهاتنێ)
     let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 1;
     let lastVisit = localStorage.getItem('dodo_last_visit_date');
-    let todayDate = new Date().toDateString();
+    let visitHistory = JSON.parse(localStorage.getItem('dodo_visit_history') || '{}');
+    
+    let todayObj = new Date();
+    let todayDateStr = todayObj.getFullYear() + '-' + (todayObj.getMonth() + 1) + '-' + todayObj.getDate();
 
-    if(lastVisit !== todayDate) {
+    if(lastVisit !== todayDateStr) {
         if(lastVisit) {
-            let lastDate = new Date(lastVisit);
-            let diffDays = Math.floor((new Date() - lastDate) / (1000 * 60 * 60 * 24));
-            if(diffDays >= 1) { 
-                streak++; 
+            let lastDateObj = new Date(lastVisit);
+            let diffTime = Math.abs(todayObj - lastDateObj);
+            let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            if(diffDays === 1) {
+                // ڕۆژا پاشتر هات: ستریک ١ پلە بلند دبێت
+                streak++;
+            } else if(diffDays > 1) {
+                // ئەگەر چەند ڕۆژ نەهاتبێت: ستریک نەشکێت، تەنها وەک خۆ بمینێت (وەک تە گۆتی نەچتە سەری پێڤە و نە ژی بکەڤە خوارێ)
+                // ستریک گوهۆڕین تێدا نابێت و وەک خوە دمینێت
             }
         }
         localStorage.setItem('dodo_infinite_streak', streak);
-        localStorage.setItem('dodo_last_visit_date', todayDate);
     }
+
+    // تۆمارکرنا ساراڤا ئەڤڕۆ وەکو هاتی
+    visitHistory[todayDateStr] = true;
+    localStorage.setItem('dodo_visit_history', JSON.stringify(visitHistory));
+    localStorage.setItem('dodo_last_visit_date', todayDateStr);
+
+    // دروستکرنا هێلا مێژووی (Timeline) ب ٥ ڕۆژێن دووماهیێ
+    const timelineBox = document.getElementById('timeline-box');
+    if(timelineBox) {
+        let timelineHTML = '';
+        for (let i = 4; i >= 0; i--) {
+            let d = new Date();
+            d.setDate(todayObj.getDate() - i);
+            let dStr = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+            let dayName = d.toLocaleDateString('en-US', { weekday: 'short' });
+            
+            let icon = '❌';
+            if (visitHistory[dStr]) {
+                icon = '✅';
+            }
+
+            timelineHTML += `
+                <div class="day-status-pill">
+                    <span>${dayName}</span>
+                    <span>${icon}</span>
+                </div>
+            `;
+        }
+        timelineBox.innerHTML = timelineHTML;
+    }
+
     const currentLang = localStorage.getItem('dodo_lang') || 'ku';
     const streakCounter = document.getElementById('streak-counter');
     if(streakCounter) {
@@ -767,8 +885,4 @@
         else streakCounter.innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
     }
 </script>
-
 </html>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6085945540835877"
-     crossorigin="anonymous"></script>
-
