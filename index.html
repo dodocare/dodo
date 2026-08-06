@@ -55,7 +55,7 @@
         .intro-dodo {
             font-size: 90px;
             animation: bounceIntro 1.8s infinite alternate ease-in-out;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             filter: drop-shadow(0 10px 15px rgba(255, 121, 121, 0.3));
         }
 
@@ -65,12 +65,20 @@
         }
 
         .intro-welcome-text {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             color: var(--accent-purple);
             font-weight: bold;
-            margin-bottom: 25px;
+            margin-bottom: 5px;
             text-shadow: 0 2px 10px rgba(112,111,211,0.2);
             animation: fadeInText 1s ease;
+        }
+
+        .intro-author-name {
+            font-size: 1rem;
+            color: var(--accent-pink);
+            font-weight: bold;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
         }
 
         .enter-site-btn {
@@ -221,19 +229,21 @@
 
         .quote-container { text-align: center; }
 
+        /* پشکا ستریک و تایملایما ب رەخ ڤە */
         .badges-wrapper {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            align-items: center;
+            gap: 8px;
             flex-wrap: wrap;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .streak-badge {
             background: rgba(255, 121, 121, 0.12);
             color: var(--accent-pink);
             border: 1px solid var(--accent-pink);
-            padding: 8px 16px;
+            padding: 9px 16px;
             border-radius: 22px;
             font-weight: bold;
             font-size: 0.9rem;
@@ -244,42 +254,38 @@
             background: rgba(112, 111, 211, 0.12);
             color: var(--accent-purple);
             border: 1px solid var(--accent-purple);
-            padding: 8px 16px;
+            padding: 9px 16px;
             border-radius: 22px;
             font-weight: bold;
             font-size: 0.85rem;
             box-shadow: 0 4px 15px rgba(112,111,211,0.1);
         }
 
-        /* لایەنا مێژووا دەمژمێر و ڕۆژان (Timeline / History Bar) */
-        .history-timeline-box {
-            background: var(--card-bg);
-            border: 2px dashed rgba(112, 111, 211, 0.4);
-            border-radius: 16px;
-            padding: 12px;
-            margin-bottom: 20px;
+        .timeline-container {
             display: flex;
-            justify-content: center;
+            gap: 5px;
             align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
+            background: var(--card-bg);
+            border: 2px dashed rgba(112,111,211,0.3);
+            padding: 6px 10px;
+            border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
         .day-status-pill {
             background: rgba(255, 255, 255, 0.6);
             border: 1px solid rgba(112,111,211,0.2);
-            padding: 6px 10px;
+            padding: 4px 8px;
             border-radius: 12px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
-            min-width: 45px;
+            gap: 1px;
+            min-width: 35px;
         }
         [data-theme="dark"] .day-status-pill { background: rgba(0,0,0,0.2); }
         .day-status-pill span:first-child { font-weight: bold; color: var(--text-muted); }
-        .day-status-pill span:last-child { font-size: 0.9rem; }
+        .day-status-pill span:last-child { font-size: 0.8rem; }
 
         .btn {
             background: var(--accent-purple);
@@ -416,8 +422,9 @@
 <body id="body">
 
     <div id="intro-screen">
-        <div class="intro-dodo">🐰✨</div>
-        <div class="intro-welcome-text" id="intro-text">بەخێر هاتن بۆ جیهانا دودۆ 🌸</div>
+        <div class="intro-dodo">🐰</div>
+        <div class="intro-welcome-text" id="intro-text">بخێرهاتن بۆ جیهانا دۆدۆ 🌸</div>
+        <div class="intro-author-name">@Huda Sindi</div>
         <button class="enter-site-btn" onclick="openMainSite()">ڤەکرنا دەفتەرێ 📖</button>
     </div>
 
@@ -444,14 +451,13 @@
         📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
     </div>
 
+    <!-- باجێن ستریک، دەمژمێر و تایملایما ب رەخ ڤە -->
     <div class="badges-wrapper">
         <div class="streak-badge" id="streak-counter">🔥 ستریک: 1 ڕۆژێن بەردەوام</div>
-        <div class="time-badge" id="live-time-badge">⏰ دەمژمێر: 00:00</div>
-    </div>
-
-    <!-- مێژووا دەمژمێر و نیشاندانا ❌ بو ڕۆژێن نەهاتی -->
-    <div class="history-timeline-box" id="timeline-box">
-        <!-- لڤێرە ڕۆژێن ٥ ڕۆژێن دووماهیێ ب کڕوکی دەنە دیارکرن -->
+        <div class="time-badge" id="live-time-badge">⏰ 00:00</div>
+        <div class="timeline-container" id="timeline-box">
+            <!-- ڕۆژێن تەنها هتنێ تێدا نیشان ددەت بێ کێشە -->
+        </div>
     </div>
 
     <div class="card">
@@ -525,7 +531,7 @@
     </div>
 
     <footer>
-        @Huda Sindiy📃
+        @Huda Sindi📃
     </footer>
 </div>
 
@@ -593,29 +599,9 @@
         displayHours = displayHours ? displayHours : 12;
 
         let timeStr = displayHours + ':' + minutes;
-        const currentLang = localStorage.getItem('dodo_lang') || 'ku';
-        
-        let greeting = "⏰ ";
-        if (currentLang === 'en') {
-            if (hours >= 4 && hours < 12) { greeting = "🌅 Morning • Time: "; }
-            else if (hours >= 12 && hours < 17) { greeting = "☀️ Noon • Time: "; }
-            else if (hours >= 17 && hours < 21) { greeting = "🌇 Evening • Time: "; }
-            else { greeting = "🌙 Night • Time: "; }
-        } else if (currentLang === 'ar') {
-            if (hours >= 4 && hours < 12) { greeting = "🌅 صباح الخير • الوقت: "; }
-            else if (hours >= 12 && hours < 17) { greeting = "☀️ طاب يومك • الوقت: "; }
-            else if (hours >= 17 && hours < 21) { greeting = "🌇 مساء الخير • الوقت: "; }
-            else { greeting = "🌙 تصبح على خير • الوقت: "; }
-        } else {
-            if (hours >= 4 && hours < 12) { greeting = "🌅 سپێدە باش • دەمژمێر: "; }
-            else if (hours >= 12 && hours < 17) { greeting = "☀️ نیڤرۆ باش • دەمژمێر: "; }
-            else if (hours >= 17 && hours < 21) { greeting = "🌇 ئێڤار باش • دەمژمێر: "; }
-            else { greeting = "🌙 شەڤ باش • دەمژمێر: "; }
-        }
-
         const timeBadge = document.getElementById('live-time-badge');
         if (timeBadge) {
-            timeBadge.innerText = greeting + timeStr;
+            timeBadge.innerText = "⏰ " + timeStr;
         }
     }
     setInterval(updateLiveClock, 1000);
@@ -822,13 +808,19 @@
     const savedLang = localStorage.getItem('dodo_lang');
     if(savedLang) { setLanguage(savedLang); }
 
-    // Logic for Streak & Timeline Control (پاراستنا ستریکێ و نیشاندانا ❌ بۆ ڕۆژێن نەهاتنێ)
+    // Logic for Streak & Clean Timeline (بتنێ ژ ڕۆژا ئێکەم یا هاتنا کەسی دەست پێ دکەت بێ ❌ یێن چۆیی)
     let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 1;
     let lastVisit = localStorage.getItem('dodo_last_visit_date');
     let visitHistory = JSON.parse(localStorage.getItem('dodo_visit_history') || '{}');
+    let firstVisitDate = localStorage.getItem('dodo_first_visit_date');
     
     let todayObj = new Date();
     let todayDateStr = todayObj.getFullYear() + '-' + (todayObj.getMonth() + 1) + '-' + todayObj.getDate();
+
+    if (!firstVisitDate) {
+        firstVisitDate = todayDateStr;
+        localStorage.setItem('dodo_first_visit_date', firstVisitDate);
+    }
 
     if(lastVisit !== todayDateStr) {
         if(lastVisit) {
@@ -837,30 +829,29 @@
             let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
             if(diffDays === 1) {
-                // ڕۆژا پاشتر هات: ستریک ١ پلە بلند دبێت
                 streak++;
             } else if(diffDays > 1) {
-                // ئەگەر چەند ڕۆژ نەهاتبێت: ستریک نەشکێت، تەنها وەک خۆ بمینێت (وەک تە گۆتی نەچتە سەری پێڤە و نە ژی بکەڤە خوارێ)
-                // ستریک گوهۆڕین تێدا نابێت و وەک خوە دمینێت
+                // ستریک نەشکێت، وەک خۆ بمینێت
             }
         }
         localStorage.setItem('dodo_infinite_streak', streak);
     }
 
-    // تۆمارکرنا ساراڤا ئەڤڕۆ وەکو هاتی
     visitHistory[todayDateStr] = true;
     localStorage.setItem('dodo_visit_history', JSON.stringify(visitHistory));
     localStorage.setItem('dodo_last_visit_date', todayDateStr);
 
-    // دروستکرنا هێلا مێژووی (Timeline) ب ٥ ڕۆژێن دووماهیێ
+    // دروستکرنا تایملایما پاک (تەنها ئەو ڕۆژێن کەس تێدا هاتی یان ژ دەستپێکا هاتنا وی)
     const timelineBox = document.getElementById('timeline-box');
     if(timelineBox) {
         let timelineHTML = '';
-        for (let i = 4; i >= 0; i--) {
-            let d = new Date();
-            d.setDate(todayObj.getDate() - i);
-            let dStr = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-            let dayName = d.toLocaleDateString('en-US', { weekday: 'short' });
+        let startObj = new Date(firstVisitDate);
+        let currentIter = new Date(startObj);
+        
+        // تەنها تا ڕۆژا ئەڤرۆ نیشان بدە
+        while(currentIter <= todayObj) {
+            let dStr = currentIter.getFullYear() + '-' + (currentIter.getMonth() + 1) + '-' + currentIter.getDate();
+            let dayName = currentIter.toLocaleDateString('en-US', { weekday: 'short' });
             
             let icon = '❌';
             if (visitHistory[dStr]) {
@@ -873,6 +864,7 @@
                     <span>${icon}</span>
                 </div>
             `;
+            currentIter.setDate(currentIter.getDate() + 1);
         }
         timelineBox.innerHTML = timelineHTML;
     }
