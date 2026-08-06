@@ -771,26 +771,4 @@
 </html>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6085945540835877"
      crossorigin="anonymous"></script>
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#0000ff">
-<button id="installBtn" style="display:none; background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; position: fixed; bottom: 20px; right: 20px; z-index: 9999;">Install App</button>
-
-<script>
-  let deferredPrompt;
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const installBtn = document.getElementById('installBtn');
-    installBtn.style.display = 'block';
-
-    installBtn.addEventListener('click', () => {
-      installBtn.style.display = 'none';
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        deferredPrompt = null;
-      });
-    });
-  });
-</script>
-</body>
 
