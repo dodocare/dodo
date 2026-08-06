@@ -229,7 +229,6 @@
 
         .quote-container { text-align: center; }
 
-        /* پشکا ستریک و تایملایما ب رەخ ڤە */
         .badges-wrapper {
             display: flex;
             justify-content: center;
@@ -422,8 +421,8 @@
 <body id="body">
 
     <div id="intro-screen">
-        <div class="intro-dodo">🐰</div>
-        <div class="intro-welcome-text" id="intro-text">بخێرهاتن بۆ جیهانا دۆدۆ 🌸</div>
+        <div class="intro-dodo">🐰✨</div>
+        <div class="intro-welcome-text" id="intro-text">بخێرهاتن بۆ جیهانا دودۆ 🌸</div>
         <div class="intro-author-name">@Huda Sindi</div>
         <button class="enter-site-btn" onclick="openMainSite()">ڤەکرنا دەفتەرێ 📖</button>
     </div>
@@ -451,13 +450,10 @@
         📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
     </div>
 
-    <!-- باجێن ستریک، دەمژمێر و تایملایما ب رەخ ڤە -->
     <div class="badges-wrapper">
         <div class="streak-badge" id="streak-counter">🔥 ستریک: 1 ڕۆژێن بەردەوام</div>
         <div class="time-badge" id="live-time-badge">⏰ 00:00</div>
-        <div class="timeline-container" id="timeline-box">
-            <!-- ڕۆژێن تەنها هتنێ تێدا نیشان ددەت بێ کێشە -->
-        </div>
+        <div class="timeline-container" id="timeline-box"></div>
     </div>
 
     <div class="card">
@@ -778,7 +774,7 @@
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "✨";
-            document.getElementById('intro-text').innerText = "بەخێر هاتن بۆ جیهانا دودۆ 🌸";
+            document.getElementById('intro-text').innerText = "بخێرهاتن بۆ جیهانا دودۆ 🌸";
             document.querySelector('.enter-site-btn').innerText = "ڤەکرنا دەفتەرێ 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streakNum + " ڕۆژێن بەردەوام";
@@ -808,7 +804,6 @@
     const savedLang = localStorage.getItem('dodo_lang');
     if(savedLang) { setLanguage(savedLang); }
 
-    // Logic for Streak & Clean Timeline (بتنێ ژ ڕۆژا ئێکەم یا هاتنا کەسی دەست پێ دکەت بێ ❌ یێن چۆیی)
     let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 1;
     let lastVisit = localStorage.getItem('dodo_last_visit_date');
     let visitHistory = JSON.parse(localStorage.getItem('dodo_visit_history') || '{}');
@@ -830,8 +825,6 @@
 
             if(diffDays === 1) {
                 streak++;
-            } else if(diffDays > 1) {
-                // ستریک نەشکێت، وەک خۆ بمینێت
             }
         }
         localStorage.setItem('dodo_infinite_streak', streak);
@@ -841,14 +834,12 @@
     localStorage.setItem('dodo_visit_history', JSON.stringify(visitHistory));
     localStorage.setItem('dodo_last_visit_date', todayDateStr);
 
-    // دروستکرنا تایملایما پاک (تەنها ئەو ڕۆژێن کەس تێدا هاتی یان ژ دەستپێکا هاتنا وی)
     const timelineBox = document.getElementById('timeline-box');
     if(timelineBox) {
         let timelineHTML = '';
         let startObj = new Date(firstVisitDate);
         let currentIter = new Date(startObj);
         
-        // تەنها تا ڕۆژا ئەڤرۆ نیشان بدە
         while(currentIter <= todayObj) {
             let dStr = currentIter.getFullYear() + '-' + (currentIter.getMonth() + 1) + '-' + currentIter.getDate();
             let dayName = currentIter.toLocaleDateString('en-US', { weekday: 'short' });
