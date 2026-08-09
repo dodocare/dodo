@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodocare </title>
+    <title>Dodocare</title>
     <!-- ئێکن و وێنەیێ دودوکەر بۆ سایتی و هۆم سکرینی -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
@@ -67,20 +67,12 @@
         }
 
         .intro-welcome-text {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--accent-purple);
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 25px;
             text-shadow: 0 2px 10px rgba(112,111,211,0.2);
             animation: fadeInText 1s ease;
-        }
-
-        .intro-author-name {
-            font-size: 1rem;
-            color: var(--accent-pink);
-            font-weight: bold;
-            margin-bottom: 25px;
-            letter-spacing: 0.5px;
         }
 
         .enter-site-btn {
@@ -412,11 +404,11 @@
 
         footer {
             margin-top: 40px;
-            font-size: 0.85rem;
-            color: var(--text-main);
+            font-size: 0.75rem;
+            color: var(--text-muted);
             text-align: center;
-            font-weight: bold;
-            opacity: 0.85;
+            font-weight: normal;
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -424,8 +416,7 @@
 
     <div id="intro-screen">
         <div class="intro-dodo">🐰</div>
-        <div class="intro-welcome-text" id="intro-text">بخێرهاتی   🌸</div>
-        <div class="intro-author-name">HudaSindi@</div>
+        <div class="intro-welcome-text" id="intro-text">بخێرهاتی 🌸</div>
         <button class="enter-site-btn" onclick="openMainSite()">ڤەکرنا دەفتەرێ 📖</button>
     </div>
 
@@ -511,7 +502,7 @@
             </div>
 
             <div id="reward-message" class="reward-box">
-پیروزە تە هەمی کارن خو ب سەرکەفتیانە کرن، بەردەوام بە🥳🎉
+                پیروزە تە هەمی کارن خو ب سەرکەفتیانە کرن، بەردەوام بە🥳🎉
             </div>
         </div>
     </div>
@@ -529,7 +520,7 @@
     </div>
 
     <footer>
-        Huda Sindi@
+        HudaSindi
     </footer>
 </div>
 
@@ -720,7 +711,7 @@
             document.body.style.textAlign = 'left';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'left');
             document.getElementById('site-subtitle').innerText = "✨";
-            document.getElementById('intro-text').innerText = "Welcome to Dodo's World 🌸";
+            document.getElementById('intro-text').innerText = "Welcome 🌸";
             document.querySelector('.enter-site-btn').innerText = "Open Diary 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>Home Screen Tip:</strong> If opening from TikTok or Instagram, tap the top 3 dots and open in external browser; for iPhone <strong>Share > Add to Home</strong> and for Android <strong>Menu > Add to Home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 Streak: " + streakNum + " Days";
@@ -748,7 +739,7 @@
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "✨";
-            document.getElementById('intro-text').innerText = "أهلاً بك في عالم دودو 🌸";
+            document.getElementById('intro-text').innerText = "أهلاً بك 🌸";
             document.querySelector('.enter-site-btn').innerText = "فتح الدفتر 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>ملاحظة الإضافة للشاشة:</strong> إذا فتحت الموقع من تيك توك أو انستغرام، اضغط على النقاط الثلاث بالأعلى وافتحه في المتصفح الخارجي؛ للايفون <strong>Share > Add to home</strong> وللاندرويد <strong>Menu > Add to home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 التتابع: " + streakNum + " أيام متتالية";
@@ -776,7 +767,7 @@
             document.body.style.textAlign = 'center';
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "✨";
-            document.getElementById('intro-text').innerText = "بخێرهاتن بۆ جیهانا دودۆ 🌸";
+            document.getElementById('intro-text').innerText = "بخێرهاتی 🌸";
             document.querySelector('.enter-site-btn').innerText = "ڤەکرنا دەفتەرێ 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
@@ -870,37 +861,5 @@
         else streakCounter.innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
     }
 </script>
-    
-    <!-- ئایکونا پەمەی (Pink Icon) -->
-    <link rel="icon" type="image/png" href="icon.png">
-    <link rel="apple-touch-icon" href="icon.png">
-
-    <!-- رێگری ژ پاراستنا کێشا کەڤن (Cache) -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-</head>
-<body>
-
 </body>
 </html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodocare</title>
-
-    <!-- Favicons / App icons -->
-    <!-- Put these files in the repo (e.g. /assets/icons/) and adjust the href paths below if you use a folder -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#706fd3">
-    <meta name="theme-color" content="#706fd3">
-
-    <!-- your existing inline styles (keep them here) -->
-    <style>
-      /* ...existing CSS ... */
-    </style>
-</head>
