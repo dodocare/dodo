@@ -275,66 +275,6 @@
 
         .quote-container { text-align: center; }
 
-        .badges-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .streak-badge {
-            background: rgba(255, 121, 121, 0.12);
-            color: var(--accent-pink);
-            border: 1px solid var(--accent-pink);
-            padding: 9px 16px;
-            border-radius: 22px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(255,121,121,0.1);
-        }
-
-        .time-badge {
-            background: rgba(112, 111, 211, 0.12);
-            color: var(--accent-purple);
-            border: 1px solid var(--accent-purple);
-            padding: 9px 16px;
-            border-radius: 22px;
-            font-weight: bold;
-            font-size: 0.85rem;
-            box-shadow: 0 4px 15px rgba(112,111,211,0.1);
-        }
-
-        .timeline-container {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            background: var(--card-bg);
-            border: 2px dashed rgba(112,111,211,0.3);
-            padding: 6px 10px;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            overflow-x: auto;
-            max-width: 100%;
-        }
-        .day-status-pill {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(112,111,211,0.2);
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1px;
-            min-width: 35px;
-            flex-shrink: 0;
-        }
-        [data-theme="dark"] .day-status-pill { background: rgba(0,0,0,0.2); }
-        .day-status-pill span:first-child { font-weight: bold; color: var(--text-muted); }
-        .day-status-pill span:last-child { font-size: 0.8rem; }
-
         .btn {
             background: var(--accent-purple);
             border: none;
@@ -540,12 +480,6 @@
         📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
     </div>
 
-    <div class="badges-wrapper">
-        <div class="streak-badge" id="streak-counter">🔥 ستریک: 1 ڕۆژێن بەردەوام</div>
-        <div class="time-badge" id="live-time-badge">⏰ 00:00</div>
-        <div class="timeline-container" id="timeline-box"></div>
-    </div>
-
     <div class="card">
         <h3 id="quote-card-title">گۆتنێن ڕۆژانە یێن دۆدۆ 💬</h3>
         <button class="btn" onclick="toggleSection('quote-content')" id="btn-quote-toggle">💬 ڤەکرنا گۆتان</button>
@@ -735,24 +669,6 @@
     }
     renderFavorites();
 
-    function updateLiveClock() {
-        const now = new Date();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        
-        let displayHours = hours % 12;
-        displayHours = displayHours ? displayHours : 12;
-
-        let timeStr = displayHours + ':' + minutes;
-        const timeBadge = document.getElementById('live-time-badge');
-        if (timeBadge) {
-            timeBadge.innerText = "⏰ " + timeStr;
-        }
-    }
-    setInterval(updateLiveClock, 1000);
-    updateLiveClock();
-
     function checkAllCompleted() {
         const m = document.getElementById('check-morning').checked;
         const n = document.getElementById('check-noon').checked;
@@ -858,8 +774,6 @@
     function setLanguage(lang) {
         const htmlRoot = document.getElementById('html-root');
         htmlRoot.setAttribute('lang', lang);
-        
-        let streakNum = localStorage.getItem('dodo_infinite_streak') || 1;
 
         if(lang === 'en') {
             document.body.style.direction = 'ltr';
@@ -868,7 +782,6 @@
             document.getElementById('site-subtitle').innerText = "✨";
             document.querySelector('.enter-site-btn').innerText = "Open Diary 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>Home Screen Tip:</strong> If opening from TikTok or Instagram, tap the top 3 dots and open in external browser; for iPhone <strong>Share > Add to Home</strong> and for Android <strong>Menu > Add to Home</strong>.';
-            document.getElementById('streak-counter').innerText = "🔥 Streak: " + streakNum + " Days";
             document.getElementById('btn-quote-toggle').innerText = "💬 Open Quotes";
             document.getElementById('quote-card-title').innerText = "Dodo's Daily Quotes 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 Open Daily Planner";
@@ -895,7 +808,6 @@
             document.getElementById('site-subtitle').innerText = "✨";
             document.querySelector('.enter-site-btn').innerText = "ڤەکرنا دەفتەرێ 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.';
-            document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
             document.getElementById('btn-quote-toggle').innerText = "💬 ڤەکرنا گۆتنان";
             document.getElementById('quote-card-title').innerText = "گۆتنێن ڕۆژانە یێن دۆدۆ 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 ڤەکرنا خشتەیێ ڕۆژانە";
@@ -921,64 +833,7 @@
 
     const savedLang = localStorage.getItem('dodo_lang');
     if(savedLang) { setLanguage(savedLang); }
-
-    let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 0;
-    let lastVisitDate = localStorage.getItem('dodo_last_visit_date');
-    let visitHistory = JSON.parse(localStorage.getItem('dodo_visit_history') || '{}');
-    let firstVisitDate = localStorage.getItem('dodo_first_visit_date');
-    
-    let todayObj = new Date();
-    let todayDateStr = todayObj.getFullYear() + '-' + (todayObj.getMonth() + 1) + '-' + todayObj.getDate();
-
-    if (!firstVisitDate) {
-        firstVisitDate = todayDateStr;
-        localStorage.setItem('dodo_first_visit_date', firstVisitDate);
-    }
-
-    if(lastVisitDate !== todayDateStr) {
-        streak += 1;
-        localStorage.setItem('dodo_infinite_streak', streak);
-        localStorage.setItem('dodo_last_visit_date', todayDateStr);
-    } else if(streak === 0) {
-        streak = 1;
-        localStorage.setItem('dodo_infinite_streak', streak);
-    }
-
-    visitHistory[todayDateStr] = true;
-    localStorage.setItem('dodo_visit_history', JSON.stringify(visitHistory));
-
-    const timelineBox = document.getElementById('timeline-box');
-    if(timelineBox) {
-        let timelineHTML = '';
-        let startObj = new Date(firstVisitDate);
-        let currentIter = new Date(startObj);
-        
-        while(currentIter <= todayObj) {
-            let dStr = currentIter.getFullYear() + '-' + (currentIter.getMonth() + 1) + '-' + currentIter.getDate();
-            let dayName = currentIter.toLocaleDateString('en-US', { weekday: 'short' });
-            
-            let icon = '❌';
-            if (visitHistory[dStr]) {
-                icon = '✅';
-            }
-
-            timelineHTML += `
-                <div class="day-status-pill">
-                    <span>${dayName}</span>
-                    <span>${icon}</span>
-                </div>
-            `;
-            currentIter.setDate(currentIter.getDate() + 1);
-        }
-        timelineBox.innerHTML = timelineHTML;
-    }
-
-    const currentLang = localStorage.getItem('dodo_lang') || 'ku';
-    const streakCounter = document.getElementById('streak-counter');
-    if(streakCounter) {
-        if(currentLang === 'en') streakCounter.innerText = "🔥 Streak: " + streak + " Days";
-        else streakCounter.innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
-    }
 </script>
 </body>
 </html>
+
