@@ -183,6 +183,26 @@
         }
         .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px; }
 
+        /* Streak Badge Style */
+        .streak-badge {
+            background: linear-gradient(135deg, #ff9f43, #ff6b6b);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            font-size: 0.95rem;
+            animation: pulseStreak 2s infinite ease-in-out;
+        }
+        @keyframes pulseStreak {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
         .top-mini-guide {
             background: var(--card-bg);
             border: 2px dashed rgba(255, 182, 193, 0.6);
@@ -329,26 +349,6 @@
             margin-top: 15px;
         }
 
-        .live-clock-box {
-            background: rgba(112, 111, 211, 0.08);
-            border: 2px dashed var(--accent-purple);
-            border-radius: 16px;
-            padding: 16px;
-            text-align: center;
-            margin-bottom: 12px;
-        }
-        .live-time {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--accent-purple);
-            letter-spacing: 2px;
-            margin-bottom: 4px;
-        }
-        .live-date {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
         .planner-section {
             background: rgba(255, 182, 193, 0.1);
             border: 1px dashed rgba(255, 182, 193, 0.4);
@@ -469,7 +469,7 @@
     <div id="intro-screen">
         <div class="intro-dodo">🐰</div>
         <div class="intro-welcome-text">
-            خێرهاتن 😊 Welcome
+‎            خێرهاتن 😊 Welcome
         </div>
         <div class="intro-langs">
             <div class="intro-lang-pill">کوردی</div>
@@ -496,19 +496,13 @@
     <h1>Dodocare</h1>
     <div class="subtitle" id="site-subtitle">✨</div>
 
-    <div class="top-mini-guide" id="guide-text">
-        📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
+    <!-- Streak Badge Added Here -->
+    <div id="streak-badge" class="streak-badge">
+        🔥 ستریک: <span id="streak-count">1</span> ڕۆژ (بەردەوام بە!)
     </div>
 
-    <div class="card">
-        <h3 id="clock-card-title">دەمژمێرا جیهانی ⏰</h3>
-        <button class="btn" onclick="toggleSection('clock-content')" id="btn-clock-toggle">⏰ ڤەکرنا دەمژمێرێ</button>
-        <div id="clock-content" class="collapsible-content">
-            <div class="live-clock-box" style="margin-top: 10px;">
-                <div class="live-time" id="live-time-display">00:00:00</div>
-                <div class="live-date" id="live-date-display">...</div>
-            </div>
-        </div>
+    <div class="top-mini-guide" id="guide-text">
+        📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
     </div>
 
     <div class="card">
@@ -540,7 +534,7 @@
         
         <div id="planner-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;" id="planner-hint">
-                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
+‎                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
             </p>
 
             <div class="planner-section">
@@ -576,7 +570,7 @@
             </div>
 
             <div id="reward-message" class="reward-box">
-                پیروزە تە هەمی کارن خو ب سەرکەفتیانە کرن، بەردەوام بە🥳🎉
+‎                پیروزە تە هەمی کارن خو ب سەرکەفتیانە کرن، بەردەوام بە🥳🎉
             </div>
         </div>
     </div>
@@ -587,7 +581,7 @@
         
         <div id="notes-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;" id="notes-hint">
-                تێبینیێن خۆ ل ڤێرێ بنڤیسە...
+‎                تێبینیێن خۆ ل ڤێرێ بنڤیسە...
             </p>
             <textarea id="personal-notes" rows="4" placeholder="تێبینیێن خۆ ل ڤێرێ بنڤیسە..." oninput="saveNotes()"></textarea>
         </div>
@@ -599,6 +593,50 @@
 </div>
 
 <script>
+    // --- Streak System Logic ---
+    function initStreak() {
+        const today = new Date().toDateString();
+        let streakData = JSON.parse(localStorage.getItem('dodo_streak_data')) || { count: 0, lastDate: null };
+
+        if (!streakData.lastDate) {
+            // First time ever
+            streakData.count = 1;
+            streakData.lastDate = today;
+        } else {
+            const lastActiveDate = new Date(streakData.lastDate);
+            const currentDate = new Date(today);
+            
+            // Difference in days
+            const diffTime = currentDate - lastActiveDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays === 0) {
+                // Already visited today, keep streak as is
+            } else if (diffDays === 1) {
+                // Visited yesterday, increment streak!
+                streakData.count += 1;
+                streakData.lastDate = today;
+            } else {
+                // Missed 1 or more days -> Freeze streak (keeps current count, updates date so next day it can increment normally)
+                streakData.lastDate = today; 
+            }
+        }
+
+        localStorage.setItem('dodo_streak_data', JSON.stringify(streakData));
+        updateStreakUI(streakData.count);
+    }
+
+    function updateStreakUI(count) {
+        const streakSpan = document.getElementById('streak-count');
+        if (streakSpan) {
+            streakSpan.innerText = count;
+        }
+    }
+
+    // Run streak check on load
+    initStreak();
+    // ---------------------------
+
     function openMainSite() {
         const intro = document.getElementById('intro-screen');
         const main = document.getElementById('main-container');
@@ -619,52 +657,32 @@
         }
     }
 
-    // Live Clock functionality
-    function updateLiveClock() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString();
-        const dateString = now.toLocaleDateString(undefined, {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        
-        const timeElem = document.getElementById('live-time-display');
-        const dateElem = document.getElementById('live-date-display');
-        
-        if (timeElem) timeElem.innerText = timeString;
-        if (dateElem) dateElem.innerText = dateString;
-    }
-    setInterval(updateLiveClock, 1000);
-    updateLiveClock();
-
     const quotesList = [
-        "“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style='opacity:0.8'>— مەولانایێ ڕۆمی</small>",
-        "“باشترین بەرسڤ بۆ مرۆڤێن نەزان، بێدەنگییە.”<br><small style='opacity:0.8'>— ئیمامێ شافعی</small>",
-        "“ببە ئەو کەسێ کو تە دڤێت د ژیانێ دا ببینی، نە ئەو کەسێ کو خەلکی دڤێت.”<br><small style='opacity:0.8'>— مەهاتما گاندی</small>",
-        "“ئەگەر تو هه‌ڤالینیێ دگەل چوار مرۆڤێن بێ ئارمانج بکەی، پشتڕاست بە کو تو دێ بیە یێ پێنجێ.”<br><small style='opacity:0.8'>— ئیدریس ئالبا</small>",
-        "“کەسایەتیا تە د وێ ڕۆژێ دا دگەهیتە لوتکەیێ، دەمێ تو تێدگەهی کو تو تنێ بەرپرسێ بەختەوەریا خۆی.”<br><small style='opacity:0.8'>— ئەلبێرت کامۆ</small>",
-        "“کەسێ کو جارەکێ درەو ل دگەل تە کر، -پشتڕاست بە کو دێ بۆ جارا دووێ و سێیێ ژی کەت. خشتێ خەلەت چ جاران دیوارێ ڕاست چێناکەت.”<br><small style='opacity:0.8'>— ئۆلیڤەر جۆنسمان</small>",
-        "“مەزنترین تۆڵەسەندن ژ مرۆڤێن خاین و درەوین ئەوە، کو تو د ژیانا خۆ دا سەرکەفتی ببی و وان ب تەمامی ژ بیر بکەی.”<br><small style='opacity:0.8'>— فرانك سیناترا</small>",
-        "“ئەگەر مرۆڤەکی خیانەت ل تە کر، ئەڤە خەلەتیا وی یە. بەس ئەگەر بۆ جارا دووێ خیانەت ل تە کر، ئەڤە خەلەتیا تە یە کو تە دیسا باوەری پێ کر.”<br><small style='opacity:0.8'>— ئاندرێ جید</small>",
-        "“کەسێ کو ل پێش چاڤێن تە بەحسێ خەلکی بکەت، پشتڕاست بە کو ل پشت تە ژی دێ بەحسێ تە کەت بۆ خەلکی.”<br><small style='opacity:0.8'>— ئیمامێ عەلی</small>",
-        "“مەزنترین دۆژمن بۆ ساخلەمیا تە يا دەروونی، تێکەڵبوونا زێدەیە دگەل بابەتێن کو چ پەیوەندی ب تە ڤە نینە.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
-        "“مرۆڤێ ب هێز ئەو نینە یێ چ جاران نەکەفتی، بەلکو ئەو کەسە یێ پشتی هەر کەفتنەکێ ب هێزتر ڕادبیتە سەر پێیان.”<br><small style='opacity:0.8'>— کۆنفۆشیۆس</small>",
-        "“ئەگەر تو بۆچوونا خەلکی بکەیە یاسایا ژیانا خۆ، تو چ جاران نەشێی ئازاد بژی.”<br><small style='opacity:0.8'>— فریدریش نیتشە</small>",
-        "“خەڵک دێ هەر ئاخڤن، چ تو تشتێن باش بکەی یان خراپ. ڤێجا وی تشتێ بکە یا کو دل و ویژدانا تە پێ ڕازی بیت.”<br><small style='opacity:0.8'>— مارک تواین</small>",
-        "“مەزنترین ئازادی د ژیانێ دا ئەوە کو تو خەمێ بۆ هندێ نەخۆی کا خەلک ل سەر تە چ هزر دکەن.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
-        "“ئەو کەسێ چ گرنگیێ ب سەرکەفتنا تە نەدەت، جهێ وی د ژیانا تە دا نینە.”<br><small style='opacity:0.8'>— مارک تواین</small>",
-        "“بلا دەوروبەرێن تە تنێ ئەو بن یێن کو دلێ تە گەش دکەن و پشتەڤانیا تە دکەن.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
-        "“بەری حەژ کەسێ بکەی، فێربە کا دێ چەوا حەژ خۆ کەی.”<br><small style='opacity:0.8'>— بودا</small>",
-        "“تو ژ هەژی باشترین تشتێن، چ جاران کێمتری مافێ خۆ قبوول نەکە.”<br><small style='opacity:0.8'>— مایا ئەنجێلۆ</small>",
-        "“خۆ وەک خۆ قبوول بکە، تو یێ جودای و ئەڤە ژی جوانییا تە یە.”<br><small style='opacity:0.8'>— فریدریش</small>",
-        "“خۆ ب کەسێ بەراورد نەکە، تو د ڕێکا خۆ یا تایبەت دا دچی.”<br><small style='opacity:0.8'>— بیل گەیتس</small>",
-        "“گرنگیدان ب خۆ نە خۆپەرستییە، ئەڤە دەستپێکا ڕێزگرتنێیە ژ ژیانێ.”<br><small style='opacity:0.8'>— ئۆسکار وایڵد</small>",
-        "“نەهێلە خەونێن تە تنێ د سەرێ تە دا بمینن، بکە کار.”<br><small style='opacity:0.8'>— ستیڤ جۆبس</small>",
-        "“نەخۆشی دێ چن، بەس مرۆڤێن ب هێز دێ مینن.”<br><small style='opacity:0.8'>— ڕۆبێرت شولەر</small>",
-        "“ترس تنێ خەیالەکە، وێ نەکە ڕاستی بۆ خۆ.”<br><small style='opacity:0.8'>— پائۆلۆ کۆیلۆ</small>",
-        "“هەر ڕۆژەکا نوو، چانسەکێ نوویە بۆ گوهۆڕینێ.”<br><small style='opacity:0.8'>— ئەلبێرت ئاینشتاین</small>"
+‎        "“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style='opacity:0.8'>— مەولانایێ ڕۆمی</small>",
+‎        "“باشترین بەرسڤ بۆ مرۆڤێن نەزان، بێدەنگییە.”<br><small style='opacity:0.8'>— ئیمامێ شافعی</small>",
+‎        "“ببە ئەو کەسێ کو تە دڤێت د ژیانێ دا ببینی، نە ئەو کەسێ کو خەلکی دڤێت.”<br><small style='opacity:0.8'>— مەهاتما گاندی</small>",
+‎        "“ئەگەر تو هه‌ڤالینیێ دگەل چوار مرۆڤێن بێ ئارمانج بکەی، پشتڕاست بە کو تو دێ بیە یێ پێنجێ.”<br><small style='opacity:0.8'>— ئیدریس ئالبا</small>",
+‎        "“کەسایەتیا تە د وێ ڕۆژێ دا دگەهیتە لوتکەیێ، دەمێ تو تێدگەهی کو تو تنێ بەرپرسێ بەختەوەریا خۆی.”<br><small style='opacity:0.8'>— ئەلبێرت کامۆ</small>",
+‎        "“کەسێ کو جارەکێ درەو ل دگەل تە کر، -پشتڕاست بە کو دێ بۆ جارا دووێ و سێیێ ژی کەت. خشتێ خەلەت چ جاران دیوارێ ڕاست چێناکەت.”<br><small style='opacity:0.8'>— ئۆلیڤەر جۆنسمان</small>",
+‎        "“مەزنترین تۆڵەسەندن ژ مرۆڤێن خاین و درەوین ئەوە، کو تو د ژیانا خۆ دا سەرکەفتی ببی و وان ب تەمامی ژ بیر بکەی.”<br><small style='opacity:0.8'>— فرانك سیناترا</small>",
+‎        "“ئەگەر مرۆڤەکی خیانەت ل تە کر، ئەڤە خەلەتیا وی یە. بەس ئەگەر بۆ جارا دووێ خیانەت ل تە کر، ئەڤە خەلەتیا تە یە کو تە دیسا باوەری پێ کر.”<br><small style='opacity:0.8'>— ئاندرێ جید</small>",
+‎        "“کەسێ کو ل پێش چاڤێن تە بەحسێ خەلکی بکەت، پشتڕاست بە کو ل پشت تە ژی دێ بەحسێ تە کەت بۆ خەلکی.”<br><small style='opacity:0.8'>— ئیمامێ عەلی</small>",
+‎        "“مەزنترین دۆژمن بۆ ساخلەمیا تە یا دەروونی، تێکەڵبوونا زێدەیە دگەل بابەتێن کو چ پەیوەندی ب تە ڤە نینە.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
+‎        "“مرۆڤێ ب هێز ئەو نینە یێ چ جاران نەکەفتی، بەلکو ئەو کەسە یێ پشتی هەر کەفتنەکێ ب هێزتر ڕادبیتە سەر پێیان.”<br><small style='opacity:0.8'>— کۆنفۆشیۆس</small>",
+‎        "“ئەگەر تو بۆچوونا خەلکی بکەیە یاسایا ژیانا خۆ، تو چ جاران نەشێی ئازاد بژی.”<br><small style='opacity:0.8'>— فریدریش نیتشە</small>",
+‎        "“خەڵک دێ هەر ئاخڤن، چ تو تشتێن باش بکەی یان خراپ. ڤێجا وی تشتێ بکە یا کو دل و ویژدانا تە پێ ڕازی بیت.”<br><small style='opacity:0.8'>— مارک تواین</small>",
+‎        "“مەزنترین ئازادی د ژیانێ دا ئەوە کو تو خەمێ بۆ هندێ نەخۆی کا خەلک ل سەر تە چ هزر دکەن.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
+‎        "“ئەو کەسێ چ گرنگیێ ب سەرکەفتنا تە نەدەت، جهێ وی د ژیانا تە دا نینە.”<br><small style='opacity:0.8'>— مارک تواین</small>",
+‎        "“بلا دەوروبەرێن تە تنێ ئەو بن یێن کو دلێ تە گەش دکەن و پشتەڤانیا تە دکەن.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
+‎        "“بەری حەژ کەسێ بکەی، فێربە کا دێ چەوا حەژ خۆ کەی.”<br><small style='opacity:0.8'>— بودا</small>",
+‎        "“تو ژ هەژی باشترین تشتێن، چ جاران کێمتری مافێ خۆ قبوول نەکە.”<br><small style='opacity:0.8'>— مایا ئەنجێلۆ</small>",
+‎        "“خۆ وەک خۆ قبوول بکە، تو یێ جودای و ئەڤە ژی جوانییا تە یە.”<br><small style='opacity:0.8'>— فریدریش</small>",
+‎        "“خۆ ب کەسێ بەراورد نەکە، تو د ڕێکا خۆ یا تایبەت دا دچی.”<br><small style='opacity:0.8'>— بیل گەیتس</small>",
+‎        "“گرنگیدان ب خۆ نە خۆپەرستییە، ئەڤە دەستپێکا ڕێزگرتنێیە ژ ژیانێ.”<br><small style='opacity:0.8'>— ئۆسکار وایڵد</small>",
+‎        "“نەهێلە خەونێن تە تنێ د سەرێ تە دا بمینن، بکە کار.”<br><small style='opacity:0.8'>— ستیڤ جۆبس</small>",
+‎        "“نەخۆشی دێ چن، بەس مرۆڤێن ب هێز دێ مینن.”<br><small style='opacity:0.8'>— ڕۆبێرت شولەر</small>",
+‎        "“ترس تنێ خەیالەکە، وێ نەکە ڕاستی بۆ خۆ.”<br><small style='opacity:0.8'>— پائۆلۆ کۆیلۆ</small>",
+‎        "“هەر ڕۆژەکا نوو، چانسەکێ نوویە بۆ گوهۆڕینێ.”<br><small style='opacity:0.8'>— ئەلبێرت ئاینشتاین</small>"
     ];
 
     let currentQuoteIdx = 0;
@@ -832,9 +850,8 @@
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'left');
             document.getElementById('site-subtitle').innerText = "✨";
             document.querySelector('.enter-site-btn').innerText = "Open Diary 📖";
+            document.getElementById('streak-badge').innerHTML = '🔥 Streak: <span id="streak-count">1</span> days (Keep it up!)';
             document.getElementById('guide-text').innerHTML = '📌 <strong>Home Screen Tip:</strong> If opening from TikTok or Instagram, tap the top 3 dots and open in external browser; for iPhone <strong>Share > Add to Home</strong> and for Android <strong>Menu > Add to Home</strong>.';
-            document.getElementById('btn-clock-toggle').innerText = "⏰ Open World Clock";
-            document.getElementById('clock-card-title').innerText = "World Clock ⏰";
             document.getElementById('btn-quote-toggle').innerText = "💬 Open Quotes";
             document.getElementById('quote-card-title').innerText = "Dodo's Daily Quotes 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 Open Daily Planner";
@@ -860,9 +877,8 @@
             document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "✨";
             document.querySelector('.enter-site-btn').innerText = "ڤەکرنا دەفتەرێ 📖";
+            document.getElementById('streak-badge').innerHTML = '🔥 ستریک: <span id="streak-count">1</span> ڕۆژ (بەردەوام بە!)';
             document.getElementById('guide-text').innerHTML = '📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.';
-            document.getElementById('btn-clock-toggle').innerText = "⏰ ڤەکرنا دەمژمێرێ";
-            document.getElementById('clock-card-title').innerText = "دەمژمێرا جیهانی ⏰";
             document.getElementById('btn-quote-toggle').innerText = "💬 ڤەکرنا گۆتنان";
             document.getElementById('quote-card-title').innerText = "گۆتنێن ڕۆژانە یێن دۆدۆ 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 ڤەکرنا خشتەیێ ڕۆژانە";
