@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ku" id="html-root">
 <head>
@@ -460,18 +461,38 @@
         .favorites-list {
             text-align: right;
             margin-top: 10px;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
             padding-right: 5px;
         }
         .favorite-item {
             background: rgba(112, 111, 211, 0.08);
-            padding: 8px 12px;
-            border-radius: 10px;
+            padding: 10px 12px;
+            border-radius: 12px;
             font-size: 0.85rem;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             border-right: 3px solid var(--accent-purple);
             line-height: 1.5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+        .delete-fav-btn {
+            background: rgba(255, 121, 121, 0.15);
+            border: 1px solid var(--accent-pink);
+            color: var(--accent-pink);
+            padding: 4px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        .delete-fav-btn:hover {
+            background: var(--accent-pink);
+            color: white;
         }
 
         footer {
@@ -530,7 +551,7 @@
 
     <div class="card">
         <h3 id="quote-card-title">گۆتنێن ڕۆژانە یێن دۆدۆ 💬</h3>
-        <button class="btn" onclick="toggleSection('quote-content')" id="btn-quote-toggle">💬 ڤەکرنا گۆتنا ئەڤرو</button>
+        <button class="btn" onclick="toggleSection('quote-content')" id="btn-quote-toggle">💬 ڤەکرنا گۆتنان</button>
         <div id="quote-content" class="collapsible-content">
             <div class="dodo-box">🐰</div>
             <div class="quote-container">
@@ -538,7 +559,7 @@
                 
                 <div class="quote-actions">
                     <button class="quote-action-btn" onclick="nextQuote()">🔄 گۆتنا دووڤدا</button>
-                    <button class="quote-action-btn" onclick="saveToFavorites()">❤️ لێزیەکە دلخوازان</button>
+                    <button class="quote-action-btn" onclick="saveToFavorites()">❤️ دلخواز</button>
                 </div>
             </div>
 
@@ -670,7 +691,7 @@
         const qElem = document.getElementById('daily-quote');
         if(qElem) {
             qElem.style.animation = 'none';
-            qElem.offsetHeight; // trigger reflow
+            qElem.offsetHeight; 
             qElem.style.animation = 'bubblePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             qElem.innerHTML = quotesList[currentQuoteIdx];
         }
@@ -683,10 +704,16 @@
             favs.push(currentText);
             localStorage.setItem('dodo_favorites', JSON.stringify(favs));
             renderFavorites();
-            alert("✨ گۆتن هاتە زێدەکرن بۆ دلخوازێن تە!");
         } else {
             alert("📌 ئەڤ گۆتنە بەری نوکه د دلخوازێن تە دا هەیە.");
         }
+    }
+
+    function removeFavorite(index) {
+        let favs = JSON.parse(localStorage.getItem('dodo_favorites') || '[]');
+        favs.splice(index, 1);
+        localStorage.setItem('dodo_favorites', JSON.stringify(favs));
+        renderFavorites();
     }
 
     function renderFavorites() {
@@ -698,7 +725,12 @@
             } else {
                 let html = '';
                 favs.forEach((item, index) => {
-                    html += `<div class="favorite-item">${item}</div>`;
+                    html += `
+                        <div class="favorite-item">
+                            <div>${item}</div>
+                            <button class="delete-fav-btn" onclick="removeFavorite(${index})">🗑️ ژێبرن</button>
+                        </div>
+                    `;
                 });
                 container.innerHTML = html;
             }
@@ -840,7 +872,7 @@
             document.querySelector('.enter-site-btn').innerText = "Open Diary 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>Home Screen Tip:</strong> If opening from TikTok or Instagram, tap the top 3 dots and open in external browser; for iPhone <strong>Share > Add to Home</strong> and for Android <strong>Menu > Add to Home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 Streak: " + streakNum + " Days";
-            document.getElementById('btn-quote-toggle').innerText = "💬 Open Daily Quotes";
+            document.getElementById('btn-quote-toggle').innerText = "💬 Open Quotes";
             document.getElementById('quote-card-title').innerText = "Dodo's Daily Quotes 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 Open Daily Planner";
             document.getElementById('planner-card-title').innerText = "Daily Planner 🗓️";
@@ -867,7 +899,7 @@
             document.querySelector('.enter-site-btn').innerText = "فتح الدفتر 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>ملاحظة الإضافة للشاشة:</strong> إذا فتحت الموقع من تيك توك أو انستغرام، اضغط على النقاط الثلاث بالأعلى وافتحه في المتصفح الخارجي؛ للايفون <strong>Share > Add to home</strong> وللاندرويد <strong>Menu > Add to home</strong>.';
             document.getElementById('streak-counter').innerText = "🔥 التتابع: " + streakNum + " أيام متتالية";
-            document.getElementById('btn-quote-toggle').innerText = "💬 فتح المقولات اليومية";
+            document.getElementById('btn-quote-toggle').innerText = "💬 فتح المقولات";
             document.getElementById('quote-card-title').innerText = "مقولات دودو اليومية 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 فتح الجدول اليومي";
             document.getElementById('planner-card-title').innerText = "الجدول اليومي 🗓️";
@@ -903,7 +935,7 @@
             document.getElementById('noon-title').innerText = "☀️ نیڤرۆ";
             document.getElementById('afternoon-title').innerText = "🌇 ئێڤاری";
             document.getElementById('night-title').innerText = "🌙 ب شەڤ";
-            document.getElementById('reward-message').innerText = "🎉 پیرۆزبایی! تە هەموو کارێن خۆ یێن ئەڤرۆ تەمام کرن، سەرکەفتن بۆ تە! ✨";
+
             document.getElementById('notes-card-title').innerText = "تێبینیێن من 📝";
             document.getElementById('btn-notes-toggle').innerText = "📝 ڤەکرنا جهێ تێبینیان";
             document.getElementById('notes-hint').innerText = "تێبینیێن خۆ ل ڤێرێ بنڤیسە...";
@@ -920,7 +952,6 @@
     const savedLang = localStorage.getItem('dodo_lang');
     if(savedLang) { setLanguage(savedLang); }
 
-    // Streak Logic (هر دەما بێتە سەر سایتی زێدە دبە بێ کو بشکێت)
     let streak = localStorage.getItem('dodo_infinite_streak') ? parseInt(localStorage.getItem('dodo_infinite_streak')) : 0;
     let lastVisitDate = localStorage.getItem('dodo_last_visit_date');
     let visitHistory = JSON.parse(localStorage.getItem('dodo_visit_history') || '{}');
@@ -976,9 +1007,10 @@
     const streakCounter = document.getElementById('streak-counter');
     if(streakCounter) {
         if(currentLang === 'en') streakCounter.innerText = "🔥 Streak: " + streak + " Days";
-        else if(currentLang === 'ar') streakCounter.innerText = "🔥 التتابع: " + streak + " أيام متتالية";
+        else if(currentLang === 'ar') streakCounter.innerText = "🔥لتتابع: " + streak + " أيام متتالية";
         else streakCounter.innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
     }
 </script>
 </body>
 </html>
+
