@@ -68,10 +68,10 @@
         }
 
         .intro-welcome-text {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--accent-purple);
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             text-shadow: 0 2px 10px rgba(112,111,211,0.2);
             line-height: 1.6;
         }
@@ -187,15 +187,31 @@
             background: var(--card-bg);
             border: 2px dashed rgba(255, 182, 193, 0.6);
             border-radius: 16px;
-            padding: 12px 16px;
+            padding: 14px 16px;
             margin-bottom: 20px;
             font-size: 0.8rem;
             color: var(--text-muted);
             text-align: right;
             line-height: 1.6;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
         .top-mini-guide strong { color: var(--accent-pink); }
+        
+        /* قەبارێ بچووک بۆ دەمژمێر و شەڤ باشێ ل ژێر تێبینیێ */
+        .guide-time-badge {
+            font-size: 0.72rem;
+            color: var(--accent-purple);
+            font-weight: bold;
+            background: rgba(112, 111, 211, 0.08);
+            padding: 4px 10px;
+            border-radius: 10px;
+            display: inline-block;
+            align-self: flex-start;
+            border: 1px dashed rgba(112, 111, 211, 0.25);
+        }
 
         .card {
             background-color: var(--card-bg);
@@ -434,6 +450,17 @@
             color: white;
         }
 
+        .lang-en .favorite-item {
+            border-right: none;
+            border-left: 3px solid var(--accent-purple);
+            text-align: left;
+        }
+
+        .lang-en .top-mini-guide {
+            text-align: left;
+            align-items: flex-start;
+        }
+
         footer {
             margin-top: 40px;
             font-size: 0.75rem;
@@ -476,8 +503,11 @@
     <h1>Dodocare</h1>
     <div class="subtitle" id="site-subtitle">✨</div>
 
-    <div class="top-mini-guide" id="guide-text">
-        📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
+    <div class="top-mini-guide" id="guide-box">
+        <div id="guide-text">
+            📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.
+        </div>
+        <div class="guide-time-badge" id="guide-time-badge"></div>
     </div>
 
     <div class="card">
@@ -486,16 +516,16 @@
         <div id="quote-content" class="collapsible-content">
             <div class="dodo-box">🐰</div>
             <div class="quote-container">
-                <div class="speech-bubble" id="daily-quote">“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style="opacity:0.8">— مەولانایێ ڕۆمی</small></div>
+                <div class="speech-bubble" id="daily-quote">“Respect yourself and stay away from any place where you are not valued.”<br><small style="opacity:0.8">— Rumi</small></div>
                 
                 <div class="quote-actions">
-                    <button class="quote-action-btn" onclick="nextQuote()">🔄 گۆتنا دووڤدا</button>
-                    <button class="quote-action-btn" onclick="saveToFavorites()">❤️ دلخواز</button>
+                    <button class="quote-action-btn" onclick="nextQuote()" id="next-quote-btn">🔄 گۆتنا دووڤدا</button>
+                    <button class="quote-action-btn" onclick="saveToFavorites()" id="fav-btn">❤️ دلخواز</button>
                 </div>
             </div>
 
             <div style="margin-top: 20px; border-top: 1px dashed rgba(112,111,211,0.3); padding-top: 10px;">
-                <h4 style="color: var(--accent-purple); font-size: 0.9rem; margin-bottom: 8px;">⭐ گۆتنێن من یێن دلخواز</h4>
+                <h4 style="color: var(--accent-purple); font-size: 0.9rem; margin-bottom: 8px;" id="fav-section-title">⭐ گۆتنێن من یێن دلخواز</h4>
                 <div class="favorites-list" id="favorites-container">
                     <div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">چ گۆتن هێشتا نێنە د دلخوازان دا.</div>
                 </div>
@@ -568,32 +598,37 @@
 </div>
 
 <script>
-    // خودکار دیارکرنا دەمی و دەمژمێرێ بۆ خێرهاتنێ
-    function updateDynamicGreeting() {
+    // نویکرنا دەمژمێر و دەمی بۆ ژێر تێبینییا شاشەیێ
+    function updateGuideTime() {
         const now = new Date();
         const hours = now.getHours();
         const minutes = now.getMinutes().toString().padStart(2, '0');
         const timeString = `${hours}:${minutes}`;
 
-        let greetingText = "";
+        let timeTextKu = "";
+        let timeTextEn = "";
 
         if (hours >= 4 && hours < 12) {
-            greetingText = `سپێدە باش ☀️ (${timeString}) | Good Morning`;
+            timeTextKu = `سپێدە باش ☀️ (${timeString})`;
+            timeTextEn = `Good Morning (${timeString})`;
         } else if (hours >= 12 && hours < 17) {
-            greetingText = `ڕۆژ باش 🌤️ (${timeString}) | Good Afternoon`;
+            timeTextKu = `ڕۆژ باش 🌤️ (${timeString})`;
+            timeTextEn = `Good Afternoon (${timeString})`;
         } else if (hours >= 17 && hours < 21) {
-            greetingText = `ئێڤار باش 🌇 (${timeString}) | Good Evening`;
+            timeTextKu = `ئێڤار باش 🌇 (${timeString})`;
+            timeTextEn = `Good Evening (${timeString})`;
         } else {
-            greetingText = `شەڤ باش 🌙 (${timeString}) | Good Night`;
+            timeTextKu = `شەڤ باش 🌙 (${timeString})`;
+            timeTextEn = `Good Night (${timeString})`;
         }
 
-        const greetingElem = document.getElementById('dynamic-greeting');
-        if (greetingElem) {
-            greetingElem.innerHTML = `😊 ${greetingText}`;
+        const badgeElem = document.getElementById('guide-time-badge');
+        const currentLang = localStorage.getItem('dodo_lang') || 'ku';
+        if (badgeElem) {
+            badgeElem.innerText = currentLang === 'en' ? timeTextEn : `${timeTextKu} | ${timeTextEn}`;
         }
     }
-    // بانگکرنا فەنکشنێ دەما لاپەڕە بار دبت
-    window.onload = updateDynamicGreeting;
+    window.onload = updateGuideTime;
 
     function openMainSite() {
         const intro = document.getElementById('intro-screen');
@@ -615,7 +650,8 @@
         }
     }
 
-    const quotesList = [
+    // گۆتنێن کوردی و ئینگلیزی ب تەواوی
+    const quotesKu = [
         "“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style='opacity:0.8'>— مەولانایێ ڕۆمی</small>",
         "“باشترین بەرسڤ بۆ مرۆڤێن نەزان، بێدەنگییە.”<br><small style='opacity:0.8'>— ئیمامێ شافعی</small>",
         "“ببە ئەو کەسێ کو تە دڤێت د ژیانێ دا ببینی، نە ئەو کەسێ کو خەلکی دڤێت.”<br><small style='opacity:0.8'>— مەهاتما گاندی</small>",
@@ -643,27 +679,58 @@
         "“هەر ڕۆژەکا نوو، چانسەکێ نوویە بۆ گوهۆڕینێ.”<br><small style='opacity:0.8'>— ئەلبێرت ئاینشتاین</small>"
     ];
 
+    const quotesEn = [
+        "“Respect yourself and stay away from any place where you are not valued.”<br><small style='opacity:0.8'>— Rumi</small>",
+        "“The best response to a foolish person is silence.”<br><small style='opacity:0.8'>— Imam Al-Shafi'i</small>",
+        "“Be the person you want to see in life, not the person others want you to be.”<br><small style='opacity:0.8'>— Mahatma Gandhi</small>",
+        "“If you associate with four aimless people, be sure you will be the fifth.”<br><small style='opacity:0.8'>— Idris Elba</small>",
+        "“Your character reaches its peak the moment you realize you are solely responsible for your own happiness.”<br><small style='opacity:0.8'>— Albert Camus</small>",
+        "“A person who lied to you once will surely do it a second and third time. A crooked brick never builds a straight wall.”<br><small style='opacity:0.8'>— Oliver Jonesman</small>",
+        "“The greatest revenge against traitorous and deceitful people is to succeed in your life and completely forget them.”<br><small style='opacity:0.8'>— Frank Sinatra</small>",
+        "“If someone betrays you once, it's their mistake. But if they betray you twice, it's your mistake for trusting them again.”<br><small style='opacity:0.8'>— André Gide</small>",
+        "“A person who gossips about others in front of you will surely gossip about you to others behind your back.”<br><small style='opacity:0.8'>— Imam Ali</small>",
+        "“The greatest enemy to your mental health is excessive involvement in matters that have nothing to do with you.”<br><small style='opacity:0.8'>— Oprah Winfrey</small>",
+        "“The strong person is not the one who never falls, but the one who rises stronger after every fall.”<br><small style='opacity:0.8'>— Confucius</small>",
+        "“If you make people's opinions the law of your life, you will never live freely.”<br><small style='opacity:0.8'>— Friedrich Nietzsche</small>",
+        "“People will always talk, whether you do good or bad things. So do what your heart and conscience agree with.”<br><small style='opacity:0.8'>— Mark Twain</small>",
+        "“The greatest freedom in life is not caring what others think of you.”<br><small style='opacity:0.8'>— Oprah Winfrey</small>",
+        "“The person who doesn't care about your success has no place in your life.”<br><small style='opacity:0.8'>— Mark Twain</small>",
+        "“Surround yourself only with those who brighten your heart and support you.”<br><small style='opacity:0.8'>— Oprah Winfrey</small>",
+        "“Before loving someone, learn how to love yourself.”<br><small style='opacity:0.8'>— Buddha</small>",
+        "“You deserve the best things; never accept less than you deserve.”<br><small style='opacity:0.8'>— Maya Angelou</small>",
+        "“Accept yourself as you are; you are unique and that is your beauty.”<br><small style='opacity:0.8'>— Friedrich</small>",
+        "“Don't compare yourself to anyone; you are walking your own unique path.”<br><small style='opacity:0.8'>— Bill Gates</small>",
+        "“Self-care is not selfishness; it's the beginning of respecting life.”<br><small style='opacity:0.8'>— Oscar Wilde</small>",
+        "“Don't let your dreams stay only in your head, take action.”<br><small style='opacity:0.8'>— Steve Jobs</small>",
+        "“Hardships will pass, but strong people will remain.”<br><small style='opacity:0.8'>— Robert Schuller</small>",
+        "“Fear is just an illusion, don't make it your reality.”<br><small style='opacity:0.8'>— Paulo Coelho</small>",
+        "“Every new day is a new chance for change.”<br><small style='opacity:0.8'>— Albert Einstein</small>"
+    ];
+
     let currentQuoteIdx = 0;
     function nextQuote() {
-        currentQuoteIdx = (currentQuoteIdx + 1) % quotesList.length;
+        const lang = localStorage.getItem('dodo_lang') || 'ku';
+        const activeList = (lang === 'en') ? quotesEn : quotesKu;
+        currentQuoteIdx = (currentQuoteIdx + 1) % activeList.length;
         const qElem = document.getElementById('daily-quote');
         if(qElem) {
             qElem.style.animation = 'none';
             qElem.offsetHeight; 
             qElem.style.animation = 'bubblePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-            qElem.innerHTML = quotesList[currentQuoteIdx];
+            qElem.innerHTML = activeList[currentQuoteIdx];
         }
     }
 
     function saveToFavorites() {
         let favs = JSON.parse(localStorage.getItem('dodo_favorites') || '[]');
         let currentText = document.getElementById('daily-quote').innerHTML;
+        const lang = localStorage.getItem('dodo_lang') || 'ku';
         if(!favs.includes(currentText)) {
             favs.push(currentText);
             localStorage.setItem('dodo_favorites', JSON.stringify(favs));
             renderFavorites();
         } else {
-            alert("📌 ئەڤ گۆتنە بەری نوکه د دلخوازێن تە دا هەیە.");
+            alert(lang === 'en' ? "📌 This quote is already in your favorites." : "📌 ئەڤ گۆتنە بەری نوکه د دلخوازێن تە دا هەیە.");
         }
     }
 
@@ -677,16 +744,19 @@
     function renderFavorites() {
         let favs = JSON.parse(localStorage.getItem('dodo_favorites') || '[]');
         const container = document.getElementById('favorites-container');
+        const lang = localStorage.getItem('dodo_lang') || 'ku';
         if(container) {
             if(favs.length === 0) {
-                container.innerHTML = `<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">چ گۆتن هێشتا نێنە د دلخوازان دا.</div>`;
+                const emptyMsg = lang === 'en' ? "No favorite quotes yet." : "چ گۆتن هێشتا نێنە د دلخوازان دا.";
+                container.innerHTML = `<div style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">${emptyMsg}</div>`;
             } else {
                 let html = '';
+                const delText = lang === 'en' ? "🗑️ Delete" : "🗑️ ژێبرن";
                 favs.forEach((item, index) => {
                     html += `
                         <div class="favorite-item">
                             <div>${item}</div>
-                            <button class="delete-fav-btn" onclick="removeFavorite(${index})">🗑️ ژێبرن</button>
+                            <button class="delete-fav-btn" onclick="removeFavorite(${index})">${delText}</button>
                         </div>
                     `;
                 });
@@ -803,14 +873,21 @@
         htmlRoot.setAttribute('lang', lang);
 
         if(lang === 'en') {
+            document.body.classList.add('lang-en');
             document.body.style.direction = 'ltr';
             document.body.style.textAlign = 'left';
-            document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'left');
+            document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'left');
             document.getElementById('site-subtitle').innerText = "✨";
             document.querySelector('.enter-site-btn').innerText = "Open Diary 📖";
+            
             document.getElementById('guide-text').innerHTML = '📌 <strong>Home Screen Tip:</strong> If opening from TikTok or Instagram, tap the top 3 dots and open in external browser; for iPhone <strong>Share > Add to Home</strong> and for Android <strong>Menu > Add to Home</strong>.';
+            
             document.getElementById('btn-quote-toggle').innerText = "💬 Open Quotes";
             document.getElementById('quote-card-title').innerText = "Dodo's Daily Quotes 💬";
+            document.getElementById('fav-section-title').innerText = "⭐ My Favorite Quotes";
+            document.getElementById('next-quote-btn').innerText = "🔄 Next Quote";
+            document.getElementById('fav-btn').innerText = "❤️ Favorite";
+
             document.getElementById('btn-planner-toggle').innerText = "📅 Open Daily Planner";
             document.getElementById('planner-card-title').innerText = "Daily Planner 🗓️";
             document.getElementById('planner-hint').innerText = "Write your plan and check ✅ when done!";
@@ -819,24 +896,33 @@
             document.getElementById('afternoon-title').innerText = "🌇 Afternoon";
             document.getElementById('night-title').innerText = "🌙 Night";
             document.getElementById('reward-message').innerText = "🎉 Congratulations! You completed all tasks today!";
+            
             document.getElementById('notes-card-title').innerText = "My Notes 📝";
             document.getElementById('btn-notes-toggle').innerText = "📝 Open Notes";
             document.getElementById('notes-hint').innerText = "Write your notes here...";
             document.getElementById('personal-notes').placeholder = "Write your notes here...";
+            
             if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "Morning task...";
             if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "Noon task...";
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "Afternoon task...";
             if(!document.getElementById('input-night').value) document.getElementById('input-night').placeholder = "Night task...";
             document.getElementById('theme-btn').innerText = "🌓 Theme Mode";
         } else {
+            document.body.classList.remove('lang-en');
             document.body.style.direction = 'rtl';
             document.body.style.textAlign = 'center';
-            document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
+            document.querySelectorAll('.card').forEach(el => el.style.textAlign = 'right');
             document.getElementById('site-subtitle').innerText = "✨";
             document.querySelector('.enter-site-btn').innerText = "ڤەکرنا دەفتەرێ 📖";
+            
             document.getElementById('guide-text').innerHTML = '📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.';
+            
             document.getElementById('btn-quote-toggle').innerText = "💬 ڤەکرنا گۆتنان";
             document.getElementById('quote-card-title').innerText = "گۆتنێن ڕۆژانە یێن دۆدۆ 💬";
+            document.getElementById('fav-section-title').innerText = "⭐ گۆتنێن من یێن دلخواز";
+            document.getElementById('next-quote-btn').innerText = "🔄 گۆتنا دووڤدا";
+            document.getElementById('fav-btn').innerText = "❤️ دلخواز";
+
             document.getElementById('btn-planner-toggle').innerText = "📅 ڤەکرنا خشتەیێ ڕۆژانە";
             document.getElementById('planner-card-title').innerText = "خشتەیێ ڕۆژانە 🗓️";
             document.getElementById('planner-hint').innerText = "پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!";
@@ -845,10 +931,12 @@
             document.getElementById('afternoon-title').innerText = "🌇 ئێڤاری";
             document.getElementById('night-title').innerText = "🌙 ب شەڤ";
             document.getElementById('reward-message').innerText = "🎉 پیرۆزبایی! تە هەموو کارێن خۆ یێن ئەڤرۆ تەمام کرن، سەرکەفتن بۆ تە! ✨";
+            
             document.getElementById('notes-card-title').innerText = "تێبینیێن من 📝";
             document.getElementById('btn-notes-toggle').innerText = "📝 ڤەکرنا جهێ تێبینیان";
             document.getElementById('notes-hint').innerText = "تێبینیێن خۆ ل ڤێرێ بنڤیسە...";
             document.getElementById('personal-notes').placeholder = "تێبینیێن خۆ ل ڤێرێ بنڤیسە...";
+            
             if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "کارێ سپێدەهیا خۆ...";
             if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "کارێ نیڤرۆیا خۆ...";
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "کارێ ئێڤاریا خۆ...";
@@ -856,10 +944,18 @@
             document.getElementById('theme-btn').innerText = "🌓 گوهۆڕینا مودی";
         }
         localStorage.setItem('dodo_lang', lang);
+        updateGuideTime();
+        renderFavorites();
+        
+        // نویکرنا گۆتنا نها بۆ زمانێ هەلبژارتی
+        const activeList = (lang === 'en') ? quotesEn : quotesKu;
+        document.getElementById('daily-quote').innerHTML = activeList[currentQuoteIdx];
     }
 
     const savedLang = localStorage.getItem('dodo_lang');
     if(savedLang) { setLanguage(savedLang); }
+    updateGuideTime();
 </script>
 </body>
 </html>
+
