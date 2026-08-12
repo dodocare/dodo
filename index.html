@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ku" id="html-root">
 <head>
@@ -510,12 +509,11 @@
     <div id="intro-screen">
         <div class="intro-dodo">🐰</div>
         <div class="intro-welcome-text">
-‎            خێرهاتن 😊 Welcome 🌸 أهلاً بك
+            خێرهاتن 😊 Welcome
         </div>
         <div class="intro-langs">
             <div class="intro-lang-pill">کوردی</div>
             <div class="intro-lang-pill">English</div>
-            <div class="intro-lang-pill">العربية</div>
         </div>
         <button class="enter-site-btn" onclick="openMainSite()">ڤەکرنا دەفتەرێ 📖</button>
     </div>
@@ -532,7 +530,6 @@
         <div class="control-group">
             <button class="lang-btn" onclick="setLanguage('ku')">KU</button>
             <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-            <button class="lang-btn" onclick="setLanguage('ar')">AR</button>
         </div>
     </div>
 
@@ -578,7 +575,7 @@
         
         <div id="planner-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;" id="planner-hint">
-‎                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
+                پلانا خۆ بنڤیسە و هەر دەمەکێ تە کارەک تەمام کر، ✅ ل بەر بکە!
             </p>
 
             <div class="planner-section">
@@ -614,7 +611,7 @@
             </div>
 
             <div id="reward-message" class="reward-box">
-‎                پیروزە تە هەمی کارن خو ب سەرکەفتیانە کرن، بەردەوام بە🥳🎉
+                پیروزە تە هەمی کارن خو ب سەرکەفتیانە کرن، بەردەوام بە🥳🎉
             </div>
         </div>
     </div>
@@ -625,7 +622,7 @@
         
         <div id="notes-content" class="collapsible-content">
             <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-bottom: 15px; margin-top: 10px;" id="notes-hint">
-‎                تێبینیێن خۆ ل ڤێرێ بنڤیسە...
+                تێبینیێن خۆ ل ڤێرێ بنڤیسە...
             </p>
             <textarea id="personal-notes" rows="4" placeholder="تێبینیێن خۆ ل ڤێرێ بنڤیسە..." oninput="saveNotes()"></textarea>
         </div>
@@ -658,31 +655,31 @@
     }
 
     const quotesList = [
-‎        "“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style='opacity:0.8'>— مەولانایێ ڕۆمی</small>",
-‎        "“باشترین بەرسڤ بۆ مرۆڤێن نەزان، بێدەنگییە.”<br><small style='opacity:0.8'>— ئیمامێ شافعی</small>",
-‎        "“ببە ئەو کەسێ کو تە دڤێت د ژیانێ دا ببینی، نە ئەو کەسێ کو خەلکی دڤێت.”<br><small style='opacity:0.8'>— مەهاتما گاندی</small>",
-‎        "“ئەگەر تو هه‌ڤالینیێ دگەل چوار مرۆڤێن بێ ئارمانج بکەی، پشتڕاست بە کو تو دێ بیە یێ پێنجێ.”<br><small style='opacity:0.8'>— ئیدریس ئالبا</small>",
-‎        "“کەسایەتیا تە د وێ ڕۆژێ دا دگەهیتە لوتکەیێ، دەمێ تو تێدگەهی کو تو تنێ بەرپرسێ بەختەوەریا خۆی.”<br><small style='opacity:0.8'>— ئەلبێرت کامۆ</small>",
-‎        "“کەسێ کو جارەکێ درەو ل دگەل تە کر، -پشتڕاست بە کو دێ بۆ جارا دووێ و سێیێ ژی کەت. خشتێ خەلەت چ جاران دیوارێ ڕاست چێناکەت.”<br><small style='opacity:0.8'>— ئۆلیڤەر جۆنسمان</small>",
-‎        "“مەزنترین تۆڵەسەندن ژ مرۆڤێن خاین و درەوین ئەوە، کو تو د ژیانا خۆ دا سەرکەفتی ببی و وان ب تەمامی ژ بیر بکەی.”<br><small style='opacity:0.8'>— فرانك سیناترا</small>",
-‎        "“ئەگەر مرۆڤەکی خیانەت ل تە کر، ئەڤە خەلەتیا وی یە. بەس ئەگەر بۆ جارا دووێ خیانەت ل تە کر، ئەڤە خەلەتیا تە یە کو تە دیسا باوەری پێ کر.”<br><small style='opacity:0.8'>— ئاندرێ جید</small>",
-‎        "“کەسێ کو ل پێش چاڤێن تە بەحسێ خەلکی بکەت، پشتڕاست بە کو ل پشت تە ژی دێ بەحسێ تە کەت بۆ خەلکی.”<br><small style='opacity:0.8'>— ئیمامێ عەلی</small>",
-‎        "“مەزنترین دۆژمن بۆ ساخلەمیا تە یا دەروونی، تێکەڵبوونا زێدەیە دگەل بابەتێن کو چ پەیوەندی ب تە ڤە نینە.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
-‎        "“مرۆڤێ ب هێز ئەو نینە یێ چ جاران نەکەفتی، بەلکو ئەو کەسە یێ پشتی هەر کەفتنەکێ ب هێزتر ڕادبیتە سەر پێیان.”<br><small style='opacity:0.8'>— کۆنفۆشیۆس</small>",
-‎        "“ئەگەر تو بۆچوونا خەلکی بکەیە یاسایا ژیانا خۆ، تو چ جاران نەشێی ئازاد بژی.”<br><small style='opacity:0.8'>— فریدریش نیتشە</small>",
-‎        "“خەڵک دێ هەر ئاخڤن، چ تو تشتێن باش بکەی یان خراپ. ڤێجا وی تشتێ بکە یا کو دل و ویژدانا تە پێ ڕازی بیت.”<br><small style='opacity:0.8'>— مارک تواین</small>",
-‎        "“مەزنترین ئازادی د ژیانێ دا ئەوە کو تو خەمێ بۆ هندێ نەخۆی کا خەلک ل سەر تە چ هزر دکەن.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
-‎        "“ئەو کەسێ چ گرنگیێ ب سەرکەفتنا تە نەدەت، جهێ وی د ژیانا تە دا نینە.”<br><small style='opacity:0.8'>— مارک تواین</small>",
-‎        "“بلا دەوروبەرێن تە تنێ ئەو بن یێن کو دلێ تە گەش دکەن و پشتەڤانیا تە دکەن.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
-‎        "“بەری حەژ کەسێ بکەی، فێربە کا دێ چەوا حەژ خۆ کەی.”<br><small style='opacity:0.8'>— بودا</small>",
-‎        "“تو ژ هەژی باشترین تشتێن، چ جاران کێمتری مافێ خۆ قبوول نەکە.”<br><small style='opacity:0.8'>— مایا ئەنجێلۆ</small>",
-‎        "“خۆ وەک خۆ قبوول بکە، تو یێ جودای و ئەڤە ژی جوانییا تە یە.”<br><small style='opacity:0.8'>— فریدریش</small>",
-‎        "“خۆ ب کەسێ بەراورد نەکە، تو د ڕێکا خۆ یا تایبەت دا دچی.”<br><small style='opacity:0.8'>— بیل گەیتس</small>",
-‎        "“گرنگیدان ب خۆ نە خۆپەرستییە، ئەڤە دەستپێکا ڕێزگرتنێیە ژ ژیانێ.”<br><small style='opacity:0.8'>— ئۆسکار وایڵد</small>",
-‎        "“نەهێلە خەونێن تە تنێ د سەرێ تە دا بمینن، بکە کار.”<br><small style='opacity:0.8'>— ستیڤ جۆبس</small>",
-‎        "“نەخۆشی دێ چن، بەس مرۆڤێن ب هێز دێ مینن.”<br><small style='opacity:0.8'>— ڕۆبێرت شولەر</small>",
-‎        "“ترس تنێ خەیالەکە، وێ نەکە ڕاستی بۆ خۆ.”<br><small style='opacity:0.8'>— پائۆلۆ کۆیلۆ</small>",
-‎        "“هەر ڕۆژەکا نوو، چانسەکێ نوویە بۆ گوهۆڕینێ.”<br><small style='opacity:0.8'>— ئەلبێرت ئاینشتاین</small>"
+        "“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style='opacity:0.8'>— مەولانایێ ڕۆمی</small>",
+        "“باشترین بەرسڤ بۆ مرۆڤێن نەزان، بێدەنگییە.”<br><small style='opacity:0.8'>— ئیمامێ شافعی</small>",
+        "“ببە ئەو کەسێ کو تە دڤێت د ژیانێ دا ببینی، نە ئەو کەسێ کو خەلکی دڤێت.”<br><small style='opacity:0.8'>— مەهاتما گاندی</small>",
+        "“ئەگەر تو هه‌ڤالینیێ دگەل چوار مرۆڤێن بێ ئارمانج بکەی، پشتڕاست بە کو تو دێ بیە یێ پێنجێ.”<br><small style='opacity:0.8'>— ئیدریس ئالبا</small>",
+        "“کەسایەتیا تە د وێ ڕۆژێ دا دگەهیتە لوتکەیێ، دەمێ تو تێدگەهی کو تو تنێ بەرپرسێ بەختەوەریا خۆی.”<br><small style='opacity:0.8'>— ئەلبێرت کامۆ</small>",
+        "“کەسێ کو جارەکێ درەو ل دگەل تە کر، -پشتڕاست بە کو دێ بۆ جارا دووێ و سێیێ ژی کەت. خشتێ خەلەت چ جاران دیوارێ ڕاست چێناکەت.”<br><small style='opacity:0.8'>— ئۆلیڤەر جۆنسمان</small>",
+        "“مەزنترین تۆڵەسەندن ژ مرۆڤێن خاین و درەوین ئەوە، کو تو د ژیانا خۆ دا سەرکەفتی ببی و وان ب تەمامی ژ بیر بکەی.”<br><small style='opacity:0.8'>— فرانك سیناترا</small>",
+        "“ئەگەر مرۆڤەکی خیانەت ل تە کر، ئەڤە خەلەتیا وی یە. بەس ئەگەر بۆ جارا دووێ خیانەت ل تە کر، ئەڤە خەلەتیا تە یە کو تە دیسا باوەری پێ کر.”<br><small style='opacity:0.8'>— ئاندرێ جید</small>",
+        "“کەسێ کو ل پێش چاڤێن تە بەحسێ خەلکی بکەت، پشتڕاست بە کو ل پشت تە ژی دێ بەحسێ تە کەت بۆ خەلکی.”<br><small style='opacity:0.8'>— ئیمامێ عەلی</small>",
+        "“مەزنترین دۆژمن بۆ ساخلەمیا تە یا دەروونی، تێکەڵبوونا زێدەیە دگەل بابەتێن کو چ پەیوەندی ب تە ڤە نینە.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
+        "“مرۆڤێ ب هێز ئەو نینە یێ چ جاران نەکەفتی، بەلکو ئەو کەسە یێ پشتی هەر کەفتنەکێ ب هێزتر ڕادبیتە سەر پێیان.”<br><small style='opacity:0.8'>— کۆنفۆشیۆس</small>",
+        "“ئەگەر تو بۆچوونا خەلکی بکەیە یاسایا ژیانا خۆ، تو چ جاران نەشێی ئازاد بژی.”<br><small style='opacity:0.8'>— فریدریش نیتشە</small>",
+        "“خەڵک دێ هەر ئاخڤن، چ تو تشتێن باش بکەی یان خراپ. ڤێجا وی تشتێ بکە یا کو دل و ویژدانا تە پێ ڕازی بیت.”<br><small style='opacity:0.8'>— مارک تواین</small>",
+        "“مەزنترین ئازادی د ژیانێ دا ئەوە کو تو خەمێ بۆ هندێ نەخۆی کا خەلک ل سەر تە چ هزر دکەن.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
+        "“ئەو کەسێ چ گرنگیێ ب سەرکەفتنا تە نەدەت، جهێ وی د ژیانا تە دا نینە.”<br><small style='opacity:0.8'>— مارک تواین</small>",
+        "“بلا دەوروبەرێن تە تنێ ئەو بن یێن کو دلێ تە گەش دکەن و پشتەڤانیا تە دکەن.”<br><small style='opacity:0.8'>— ئۆپرا وینفری</small>",
+        "“بەری حەژ کەسێ بکەی، فێربە کا دێ چەوا حەژ خۆ کەی.”<br><small style='opacity:0.8'>— بودا</small>",
+        "“تو ژ هەژی باشترین تشتێن، چ جاران کێمتری مافێ خۆ قبوول نەکە.”<br><small style='opacity:0.8'>— مایا ئەنجێلۆ</small>",
+        "“خۆ وەک خۆ قبوول بکە، تو یێ جودای و ئەڤە ژی جوانییا تە یە.”<br><small style='opacity:0.8'>— فریدریش</small>",
+        "“خۆ ب کەسێ بەراورد نەکە، تو د ڕێکا خۆ یا تایبەت دا دچی.”<br><small style='opacity:0.8'>— بیل گەیتس</small>",
+        "“گرنگیدان ب خۆ نە خۆپەرستییە، ئەڤە دەستپێکا ڕێزگرتنێیە ژ ژیانێ.”<br><small style='opacity:0.8'>— ئۆسکار وایڵد</small>",
+        "“نەهێلە خەونێن تە تنێ د سەرێ تە دا بمینن، بکە کار.”<br><small style='opacity:0.8'>— ستیڤ جۆبس</small>",
+        "“نەخۆشی دێ چن، بەس مرۆڤێن ب هێز دێ مینن.”<br><small style='opacity:0.8'>— ڕۆبێرت شولەر</small>",
+        "“ترس تنێ خەیالەکە، وێ نەکە ڕاستی بۆ خۆ.”<br><small style='opacity:0.8'>— پائۆلۆ کۆیلۆ</small>",
+        "“هەر ڕۆژەکا نوو، چانسەکێ نوویە بۆ گوهۆڕینێ.”<br><small style='opacity:0.8'>— ئەلبێرت ئاینشتاین</small>"
     ];
 
     let currentQuoteIdx = 0;
@@ -891,33 +888,6 @@
             if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "Afternoon task...";
             if(!document.getElementById('input-night').value) document.getElementById('input-night').placeholder = "Night task...";
             document.getElementById('theme-btn').innerText = "🌓 Theme Mode";
-        } else if(lang === 'ar') {
-            document.body.style.direction = 'rtl';
-            document.body.style.textAlign = 'center';
-            document.querySelectorAll('.card, .top-mini-guide').forEach(el => el.style.textAlign = 'right');
-            document.getElementById('site-subtitle').innerText = "✨";
-            document.querySelector('.enter-site-btn').innerText = "فتح الدفتر 📖";
-            document.getElementById('guide-text').innerHTML = '📌 <strong>ملاحظة الإضافة للشاشة:</strong> إذا فتحت الموقع من تيك توك أو انستغرام، اضغط على النقاط الثلاث بالأعلى وافتحه في المتصفح الخارجي؛ للايفون <strong>Share > Add to home</strong> وللاندرويد <strong>Menu > Add to home</strong>.';
-            document.getElementById('streak-counter').innerText = "🔥 التتابع: " + streakNum + " أيام متتالية";
-            document.getElementById('btn-quote-toggle').innerText = "💬 فتح المقولات";
-            document.getElementById('quote-card-title').innerText = "مقولات دودو اليومية 💬";
-            document.getElementById('btn-planner-toggle').innerText = "📅 فتح الجدول اليومي";
-            document.getElementById('planner-card-title').innerText = "الجدول اليومي 🗓️";
-            document.getElementById('planner-hint').innerText = "اكتب خطتك وضع ✅ عندما تنجز أي مهمة!";
-            document.getElementById('morning-title').innerText = "🌅 الصباح";
-            document.getElementById('noon-title').innerText = "☀️ الظهر";
-            document.getElementById('afternoon-title').innerText = "🌇 العصر";
-            document.getElementById('night-title').innerText = "🌙 المساء";
-            document.getElementById('reward-message').innerText = "🎉 مبروك! لقد أنجزت جميع مهامك اليوم، بالتوفيق!";
-            document.getElementById('notes-card-title').innerText = "ملاحظاتي 📝";
-            document.getElementById('btn-notes-toggle').innerText = "📝 فتح المفكرة";
-            document.getElementById('notes-hint').innerText = "اكتب ملاحظاتك هنا...";
-            document.getElementById('personal-notes').placeholder = "اكتب ملاحظاتك هنا...";
-            if(!document.getElementById('input-morning').value) document.getElementById('input-morning').placeholder = "مهمة الصباح...";
-            if(!document.getElementById('input-noon').value) document.getElementById('input-noon').placeholder = "مهمة الظهر...";
-            if(!document.getElementById('input-afternoon').value) document.getElementById('input-afternoon').placeholder = "مهمة العصر...";
-            if(!document.getElementById('input-night').value) document.getElementById('input-night').placeholder = "مهمة المساء...";
-            document.getElementById('theme-btn').innerText = "🌓 وضع المظهر";
         } else {
             document.body.style.direction = 'rtl';
             document.body.style.textAlign = 'center';
@@ -925,7 +895,7 @@
             document.getElementById('site-subtitle').innerText = "✨";
             document.querySelector('.enter-site-btn').innerText = "ڤەکرنا دەفتەرێ 📖";
             document.getElementById('guide-text').innerHTML = '📌 <strong>تێبینییا زێدەکرنا سەر شاشەیێ:</strong> ئەگەر ژ تیک تۆکی یان اینستاگرام سایتی ڤەدکەی، دەستپێکێ تبلا خۆ ل وان سێ نقتێن سەری بدە، و هەرە دناڤ بروسەرا فەرمی دا؛ بۆ ئایفونێ <strong>Share > Add to home</strong> و بۆ ئەندرویدێ <strong>Menu > Add to home</strong>.';
-            document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streakNum + " ڕۆژێن بەردەوام";
+            document.getElementById('streak-counter').innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
             document.getElementById('btn-quote-toggle').innerText = "💬 ڤەکرنا گۆتنان";
             document.getElementById('quote-card-title').innerText = "گۆتنێن ڕۆژانە یێن دۆدۆ 💬";
             document.getElementById('btn-planner-toggle').innerText = "📅 ڤەکرنا خشتەیێ ڕۆژانە";
@@ -1007,7 +977,6 @@
     const streakCounter = document.getElementById('streak-counter');
     if(streakCounter) {
         if(currentLang === 'en') streakCounter.innerText = "🔥 Streak: " + streak + " Days";
-        else if(currentLang === 'ar') streakCounter.innerText = "🔥 ستریک: " + streak + " أيام متتالية";
         else streakCounter.innerText = "🔥 ستریک: " + streak + " ڕۆژێن بەردەوام";
     }
 </script>
