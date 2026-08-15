@@ -23,6 +23,17 @@
             --text-muted: #a4b0be;
         }
 
+        /* چارەسەرکرنا ئاریشا دارک موود بۆ خانەیێن نڤیسینێ */
+        [data-theme="dark"] input[type="text"], 
+        [data-theme="dark"] textarea { 
+            background: rgba(255, 255, 255, 0.1) !important; 
+            color: #ffffff !important; 
+        }
+        [data-theme="dark"] input[type="text"]::placeholder, 
+        [data-theme="dark"] textarea::placeholder { 
+            color: #a4b0be !important; 
+        }
+
         body {
             font-family: 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
@@ -200,7 +211,6 @@
         }
         .top-mini-guide strong { color: var(--accent-pink); }
         
-        /* قەبارێ بچووک بۆ دەمژمێر و شەڤ باشێ ل ژێر تێبینیێ */
         .guide-time-badge {
             font-size: 0.72rem;
             color: var(--accent-purple);
@@ -325,11 +335,14 @@
             transition: all 0.3s ease;
             font-size: 0.95rem;
         }
-        [data-theme="dark"] input[type="text"], [data-theme="dark"] textarea { background: rgba(0,0,0,0.2); }
+        
         input[type="text"]:focus, textarea:focus { 
             border-color: var(--accent-purple); 
             box-shadow: 0 0 12px rgba(112,111,211,0.2);
             background: rgba(255,255,255,0.95);
+        }
+        [data-theme="dark"] input[type="text"]:focus, [data-theme="dark"] textarea:focus {
+            background: rgba(30, 30, 50, 0.95);
         }
 
         .collapsible-content {
@@ -463,11 +476,11 @@
 
         footer {
             margin-top: 40px;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             text-align: center;
-            font-weight: normal;
-            opacity: 0.8;
+            font-weight: bold;
+            opacity: 0.85;
         }
     </style>
 </head>
@@ -593,12 +606,11 @@
     </div>
 
     <footer>
-        HudaSindi
+        Created by Huda Sindi
     </footer>
 </div>
 
 <script>
-    // نویکرنا دەمژمێر و دەمی بۆ ژێر تێبینییا شاشەیێ
     function updateGuideTime() {
         const now = new Date();
         const hours = now.getHours();
@@ -650,7 +662,6 @@
         }
     }
 
-    // گۆتنێن کوردی و ئینگلیزی ب تەواوی
     const quotesKu = [
         "“ڕێزێ ل خۆ بگرە و دویر بکەڤە ژ هەر جهەکێ کو قەدرێ تە لێ نەبیت.”<br><small style='opacity:0.8'>— مەولانایێ ڕۆمی</small>",
         "“باشترین بەرسڤ بۆ مرۆڤێن نەزان، بێدەنگییە.”<br><small style='opacity:0.8'>— ئیمامێ شافعی</small>",
@@ -930,7 +941,7 @@
             document.getElementById('noon-title').innerText = "☀️ نیڤرۆ";
             document.getElementById('afternoon-title').innerText = "🌇 ئێڤاری";
             document.getElementById('night-title').innerText = "🌙 ب شەڤ";
-            document.getElementById('reward-message').innerText = "🎉 پیرۆزە! تە هەمی کارێن خۆ یێن ئەڤرۆ تەمام کرن، سەرکەفتن بۆ تە! ✨";
+            document.getElementById('reward-message').innerText = "🎉 پیرۆزبایی! تە هەموو کارێن خۆ یێن ئەڤرۆ تەمام کرن، سەرکەفتن بۆ تە! ✨";
             
             document.getElementById('notes-card-title').innerText = "تێبینیێن من 📝";
             document.getElementById('btn-notes-toggle').innerText = "📝 ڤەکرنا جهێ تێبینیان";
@@ -947,7 +958,6 @@
         updateGuideTime();
         renderFavorites();
         
-        // نویکرنا گۆتنا نها بۆ زمانێ هەلبژارتی
         const activeList = (lang === 'en') ? quotesEn : quotesKu;
         document.getElementById('daily-quote').innerHTML = activeList[currentQuoteIdx];
     }
@@ -958,4 +968,3 @@
 </script>
 </body>
 </html>
-
